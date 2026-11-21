@@ -21,7 +21,7 @@ TỦ CẤP TỐC CSD201 FE — 69 CÂU NÓNG FA26 (22 SIÊU TỦ + 47 LẶP 2 Đ
 08. [4/8] Which statements are true? (Select two)
     => A. In a singly linked list there is no efficient way to insert a node before a given node in the middle of the list (an action is considered efficient if its complexity is O(1)) ; B. In a singly linked list we can insert a node after a given node with time complexity O(1)
 09. [4/8] Suppose a doubly linked list of integers is given: (head) 7 1 6 4 31 17 8 2 (tail), and p is a reference to the node with value 17. What does the list look like after the following Java code snippet is run? [CODE]
-    Code: int x = 13; / Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
+    Code: int x = 13; / Node f = p.prev; / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
     => B. 7 1 6 4 31 13 17 8 2
 10. [4/8] Suppose we are considering a binary search tree. Select the most correct Java code snippet that searches for a node with value x in the subtree with root p.
     => B. Node search(Node p, int x) { if (p == null) return(null); if (p.info == x) return(p); if (x < p.info) return(search(p.left, x)); else return(search(p.right, x)); }
@@ -56,10 +56,10 @@ TỦ CẤP TỐC CSD201 FE — 69 CÂU NÓNG FA26 (22 SIÊU TỦ + 47 LẶP 2 Đ
 
 --- PHẦN 2: 47 CÂU LẶP 2 ĐỀ NGHỈ SU26 ---
 23. [2/8] Select the most correct statement. Suppose we are considering a doubly linked list and p is some node in the list which has a predecessor node. What does the Java code snippet below do? [CODE]
-    Code: Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
+    Code: Node f = p.prev; / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
     => A. It inserts a new node with value x before the node p
 24. [2/8] Suppose we are considering a doubly linked list and p is some node in the list which has both predecessor and successor nodes. Select the most correct Java code snippet that deletes the node p.
-    => B. Node p1, p2; p1 = p.prev; // prev is a link to previous node p2 = p.next; p2.prev = p1; p1.next = p2;
+    => B. Node p1, p2; p1 = p.prev; p2 = p.next; p2.prev = p1; p1.next = p2;
 25. [2/8] Suppose we are considering a singly linked list and p is some node in the list which has a successor node. Select the most correct Java code snippet that inserts a new node with value x after the node p.
     => A. Node q = new Node(x); q.next = p.next; p.next = q;
 26. [2/8] True or false: In a circular linked list, it is always required to define both head and tail nodes.
@@ -67,10 +67,10 @@ TỦ CẤP TỐC CSD201 FE — 69 CÂU NÓNG FA26 (22 SIÊU TỦ + 47 LẶP 2 Đ
 27. [2/8] True or false: In a singly linked list, there is no efficient way to insert a node before a given node in the middle or at the end of the list, but we can insert a node after a given node or at the beginning of the list with time complexity O(1).
     => B. True
 28. [2/8] Suppose a doubly linked list of integers is given: (head) 7 1 6 4 3 12 8 21 (tail), and p is a reference to the node with value 12. What does the list look like after the following Java code snippet is run? [CODE]
-    Code: int x = 13; / Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
+    Code: int x = 13; / Node f = p.prev; / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
     => B. 7 1 6 4 3 13 12 8 21
 29. [2/8] Suppose a doubly linked list of integers is given: (head) 7 11 6 4 13 12 8 2 (tail), and p is a reference to the node with value 12. What does the list look like after the following Java code snippet is run? [CODE]
-    Code: int x = 15; / Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
+    Code: int x = 15; / Node f = p.prev; / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
     => B. 7 11 6 4 13 15 12 8 2
 30. [2/8] Suppose we implement a queue using a singly linked list where the head of the list is treated as the head of the queue. Specify the correct implementation of dequeue().
     => C. Object dequeue() { if (isEmpty()) return(null); Node p = head; head = head.next; if (head == null) tail = null; return(p.info); }
@@ -110,7 +110,7 @@ TỦ CẤP TỐC CSD201 FE — 69 CÂU NÓNG FA26 (22 SIÊU TỦ + 47 LẶP 2 Đ
 45. [2/8] Fill in the blank to form the most correct statement: In a ______ every element contains some data and a link to the next element, which allows the structure to be kept.
     => C. singly linked list
 46. [2/8] Suppose a doubly linked list of integers is given: (head) 7 11 6 4 3 12 8 2 (tail), and p is a reference to the node with value 12. What does the list look like after the following Java code snippet is run? [CODE]
-    Code: int x = 5; / Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
+    Code: int x = 5; / Node f = p.prev; / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
     => B. 7 11 6 4 3 5 12 8 2
 47. [2/8] Suppose a doubly linked list of integers is given: (head) 27 11 6 4 3 10 8 2 (tail), and p is a reference to the node with value 10. What does the list look like after the following Java code snippet is run? [CODE]
     Code: int x = 19; / Node p1, p2; / p1 = new Node(x); / p2 = p.next; / p.next = p1; p1.prev = p; / p1.next = p2; p2.prev = p1;
