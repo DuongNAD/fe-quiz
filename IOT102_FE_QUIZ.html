@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IOT102 FE Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+:root {
+  --bg: #F8FAFC;
+  --surface: #FFFFFF;
+  --surface-2: #F1F5F9;
+  --ink: #0F172A;
+  --muted: #64748B;
+  --line: #E2E8F0;
+  --accent: #0D9488;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #CCFBF1;
+  --ok: #15803D;
+  --ok-soft: #DCFCE7;
+  --bad: #DC2626;
+  --bad-soft: #FEE2E2;
+  --warn: #B45309;
+  --warn-soft: #FEF3C7;
+  --font-body: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, ui-monospace, monospace;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(15, 23, 42, .04), 0 4px 12px rgba(15, 23, 42, .03);
+}
+:root[data-theme="dark"] {
+  --bg: #0B1120;
+  --surface: #111827;
+  --surface-2: #1E293B;
+  --ink: #F1F5F9;
+  --muted: #94A3B8;
+  --line: #273449;
+  --accent: #2DD4BF;
+  --accent-ink: #0B1120;
+  --accent-soft: #134E4A;
+  --ok: #4ADE80;
+  --ok-soft: #143624;
+  --bad: #F87171;
+  --bad-soft: #3D1A1D;
+  --warn: #FBBF24;
+  --warn-soft: #3A2A12;
+  --shadow: none;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  padding: 0 16px 48px;
+}
+.wrap { max-width: 1120px; margin-inline: auto; }
+button, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .45; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* compact single-row top bar */
+.topbar {
+  margin-top: 14px;
+  padding: 10px 14px;
+  min-height: 56px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 14px;
+}
+.brand { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.subj-pill {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.brand h1 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.fixed-tag {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--muted);
+}
+.switch-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 4px 9px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+}
+.switch-link:hover { background: var(--accent-soft); }
+
+.top-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.seg {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+}
+.seg button {
+  border: 0;
+  background: transparent;
+  padding: 5px 11px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.seg button[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .08);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  white-space: nowrap;
+}
+.btn:hover:not(:disabled) { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover:not(:disabled) { filter: brightness(0.95); }
+.btn.warn { background: var(--warn-soft); border-color: var(--warn); color: var(--warn); }
+.btn.sm { padding: 5px 10px; font-size: 12.5px; }
+.btn.wide { width: 100%; }
+.btn .count {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--ink);
+}
+.btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.btn.warn-toggle[aria-pressed="true"] { background: var(--warn-soft); border-color: var(--warn); color: var(--warn); }
+.icon-btn { width: 34px; padding: 7px 0; }
+
+/* high-ROI preset strip */
+.presets {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px 8px;
+}
+.presets-lbl {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--muted);
+  margin-right: 4px;
+}
+.preset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.preset-btn:hover { border-color: var(--accent); }
+.preset-btn .count {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+}
+.preset-btn[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.preset-btn[aria-pressed="true"] .count {
+  background: rgba(255, 255, 255, .22);
+  color: var(--accent-ink);
+}
+
+/* collapsible filter drawer */
+.drawer {
+  margin-top: 10px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 12px;
+}
+.drawer[hidden] { display: none; }
+.drow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.field { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; color: var(--muted); }
+select {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 5px 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+.check { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; cursor: pointer; }
+.check input { width: 15px; height: 15px; accent-color: var(--accent); }
+.lbl { font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.chip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+}
+.chip small { color: var(--muted); margin-left: 4px; }
+.chip[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+.pending {
+  margin-top: 10px;
+  padding: 9px 14px;
+  border-radius: 9px;
+  background: var(--warn-soft);
+  border: 1px solid var(--warn);
+  color: var(--ink);
+  font-size: 13.5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.pending[hidden] { display: none; }
+
+/* focused workspace */
+.work {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 268px;
+  gap: 18px;
+  margin-top: 14px;
+  align-items: start;
+}
+@media (max-width: 860px) { .work { grid-template-columns: minmax(0, 1fr); } }
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 24px 18px;
+  min-width: 0;
+}
+@media (max-width: 600px) { .card { padding: 18px 16px 16px; } }
+
+.progress-track {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--surface-2);
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width .2s ease;
+}
+
+.card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.qnum {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.qnum .of { color: var(--muted); font-weight: 400; font-size: 13.5px; }
+.badges { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.badge {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--muted);
+}
+.badge.multi { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.badge.flag { background: var(--warn-soft); border-color: var(--warn); color: var(--warn); font-weight: 600; }
+
+.qtext {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 16px 0 16px;
+  max-width: 72ch;
+}
+.code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.55;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 0 0 16px;
+  overflow-x: auto;
+}
+
+
+.opts { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.opt {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
+  padding: 11px 14px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  line-height: 1.48;
+}
+.opt:hover:not([aria-disabled="true"]) { border-color: var(--accent); background: var(--surface-2); }
+.opt[aria-disabled="true"] { cursor: default; }
+.opt .key {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+}
+.opt .txt { flex: 1 1 auto; min-width: 0; padding-top: 2px; overflow-wrap: anywhere; }
+.opt .txt.mono { font-family: var(--font-mono); font-size: 13px; white-space: pre-wrap; }
+.opt .mark { flex: none; font-family: var(--font-mono); font-weight: 700; padding-top: 2px; }
+.opt.is-selected { border-color: var(--accent); background: var(--accent-soft); }
+.opt.is-selected .key { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.opt.is-correct { border-color: var(--ok); background: var(--ok-soft); }
+.opt.is-correct .key { background: var(--ok); border-color: var(--ok); color: #FFFFFF; }
+.opt.is-correct .mark, .opt.is-missed .mark { color: var(--ok); }
+.opt.is-wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.is-wrong .key { background: var(--bad); border-color: var(--bad); color: #FFFFFF; }
+.opt.is-wrong .mark { color: var(--bad); }
+.opt.is-missed { border-style: dashed; border-color: var(--ok); background: var(--ok-soft); }
+
+.feedback {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 9px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 6px;
+}
+.feedback p { margin: 0; }
+.verdict { font-family: var(--font-mono); font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.verdict span { text-transform: none; letter-spacing: 0; font-weight: 600; color: var(--ink); }
+.feedback.ok .verdict { color: var(--ok); }
+.feedback.bad .verdict, .feedback.skip .verdict { color: var(--bad); }
+.expl { font-size: 14.5px; max-width: 72ch; }
+.flagnote { font-size: 13px; color: var(--warn); }
+.src { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); }
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.nav-l, .nav-r { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.hint { margin: 10px 0 0; font-size: 12px; color: var(--muted); }
+@media (hover: none) { .hint { display: none; } }
+
+/* compact sticky sidebar */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+  position: sticky;
+  top: 16px;
+}
+@media (max-width: 860px) { .panel { position: static; } }
+.meter { display: flex; gap: 16px; justify-content: space-between; }
+.meter > div { min-width: 0; }
+.meter p { margin: 2px 0 0; font-size: 11.5px; color: var(--muted); }
+.big { font-family: var(--font-mono); font-size: 22px; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.big.ok { color: var(--ok); }
+.big.bad { color: var(--bad); }
+.unit { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(34px, 1fr)); gap: 5px; }
+.pin {
+  height: 31px;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.pin.ans { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.pin.ok { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); font-weight: 600; }
+.pin.bad { background: var(--bad-soft); border-color: var(--bad); color: var(--bad); font-weight: 600; }
+.pin.cur { outline: 2px solid var(--ink); outline-offset: 1px; }
+.panel-actions { display: grid; gap: 8px; }
+
+/* results */
+.score { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 18px; }
+.score .num { font-family: var(--font-mono); font-weight: 700; font-size: 48px; line-height: 1; font-variant-numeric: tabular-nums; }
+.score .num small { font-size: 18px; color: var(--muted); font-weight: 500; }
+.score p { margin: 2px 0; color: var(--muted); font-size: 14px; }
+.res-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 6px; }
+.review { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
+.review li { border: 1px solid var(--line); border-radius: 9px; padding: 12px 14px; display: grid; gap: 5px; background: var(--surface-2); }
+.review .rh { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.review .rq { margin: 0; font-weight: 600; font-size: 14.5px; }
+.review .ra { margin: 0; font-size: 13.5px; }
+.review .ra.your { color: var(--bad); }
+.review .ra.right { color: var(--ok); }
+.review .rx { margin: 0; font-size: 13.5px; color: var(--muted); }
+h2 { font-size: 17px; font-weight: 700; margin: 20px 0 0; }
+.empty p { color: var(--muted); margin: 8px 0 14px; }
+@media (prefers-reduced-motion: no-preference) { .opt, .pin, .btn, .chip, .preset-btn { transition: border-color .15s, background-color .15s; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand">
+      <span class="subj-pill">IOT102</span>
+      <h1>IOT102 FE Quiz</h1>
+      <span class="fixed-tag" title="Thứ tự phương án A/B/C/D giữ nguyên 100% theo đề gốc">A–D cố định</span>
+      <a class="switch-link" href="./CSD201_FE_QUIZ.html" title="Chuyển sang CSD201 FE Quiz">← CSD201</a>
+    </div>
+    <div class="top-actions">
+      <div class="seg" role="group" aria-label="Chế độ">
+        <button type="button" data-mode="practice" aria-pressed="true">Luyện tập</button>
+        <button type="button" data-mode="exam" aria-pressed="false">Thi thử</button>
+      </div>
+      <button type="button" class="btn" id="filterToggle" aria-expanded="false" aria-controls="filterDrawer">Bộ lọc <span class="count" id="filterSummary">Tất cả</span> ▾</button>
+      <button type="button" class="btn" id="topRestartBtn" data-act="restart">↺ Làm lại từ đầu</button>
+      <button type="button" class="btn primary" data-act="shuffleNew" title="Xáo thứ tự câu hỏi trong bộ đang chọn (vẫn giữ nguyên A–D)">Trộn bộ mới</button>
+      <button type="button" class="btn icon-btn" id="themeBtn" title="Đổi giao diện Sáng / Tối" aria-label="Đổi giao diện Sáng / Tối">🌙</button>
+    </div>
+  </header>
+
+  <nav class="presets" id="presetsBar" aria-label="Bộ ôn chọn lọc"></nav>
+
+  <section class="drawer" id="filterDrawer" aria-label="Bộ lọc nâng cao" hidden>
+    <div class="drow">
+      <label class="field" for="count">Số câu
+        <select id="count">
+          <option value="20">20</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="all">Tất cả</option>
+        </select>
+      </label>
+      <label class="check" for="repeatOnly"><input type="checkbox" id="repeatOnly"> Chỉ câu lặp ≥ 2 đề (<span id="repCount">0</span>)</label>
+      <button type="button" class="btn sm warn-toggle" id="wrongBtn" aria-pressed="false">Chỉ câu đã sai <span class="count" id="wrongCount">0</span></button>
+      <button type="button" class="btn sm" id="clearWrongBtn">Xoá lịch sử sai</button>
+    </div>
+    <div class="drow">
+      <span class="lbl">Đề</span>
+      <div class="chips" id="chips"></div>
+    </div>
+  </section>
+
+  <div class="pending" id="pending" hidden>
+    <span>Bộ lọc đã thay đổi. Áp dụng ngay để tạo lại danh sách câu hỏi?</span>
+    <button type="button" class="btn primary sm" data-act="applyFilter">Áp dụng bộ lọc ngay</button>
+  </div>
+
+  <div class="work">
+    <main id="main" aria-live="polite"></main>
+    <aside id="panel" aria-label="Tiến độ"></aside>
+  </div>
+</div>
+
+<script type="application/json" id="bank">[{"id":1,"q":"In the dairy farm IoT example, which functionalities are directly linked to the responder attached to each cow? (Select all that apply)","o":["Motion sensing","Location tracking","Milk volume measurement","GPS navigation"],"a":[0,1],"n":"Responder gắn trên bò có cảm biến chuyển động (phát hiện sức khoẻ/động dục) và giúp xác định vị trí; đo sữa nằm ở máy vắt, không ở responder.","src":["SU26-FE"]},{"id":2,"q":"What is the size of the flash memory of the microcontroller of Arduino Uno Rev3?","o":["32 KB","40 KB","64 KB","128 KB"],"a":[0],"n":"ATmega328P có 32 KB flash (0.5 KB dùng cho bootloader), 2 KB SRAM, 1 KB EEPROM.","src":["SU26-FE","SU25-FE"]},{"id":3,"q":"Which board is Arduino's first development board to use one microcontroller with built-in USB?","o":["LilyPad","Uno","RedBoard","Leonardo"],"a":[3],"n":"Leonardo dùng ATmega32u4 có USB tích hợp, không cần chip USB-serial riêng như Uno.","src":["SU26-FE"]},{"id":4,"q":"What is the recommended input voltage for an Arduino Uno?","o":["5-10 V","7-12 V","9-15 V","11-16 V"],"a":[1],"n":"Khuyến nghị 7-12 V; giới hạn tuyệt đối 6-20 V.","src":["SU26-FE","FA25-Half1"]},{"id":5,"q":"What is the maximum input voltage limit for the Arduino Uno?","o":["6-20 V","7-15 V","9-15 V","5-12 V"],"a":[0],"n":"Giới hạn (limit) 6-20 V; ngoài khoảng này board có thể không ổn định hoặc hỏng regulator.","src":["SU26-FE","SP26-FE","FA25-FEB5","FA25-FE","FA25-Half1","SU25-FE"]},{"id":6,"q":"Which of the following are valid power input methods for an Arduino Uno board? (Select all that apply)","o":["Vin pin","Power jack","PWM pin","USB port"],"a":[0,1,3],"n":"Cấp nguồn qua Vin, jack DC hoặc USB. Chân PWM là chân xuất tín hiệu, không phải chân cấp nguồn.","src":["SU26-FE"]},{"id":7,"q":"Which statement about DHT11 power consumption is NOT TRUE?","o":["It has low standby current","It consumes high power continuously","It draws current during the measurement process","It can work on battery power"],"a":[1],"n":"DHT11 tiêu thụ rất ít (µA khi chờ, ~mA khi đo), nên 'tiêu thụ công suất cao liên tục' là sai.","src":["SU26-FE"]},{"id":8,"q":"Which of the following is an input device?","o":["LED light","Light sensor","Speaker","DC motor"],"a":[1],"n":"Cảm biến đưa dữ liệu vào; LED, loa, động cơ là thiết bị đầu ra (actuator).","src":["SU26-FE"]},{"id":9,"q":"How many errors are present in the code below?","code":"int pin1=12;\nvoid setup() {\n  pinmode(pin1, IN);\n  Serial.begin(9600);\n}\nvoid loop() {\n  int value=analogRead(pin1);\n  Serial.println(value);\n}","o":["1","2","3","4"],"a":[2],"n":"pinmode → pinMode, IN → INPUT (2 lỗi biên dịch) và analogRead trên chân số 12 (phải dùng A0-A5). Cộng đồng chia giữa 2 và 3; đa số chọn 3.","flag":true,"src":["SU26-FE","FA25-Half1"]},{"id":10,"q":"What voltage is required to operate an LCD 16x2 display?","o":["5V","3.3V","12V","9V"],"a":[0],"n":"LCD 1602 (HD44780) hoạt động ở 5 V.","src":["SU26-FE"]},{"id":11,"q":"How many pins on Arduino Uno R3 support pulse width modulation (PWM)?","o":["7","5","9","6"],"a":[3],"n":"6 chân PWM: 3, 5, 6, 9, 10, 11 (ký hiệu ~).","src":["SU26-FE","FA25-Half1","SU25-FE"]},{"id":12,"q":"When using software serial, how many ports can receive data at a time?","o":["Multiple ports can receive data simultaneously","Only one port can receive data at a time","All ports can send and receive simultaneously","No ports can receive data, only send"],"a":[1],"n":"SoftwareSerial chỉ nghe một cổng tại một thời điểm (dùng listen() để chuyển).","src":["SU26-FE"]},{"id":13,"q":"What is the correct syntax to output a string like \"I like IoT\" in a C program?","o":["System.out.println(\"I like IoT\");","Console.writeLine(\"I like IoT\");","System.output(\"I like IoT\");","printf(\"I like IoT\");"],"a":[3],"n":"C dùng printf; các lựa chọn khác là Java/C#.","src":["SU26-FE","SP26-FE","FA25-FE","SU25-RE"]},{"id":14,"q":"Can the loop() function be used to call another function that is custom defined by the programmer?","o":["Yes, it can call","No, it cannot call","Yes, but only functions with no return values","Yes, but only functions with return values"],"a":[0],"n":"loop() là hàm bình thường, gọi được mọi hàm tự định nghĩa.","src":["SU26-FE"]},{"id":15,"q":"Can the setup() function change the value of constant variables?","o":["Yes, it can change","No, it cannot change","Yes, but only integer values","Yes, but only byte values"],"a":[1],"n":"Biến const không thể gán lại ở bất kỳ đâu - trình biên dịch báo lỗi.","src":["SU26-FE","SP26-FE","FA25-FEB5","SU25-FE"]},{"id":16,"q":"What is a common mistake to check if an Arduino program doesn't compile?","o":["Incorrect USB cable","Missing semicolon","Wrong breadboard size","Faulty LED"],"a":[1],"n":"Lỗi biên dịch là lỗi cú pháp như thiếu dấu ';'. Phần cứng không ảnh hưởng việc biên dịch.","src":["SU26-FE"]},{"id":17,"q":"In the given Arduino code, what is the purpose of the analogWrite() function and how is it used to control the LED's behavior?","o":["It reads analog values from a sensor","It blinks the LED on and off","It controls the brightness of the LED","It reads digital values from a sensor"],"a":[2],"n":"analogWrite xuất PWM (0-255) để điều chỉnh độ sáng LED.","src":["SU26-FE","FA25-Half1","SU25-FE"]},{"id":18,"q":"How do you open the LED Blink example sketch in the Arduino IDE?","o":["File > New > Sketch","File > Examples > 01.Basics > Blink","Tools > Upload > Blink","Sketch > Compile > Examples > Blink"],"a":[1],"n":"Ví dụ mẫu nằm ở File > Examples > 01.Basics > Blink.","src":["SU26-FE"]},{"id":19,"q":"Which symbol is used to start a comment in Arduino code?","o":["#","//","**","<!--"],"a":[1],"n":"// cho chú thích một dòng; /* ... */ cho nhiều dòng.","src":["SU26-FE","SP26-FE"]},{"id":20,"q":"With pinMode(2, INPUT_PULLUP), when the button is not pressed and the internal pull-up resistor is enabled on digital pin 2, what is the voltage level on this pin?","o":["0 volts","5 volts","3.3 volts","It depends on the button's position"],"a":[1],"n":"Điện trở kéo lên giữ chân ở HIGH (5 V) khi nút nhả; nhấn nút → nối GND → LOW.","src":["SU26-FE"]},{"id":21,"q":"What is the output of \"pin1\" if \"pin2\" is sent \"1011\", where 1 is 5V and 0 is 0V?","code":"int pin1 = 12;\nint pin2 = 11;\nvoid setup() {\n  pinMode(pin1, OUTPUT);\n  pinMode(pin2, INPUT);\n  Serial.begin(9600);\n}\nvoid loop() {\n  if (digitalRead(pin2)==1) {\n    digitalWrite(pin1, LOW);\n  }\n  else if (digitalRead(pin2)==0) {\n    digitalWrite(pin1, HIGH);\n  }\n}","o":["1110","0100","1111","1011"],"a":[1],"n":"Chương trình đảo bit: vào 1 → ra LOW, vào 0 → ra HIGH. 1011 → 0100.","src":["SU26-FE","SP26-FE","FA25-Half1","SU25-FE"]},{"id":22,"q":"What is the output of the program below if a voltage of 5V is supplied to the A0 pin on an Arduino UNO?","code":"void setup() {\n  Serial.begin(9600);\n  pinMode(A0, INPUT);\n}\nvoid loop() {\n  int s = analogRead(A0);\n  Serial.println(s);\n}","o":["0","1023","Null","Error"],"a":[1],"n":"ADC 10-bit: 0 V → 0, 5 V → 1023.","src":["SU26-FE","SU25-FE"]},{"id":23,"q":"In circuit design, which component is used to limit the current from the Arduino board to the LED?","o":["Capacitor","Diode","Resistor","Push button"],"a":[2],"n":"Điện trở hạn dòng (220-330 Ω) bảo vệ LED và chân Arduino.","src":["SU26-FE","SU25-FE"]},{"id":24,"q":"You read a DS18B20 temperature sensor (1-Wire) on Arduino and get rawTemp = 0x0191. How do you convert this value to degrees Celsius?","o":["float tempC = (float)rawTemp / 16.0;","float tempC = (float)rawTemp * 0.625;","float tempC = (float)rawTemp / 256.0;","float tempC = (rawTemp >> 4);"],"a":[0],"n":"Độ phân giải 12-bit = 0.0625 °C/LSB → chia 16. 0x0191 = 401 → 25.06 °C. (>>4 làm mất phần thập phân.)","src":["SU26-FE","SP26-RE"]},{"id":25,"q":"How might the evolving nature of the internet - no longer just a means of communication but also connecting devices like refrigerators - impact various aspects of our society?","o":["It will simplify security measures and reduce the need for big data analysis","It will have no significant impact on employment as most jobs remain unchanged","It could introduce new security challenges, require advanced big data solutions, and potentially disrupt employment","It will lead to reduced complexity in our daily lives and fewer security concerns"],"a":[2],"n":"IoT mở rộng bề mặt tấn công, sinh dữ liệu lớn và thay đổi việc làm.","src":["SU26-FE","SU25-FE"]},{"id":26,"q":"Which of the following is an example of an IoT device?","o":["Smart thermostat","Calculator","Mechanical typewriter","Standard light bulb"],"a":[0],"n":"Thiết bị IoT có cảm biến + kết nối mạng, ví dụ thermostat thông minh.","src":["SU26-FE","FA25-FEB5"]},{"id":27,"q":"Which category of actuators includes mechanisms that use air pressure to control or move objects?","o":["Electrical","Mechanical","Hydraulic","Pneumatic"],"a":[3],"n":"Pneumatic = khí nén; Hydraulic = chất lỏng.","src":["SU26-FE","FA25-FE","FA25-Half1"]},{"id":28,"q":"Why is the motion sensor in the responder important on a dairy farm?","o":["It tracks the cow's milk yield","It monitors the cow's movements, potentially detecting health issues","It tracks the cow's location to ensure it stays in a designated area","It measures the temperature of the milk being produced"],"a":[1],"n":"Mức vận động bất thường → dấu hiệu bệnh hoặc động dục.","src":["SU26-FE","SP26-FE","FA25-FEB5"]},{"id":29,"q":"What programming strategies could be employed to handle the \"velocity\" aspect of big data in an IoT system?","o":["Implementing strict data type casting in all functions","Utilizing just-in-time compilation for all code","Employing data streaming and real-time processing frameworks","Using older data protocols to ensure compatibility"],"a":[2],"n":"Velocity = tốc độ dữ liệu đến → cần xử lý luồng thời gian thực (stream processing).","src":["SU26-FE","FA25-Half1","SU25-FE"]},{"id":30,"q":"Why is analogRead() useful in environmental monitoring projects with Arduino?","o":["It allows capturing continuous sensor values","It converts digital pins to analog pins","It stores values in EEPROM automatically","It generates PWM (Pulse Width Modulation) signals"],"a":[0],"n":"analogRead đọc giá trị liên tục (0-1023) từ cảm biến nhiệt độ, ánh sáng, độ ẩm...","src":["SU26-FE"]},{"id":31,"q":"Consider the statement: \"Each resource is either currently assigned to exactly one process or is available.\" Which deadlock condition matches this statement?","o":["No-preemption","Hold-and-wait","Mutual exclusion","Circular wait"],"a":[2],"n":"Mutual exclusion: tài nguyên chỉ thuộc một tiến trình tại một thời điểm.","src":["SU26-FE","SU25-FE"]},{"id":32,"q":"Which of the following is an example of an authentication method used in IoT devices?","o":["Biometric data","Data encryption","Data backup","Device size reduction"],"a":[0],"n":"Xác thực = chứng minh danh tính (vân tay, khuôn mặt, mật khẩu, chứng chỉ). Mã hoá là bảo mật dữ liệu, không phải xác thực.","src":["SU26-FE","SP26-RE"]},{"id":33,"q":"What is the potential risk of a hacked IoT device being misused?","o":["Increased device efficiency","Damage to other devices or operations","Improved user experience","Reduced maintenance costs"],"a":[1],"n":"Thiết bị bị chiếm có thể tấn công thiết bị khác (botnet) hoặc phá hoại vận hành vật lý.","src":["SU26-FE","SP26-FE"]},{"id":34,"q":"What is the role of resistors in an electrical circuit?","o":["To store electrical energy","To control the flow of electric current","To increase the current flow","To convert electrical energy into light"],"a":[1],"n":"Điện trở cản/giới hạn dòng điện. Tụ mới lưu năng lượng, LED mới phát sáng.","src":["SU26-FE","FA25-FE"]},{"id":35,"q":"When does electricity occur?","o":["When negatively charged electrons jump between atoms","When positively charged protons jump from one atom to another","When neutral neutrons jump between atoms","When protons and electrons cancel each other out"],"a":[0],"n":"Dòng điện là dòng electron di chuyển giữa các nguyên tử; proton nằm cố định trong hạt nhân.","src":["SU26-FE","SP26-RE"]},{"id":36,"q":"A narrow pipe in a water system is analogous to what concept in an electrical circuit?","o":["Resistance","Voltage","Capacitance","Current"],"a":[0],"n":"Mô hình nước: áp suất = điện áp, lưu lượng = dòng điện, ống hẹp = điện trở.","src":["SU26-FE","FA25-FEB5","SU25-RE"]},{"id":37,"q":"How many pins does the LM35 temperature sensor module have?","o":["1","4","3","2"],"a":[2],"n":"LM35 có 3 chân: VCC, Vout, GND.","src":["SU26-FE","SP26-FE"]},{"id":38,"q":"What component needs to be connected to an interrupt pin to use the external interrupt on Arduino?","o":["LED","Resistor","Button","Capacitor"],"a":[2],"n":"Ngắt ngoài cần nguồn tín hiệu vào, ví dụ nút nhấn trên chân 2 hoặc 3 (Uno).","src":["SU26-FE"]},{"id":39,"q":"What is the purpose of the delay function in the sensor reading loop?","o":["To set the sensor range","To avoid serial monitor overload","To control the brightness of the LED","To initialize the pins"],"a":[1],"n":"delay giãn nhịp đọc/in để Serial Monitor không bị tràn dữ liệu.","src":["SU26-FE"]},{"id":40,"q":"Given that the nominal voltage of an AAA battery is 1.5 V, what is the nominal voltage of 5 AAA batteries connected in parallel?","o":["6 V","7.5 V","9 V","1.5 V"],"a":[3],"n":"Mắc song song: điện áp giữ nguyên (1.5 V), dung lượng cộng dồn. Nối tiếp mới là 7.5 V.","src":["SU26-FE","SP26-FE","FA25-Half1","SU25-RE"]},{"id":41,"q":"Which of the following is an example of a fog computing concept in IoT?","o":["Storing data on remote servers","Routing data through multiple gateways","Performing data analytics on edge devices","Using blockchain technology for secure transactions"],"a":[2],"n":"Fog/edge: xử lý gần nguồn dữ liệu thay vì gửi hết lên cloud.","src":["SU26-FE","FA25-Half1"]},{"id":42,"q":"Which of the following is NOT a fundamental component of an IoT system?","o":["Sensors","Connectivity","User interface","Voltage regulator"],"a":[3],"n":"Bốn thành phần: thiết bị/cảm biến, kết nối, xử lý dữ liệu, giao diện người dùng.","src":["SU26-FE","SP26-FE","FA25-FEB5","SU25-RE"]},{"id":43,"q":"What is the full form of IDE in Arduino IDE software?","o":["Intra Defense Environment","Intra Development Environment","Integrated Development Environment","Integrated Deployed Environment"],"a":[2],"n":"IDE = Integrated Development Environment.","src":["SU26-FE","FA25-Half1"]},{"id":44,"q":"What are the two main functions of a program in Arduino IDE?","o":["build() and loop()","setup() and mainLoop()","setup() and loop()","build() and setup()"],"a":[2],"n":"setup() chạy một lần; loop() lặp mãi.","src":["SU26-FE","SP26-FE","FA25-FE"]},{"id":45,"q":"How many parts does a complete IoT system have?","o":["3","4","5","6"],"a":[1],"n":"4 phần: cảm biến/thiết bị, kết nối, xử lý dữ liệu, giao diện người dùng.","src":["SU26-FE","SP26-RE"]},{"id":46,"q":"What does interoperability in IoT refer to?","o":["Efficient storage, processing, and analysis of IoT data","Seamless communication between different IoT devices","Responsible data collection and privacy protection","Ensuring user data remains confidential and secure"],"a":[1],"n":"Interoperability: các thiết bị/hệ thống khác hãng làm việc được với nhau.","src":["SU26-FE"]},{"id":47,"q":"Which of the following IoT network topologies provides the highest reliability?","o":["Star topology","Mesh topology","Bus topology","Ring topology"],"a":[1],"n":"Mesh có nhiều đường đi dự phòng, một nút hỏng không làm sập mạng.","src":["SU26-FE","SU25-RE"]},{"id":48,"q":"What is the role of a gateway in an IoT network, and how does it relate to routing?","o":["Gateways are responsible for routing data packets within the local network","Gateways serve as a central controller for all IoT devices","Gateways connect IoT devices to the internet and perform protocol translation between IoT devices and the internet, aiding in data routing","Routing is a term specific to IoT, and gateways are not involved in data transmission"],"a":[2],"n":"Gateway nối mạng thiết bị (Zigbee, BLE...) với Internet và chuyển đổi giao thức.","src":["SU26-FE","FA25-Half1"]},{"id":49,"q":"What is the main role of the Cloud in an IoT smart grid architecture?","o":["Enhancing security","Collecting data","Managing data","Storing data"],"a":[2],"n":"Cloud quản lý/xử lý dữ liệu tập trung; thu thập là việc của cảm biến/công tơ. Đáp án theo bình luận cộng đồng.","flag":true,"src":["SU26-FE"]},{"id":50,"q":"Among the following protocols commonly used in IoT, which one is considered lightweight?","o":["IP (Internet Protocol)","HTTP (Hypertext Transfer Protocol)","MQTT (Message Queuing Telemetry Transport)","Bluetooth"],"a":[2],"n":"MQTT: publish/subscribe, header chỉ 2 byte, phù hợp thiết bị yếu và mạng chập chờn.","src":["SU26-FE"]},{"id":51,"q":"What technique is used to create an analog-like behavior from a digital output?","o":["Serial communication","Pulse Width Modulation (PWM)","Digital-to-Analog Conversion (DAC)","Analog-to-Digital Conversion (ADC)"],"a":[1],"n":"PWM bật/tắt nhanh với duty cycle thay đổi → điện áp trung bình giống tín hiệu analog. Uno không có DAC thật.","src":["SP26-RE"]},{"id":52,"q":"What is the role of the ATmega168/328 in an Arduino circuit?","o":["Run the program","Regulate the power supply","Provide Wi-Fi connectivity","Filter analog signals"],"a":[0],"n":"ATmega là vi điều khiển - 'bộ não' chạy chương trình.","src":["SP26-RE","FA25-FEB5"]},{"id":53,"q":"Which actuator types operate using pressurized fluids or gases? (Select all that apply)","o":["Pneumatic","Hydraulic","Electrical","Mechanical spring"],"a":[0,1],"n":"Pneumatic dùng khí nén, Hydraulic dùng chất lỏng có áp.","src":["SP26-RE"]},{"id":54,"q":"What is the maximum DC current per I/O pin on the Arduino Uno?","o":["20 mA","40 mA","50 mA","100 mA"],"a":[1],"n":"Giới hạn tuyệt đối 40 mA/chân (khuyến nghị làm việc ~20 mA).","src":["SP26-RE"]},{"id":55,"q":"Which port is commonly used to connect input/output modules to Arduino?","o":["GPIO","USB","HDMI","Ethernet"],"a":[0],"n":"GPIO = General Purpose Input/Output, chân nối cảm biến/module.","src":["SP26-RE"]},{"id":56,"q":"What is the function of a Digital-to-Analog Converter?","o":["To generate an analog voltage from digital signals","To allow analog current to be controlled by a digital number","To produce a waveform with an analog frequency","To accept both digital and analog inputs"],"a":[0],"n":"DAC biến giá trị số thành điện áp analog; ADC làm điều ngược lại.","src":["SP26-RE","SU25-RE"]},{"id":57,"q":"What is the function of serial communication in Arduino?","o":["Send and receive data to/from external devices","Provide power to external components","Generate clock signals for timing operations","Connect the Arduino to Wi-Fi or Bluetooth"],"a":[0],"n":"Serial (UART) truyền/nhận dữ liệu với máy tính hoặc module khác.","src":["SP26-RE","FA25-FEB5"]},{"id":58,"q":"How many bits does the TCS34725 use for its ADC resolution?","o":["10-bit with oversampling","16-bit","12-bit with gain stages","14-bit in fast mode"],"a":[1],"n":"TCS34725 (cảm biến màu RGB) có 4 kênh ADC 16-bit (R, G, B, Clear).","src":["SP26-RE"]},{"id":59,"q":"What material is used as the sensing element in the MQ135?","o":["Tin dioxide (SnO2)","Zinc oxide (ZnO)","Silicon carbide (SiC)","Titanium dioxide (TiO2)"],"a":[0],"n":"Dòng cảm biến khí MQ dùng SnO2 - điện trở giảm khi nồng độ khí tăng.","src":["SP26-RE"]},{"id":60,"q":"Which of the following is an example of an output device?","o":["Temperature sensor","LED","Microphone","Touchscreen"],"a":[1],"n":"LED phát tín hiệu ra; cảm biến, micro, màn hình cảm ứng là đầu vào.","src":["SP26-RE"]},{"id":61,"q":"What is the default baud rate for communication in the HC-05 Bluetooth module?","o":["9600","115200","38400","19200"],"a":[0],"n":"HC-05 mặc định 9600 ở chế độ dữ liệu (38400 ở chế độ lệnh AT).","src":["SP26-RE"]},{"id":62,"q":"What is the time period of the output signal of the program below?","code":"int pin=10;\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(pin,OUTPUT);\n}\nvoid loop() {\n  digitalWrite(pin,HIGH);\n  delay(10);\n  digitalWrite(pin,LOW);\n  delay(10);\n}","o":["20 Microseconds","100 Milliseconds","10 Milliseconds","20 Milliseconds"],"a":[3],"n":"Chu kỳ = thời gian HIGH + LOW = 10 + 10 = 20 ms (delay tính bằng ms).","src":["SP26-RE"]},{"id":63,"q":"What does the analogRead() function do physically when invoked in code?","o":["It accepts a digital input","It reads the raw voltage value","It activates the ADC circuit to read voltage values","It activates the DAC circuit to read voltage values"],"a":[2],"n":"analogRead kích hoạt bộ ADC 10-bit để lấy mẫu điện áp.","src":["SP26-RE"]},{"id":64,"q":"What pin mode is used for the button in the Arduino setup code?","o":["OUTPUT","INPUT","ANALOG","PWM"],"a":[1],"n":"Nút nhấn là đầu vào → INPUT (hoặc INPUT_PULLUP).","src":["SP26-RE"]},{"id":65,"q":"To declare a variable that stores the value read from analog pin A0, what data type is this variable?","o":["String","Single","Double","Int"],"a":[3],"n":"analogRead trả về số nguyên 0-1023 → int.","src":["SP26-RE","FA25-Half1","SU25-FE"]},{"id":66,"q":"Which data type is used to store integer values in C?","o":["float","char","int","double"],"a":[2],"n":"int lưu số nguyên; float/double lưu số thực.","src":["SP26-RE","FA25-FEB5"]},{"id":67,"q":"Which button on the ESP8266 is used to load the code again?","o":["GND","TX","A1","A0"],"a":[0],"n":"Để nạp lại code cho ESP8266 phải kéo GPIO0 xuống GND (nút FLASH) rồi reset. Đề không có lựa chọn chuẩn; đa số bình luận ở SU25-RE và FA25-Half1 chọn GND, ở SP26-RE lại chọn A0.","flag":true,"src":["SP26-RE","FA25-Half1","SU25-RE"]},{"id":68,"q":"Which communication technology has a range of about 10 cm?","o":["NFC","HTTP","Wi-Fi","Bluetooth"],"a":[0],"n":"NFC tầm ngắn ~4-10 cm (thanh toán chạm).","src":["SP26-RE","FA25-FE"]},{"id":69,"q":"At what voltage does the ESP8266 chip work?","o":["3.3V","5V","12V","24V"],"a":[0],"n":"ESP8266 chạy 3.3 V; cấp 5 V trực tiếp vào chip có thể làm hỏng.","src":["SP26-RE","FA25-FE"]},{"id":70,"q":"What type of loop is used to repeatedly check a sensor?","o":["FOR loop","loop() function","setup() function","check() function"],"a":[1],"n":"loop() chạy lặp vô hạn - nơi đọc cảm biến liên tục.","src":["SP26-RE"]},{"id":71,"q":"What is the purpose of digital input/output programming in Arduino UNO?","o":["To process text data","To control LEDs and buttons","To enhance graphics processing","To increase memory capacity"],"a":[1],"n":"Digital I/O làm việc với tín hiệu HIGH/LOW như LED, nút nhấn.","src":["SP26-RE","FA25-FE"]},{"id":72,"q":"Which function is used to configure pins as input or output?","o":["DigitalWrite()","pinMode()","DigitalRead()","Println()"],"a":[1],"n":"pinMode(pin, INPUT/OUTPUT/INPUT_PULLUP).","src":["SP26-RE","FA25-FEB5"]},{"id":73,"q":"In C programming for IoT, what does digitalWrite(13, HIGH); mean?","o":["Write value 13 to pin HIGH","Turn off pin 13","Turn on pin 13 (set HIGH level)","Initialize variable HIGH with value 13"],"a":[2],"n":"Đặt chân 13 lên mức HIGH (5 V) - LED onboard sáng.","src":["SP26-RE","FA25-FEB5"]},{"id":74,"q":"Why is EEPROM useful in Arduino applications?","o":["It allows storing temporary variables during runtime","It retains stored data even after power loss","It increases analog read resolution","It provides faster execution of loops"],"a":[1],"n":"EEPROM là bộ nhớ không bay hơi (Uno: 1 KB) - giữ dữ liệu khi mất điện.","src":["SP26-RE"]},{"id":75,"q":"In a typical three-layer IoT architecture, which layer includes sensors, actuators, and RFID tags?","o":["Application Layer","Data Link Layer","Network Layer","Perception Layer"],"a":[3],"n":"3 lớp: Perception (cảm nhận) - Network - Application.","src":["SP26-RE","FA25-FEB5"]},{"id":76,"q":"What is one major benefit of the Internet of Things in modern devices?","o":["It allows for smarter interactions with users and the environment","It makes devices more energy-consuming, requiring constant power","It makes devices completely autonomous without human involvement, leading to a lack of control","It limits communication to only one device at a time"],"a":[0],"n":"Lợi ích cốt lõi: thiết bị cảm nhận và tương tác thông minh hơn.","src":["SP26-RE"]},{"id":77,"q":"What type of actuator is typically used to control the movement of a conveyor belt?","o":["Electrical","Hydraulic","Mechanical","Pneumatic"],"a":[0],"n":"Băng chuyền thường dùng động cơ điện.","src":["SP26-RE"]},{"id":78,"q":"What is the function of an actuator in an IoT system?","o":["To convert physical quantities into electrical signals","To convert electrical signals into physical action","To process data from sensors","To encrypt communication"],"a":[1],"n":"Actuator: điện → hành động vật lý. Sensor thì ngược lại.","src":["SP26-RE","FA25-FEB5"]},{"id":79,"q":"Why is it important to consider limited power supply when programming IoT devices?","o":["It affects the device's physical size","It determines the maximum number of devices in a network","Devices need to operate efficiently on minimal power for long durations","It limits the types of sensors that can be used"],"a":[2],"n":"Thiết bị chạy pin cần tiết kiệm năng lượng (sleep mode, giảm tần suất gửi).","src":["SP26-RE","FA25-FEB5"]},{"id":80,"q":"Which Arduino function is used to stop an active interrupt?","o":["detachInterrupt()","interruptOff()","disableISR()","stopInterrupt()"],"a":[0],"n":"attachInterrupt() bật, detachInterrupt() tắt. (noInterrupts() tắt toàn cục.)","src":["SP26-RE"]},{"id":81,"q":"What is one of the primary components that need to be secured in an IoT system?","o":["The software of the user's mobile phone","The devices, network, programs, and data","The cloud storage location","The internet service provider"],"a":[1],"n":"Bảo mật IoT bao trùm thiết bị, mạng, chương trình và dữ liệu.","src":["SP26-RE","FA25-FEB5"]},{"id":82,"q":"Which Arduino function is used to link a servo object to a designated control pin on the board?","o":["myservo.connect()","myservo.attach()","myservo.link()","myservo.bind()"],"a":[1],"n":"Thư viện Servo: myservo.attach(pin), sau đó myservo.write(góc).","src":["SP26-RE"]},{"id":83,"q":"Which command is used to read the state of a digital input pin?","o":["digitalRead()","analogRead()","pinRead()","getPinState()"],"a":[0],"n":"digitalRead(pin) trả về HIGH hoặc LOW.","src":["SP26-RE"]},{"id":84,"q":"The first three color bands of a 4-band resistor are brown, green, and yellow. What is its value?","o":["364 Ohm","150k Ohm","65 Ohm","2800 Ohm"],"a":[1],"n":"Nâu=1, Lục=5, Vàng=×10^4 → 15 × 10 000 = 150 kΩ.","src":["SP26-RE","FA25-Half1"]},{"id":85,"q":"A part of an Arduino sketch: digitalWrite(11, HIGH); delay(300); digitalWrite(11, LOW); delay(200); What is the frequency of the waveform at digital pin D11?","o":["2 Hz","3 kHz","10 kHz","15 MHz"],"a":[0],"n":"T = 300 + 200 = 500 ms → f = 1/0.5 s = 2 Hz.","src":["SP26-RE","FA25-FE"]},{"id":86,"q":"Which of the following statements is WRONG about IoT devices?","o":["IoT devices use the internet for collecting and sharing data","IoT devices need a microcontroller","IoT devices use wireless technology","IoT devices are completely safe"],"a":[3],"n":"Không thiết bị nào an toàn tuyệt đối - IoT có nhiều lỗ hổng.","src":["SP26-RE","FA25-FEB5","SU25-FE"]},{"id":87,"q":"In an IoT system, many devices are connected to the same set of wires. What is this connection mode?","o":["Train","Bus","Multi-point connection","Serial connection"],"a":[1],"n":"Bus: nhiều thiết bị dùng chung một đường dây (I2C, CAN...).","src":["SP26-RE","FA25-Half1"]},{"id":88,"q":"What is MQTT primarily used for?","o":["System transfer","Create connection","User communication","Machine to Machine Communication"],"a":[3],"n":"MQTT là giao thức M2M nhẹ theo mô hình publish/subscribe.","src":["SP26-RE","FA25-FEB5"]},{"id":89,"q":"What is the role of a network router in an IoT system?","o":["Processing data locally","Converting AC to DC","Directing data between devices","Controlling actuator movements"],"a":[2],"n":"Router định tuyến gói tin giữa các thiết bị/mạng.","src":["SP26-RE","FA25-FEB5"]},{"id":90,"q":"What kind of control system is one in which the output quantity has no effect upon the input quantity?","o":["Open loop","Closed loop","Variable","Non-variable"],"a":[0],"n":"Open loop không có phản hồi; closed loop dùng phản hồi đầu ra để điều chỉnh.","src":["SP26-RE","FA25-FE","FA25-Half1"]},{"id":91,"q":"What is the default bootloader of the Arduino Uno?","o":["Barebox","Optiboot","U-Boot","Lilo"],"a":[1],"n":"Uno dùng Optiboot (0.5 KB). U-Boot/Barebox/Lilo là bootloader cho Linux/PC.","src":["SP26-RE"]},{"id":92,"q":"What is the full form of DHCP in IoT network management?","o":["Dynamic Host Configuration Protocol","Domain Host Communication Protocol","Dynamic Host Control Protocol","Domain Host Control Protocol"],"a":[0],"n":"DHCP tự động cấp địa chỉ IP cho thiết bị.","src":["SP26-RE"]},{"id":93,"q":"What additional consideration is necessary to make an IoT project successful compared to existing solutions?","o":["Focus on expensive materials","Implement the latest IoT protocols","Be better than current solutions","Use cutting-edge programming languages"],"a":[2],"n":"Sản phẩm IoT phải tốt hơn giải pháp hiện có mới đáng để dùng.","src":["SP26-RE","FA25-FEB5"]},{"id":94,"q":"What is the main purpose of routing in network communication?","o":["To encrypt data","To select a path for traffic in a network","To store data","To create new data paths"],"a":[1],"n":"Routing = chọn đường đi cho gói tin.","src":["SP26-RE","SU25-FE"]},{"id":95,"q":"How do standards and protocols help communication between machines?","o":["By defining TCP/IP as the most common networking protocol suite","By creating an accepted set of rules that only applies to machine communication","By minimizing miscommunication and ensuring that messages can get through","By governing the connection of computer systems to the Internet"],"a":[2],"n":"Chuẩn/giao thức thống nhất quy tắc → giảm hiểu nhầm, đảm bảo thông điệp tới nơi.","src":["SP26-RE"]},{"id":96,"q":"What are the key components in ensuring the security of IoT networks and devices?","o":["Data encryption, hardware configuration, and network optimization","Authentication, authorization, network enforced policy, and secure analytics","Biometrics, X.509 digital certificates, and endpoint MAC addresses","Data monitoring, cloud integration, and device management"],"a":[1],"n":"4 trụ cột bảo mật IoT (Cisco): xác thực, phân quyền, chính sách mạng, phân tích an toàn.","src":["SP26-RE","SP26-FE","FA25-FEB5"]},{"id":97,"q":"Which component on tinkercad.com allows displaying the results of the simulation program?","o":["Components","Send to","Start simulation","Serial monitor"],"a":[3],"n":"Serial Monitor trong Tinkercad hiển thị dữ liệu Serial.print khi mô phỏng.","src":["SP26-FE","FA25-Half1","SU25-FE"]},{"id":98,"q":"What is the type of USB port on Arduino Uno R3?","o":["Type A","Type B","Type C","Micro USB"],"a":[1],"n":"Uno R3 dùng cổng USB Type-B (cổng vuông như máy in).","src":["SP26-FE","FA25-FE","FA25-Half1","SU25-RE"]},{"id":99,"q":"Which of the following is a common IoT application in agriculture?","o":["Soil moisture monitoring","Voice-controlled robots","Email-based sensor control","FTP camera uploads"],"a":[0],"n":"Giám sát độ ẩm đất để tưới tự động là ứng dụng IoT nông nghiệp điển hình.","src":["SP26-FE"]},{"id":100,"q":"What is the operating voltage of the ATmega328?","o":["1.9V to 5V","1.8V to 5.5V","1.1V to 5V","1.2V to 9V"],"a":[1],"n":"Datasheet ATmega328P: 1.8-5.5 V (tần số tối đa phụ thuộc điện áp).","src":["SP26-FE","FA25-FE","FA25-Half1","SU25-RE"]},{"id":101,"q":"What is an interrupt in the context of Arduino UNO programming?","o":["A function that stops the Arduino from running","A signal that pauses the current process to execute a specific function","An error in the code compilation","A method to increase the processing speed"],"a":[1],"n":"Ngắt tạm dừng chương trình chính để chạy hàm ISR, xong quay lại.","src":["SP26-FE","FA25-FE","SU25-FE"]},{"id":102,"q":"What is the size of the EEPROM of the Arduino Uno R3?","o":["1 KB","2 KB","4 KB","8 KB"],"a":[0],"n":"Uno R3: 32 KB flash, 2 KB SRAM, 1 KB EEPROM.","src":["SP26-FE","FA25-FEB5"]},{"id":103,"q":"Which of the following sensors measures the amount of light?","o":["Photoresistor (LDR)","Temperature sensor","Hall effect sensor","Force sensitive resistor"],"a":[0],"n":"LDR - điện trở giảm khi ánh sáng tăng. Hall đo từ trường, FSR đo lực.","src":["SP26-FE"]},{"id":104,"q":"What does the RX LED blinking on an Arduino board signify?","o":["The Arduino is receiving data from a connected device","The Arduino is sending data to a connected device","The Arduino is in programming mode","The Arduino is disconnected from the serial monitor"],"a":[0],"n":"RX = Receive (nhận), TX = Transmit (gửi).","src":["SP26-FE","SU25-RE"]},{"id":105,"q":"What setup() function call is required to initialize SPI communication for the RC522 RFID module with Arduino Uno?","o":["Wire.begin()","SPI.begin()","Serial.begin(115200)","pinMode(SS, OUTPUT)"],"a":[1],"n":"RC522 giao tiếp SPI → SPI.begin() rồi mfrc522.PCD_Init(). Wire.begin() là I2C.","src":["SP26-FE"]},{"id":106,"q":"Which device can function as both an input and an output?","o":["Relay module","Light sensor","LCD screen","Ultrasonic sensor"],"a":[3],"n":"Cảm biến siêu âm cần chân Trig (Arduino xuất xung) và Echo (Arduino đọc vào). Đáp án theo cộng đồng.","flag":true,"src":["SP26-FE"]},{"id":107,"q":"Which of the following digital pins on Arduino Uno support PWM output by default? (Select all that apply)","o":["D3","D5","D9","D13"],"a":[0,1,2],"n":"Chân PWM của Uno: 3, 5, 6, 9, 10, 11. D13 không có PWM.","src":["SP26-FE"]},{"id":108,"q":"What is the primary function of the ultrasonic sensor in IoT applications?","o":["Measuring air pressure","Detecting humidity levels","Enabling image processing","Proximity detection"],"a":[3],"n":"Đo khoảng cách bằng thời gian sóng siêu âm phản xạ.","src":["SP26-FE","FA25-FE"]},{"id":109,"q":"How is the input voltage range of 0 to 5 volts converted to a digital value between 0 and 1023 in an Arduino microcontroller?","o":["By using an external circuit","By using a digital-to-analog converter (DAC)","By a process called analog-to-digital conversion (ADC) inside the microcontroller","By directly mapping the voltage to the digital value without conversion"],"a":[2],"n":"ADC 10-bit tích hợp trong ATmega328P.","src":["SP26-FE","FA25-FE","FA25-Half1","SU25-RE"]},{"id":110,"q":"Which software is used to upload Arduino sketches to the board?","o":["Avr-gcc","g++","cpython for windows","Avrdude"],"a":[3],"n":"avr-gcc biên dịch, avrdude nạp file .hex xuống board.","src":["SP26-FE","FA25-FE","FA25-Half1"]},{"id":111,"q":"In code that tracks button presses, what structure is used to detect a button press?","o":["A FOR loop","An IF statement","A WHILE loop","A function call"],"a":[1],"n":"if (digitalRead(button) == LOW) {...} - kiểm tra điều kiện trạng thái nút.","src":["SP26-FE"]},{"id":112,"q":"What is the correct way to add a library through the Arduino IDE?","o":["Select Sketch -> Manage Libraries, search for the required library and install","Select Include Library -> Manage Libraries, search for the library name and install","Select Sketch -> Include Library -> Manage Libraries, search for the library name and install","Select Sketch -> Manage Libraries, search for the library name and install"],"a":[2],"n":"Đường dẫn đầy đủ: Sketch > Include Library > Manage Libraries...","src":["SP26-FE"]},{"id":113,"q":"In a software simulation environment (Tinkercad) for Arduino programming, which option is typically used to write and run code for your Arduino projects?","o":["Selecting the Code option to start coding","Using a physical Arduino board to write code","Connecting various electronic components to a breadboard","Employing a real-time oscilloscope for debugging"],"a":[0],"n":"Trong Tinkercad bấm nút Code để mở trình soạn (Blocks/Text) rồi Start Simulation.","src":["SP26-FE","FA25-Half1","SU25-RE"]},{"id":114,"q":"Which function is used to create a PWM signal to dim an LED?","o":["analogWrite(pin, value);","digitalWrite(pin, value);","pwmSend(pin, value);","fade(pin, value);"],"a":[0],"n":"analogWrite(pin, 0-255) xuất PWM.","src":["SP26-FE","FA25-FEB5"]},{"id":115,"q":"What is the purpose of Fritzing in the context of designing circuits?","o":["To physically build circuits in the real world","To simulate circuit behavior","To create circuit diagrams and layouts","To test electronic components"],"a":[2],"n":"Fritzing vẽ sơ đồ breadboard/schematic/PCB; không phải công cụ mô phỏng như Tinkercad.","src":["SP26-FE","FA25-FE","FA25-Half1","SU25-RE"]},{"id":116,"q":"When designing an IoT device, which component is used to limit current flowing through an LED?","o":["Resistor","Capacitor","Inductor","Transistor"],"a":[0],"n":"Điện trở mắc nối tiếp hạn dòng cho LED.","src":["SP26-FE"]},{"id":117,"q":"Which of the following is an example of an IoT application?","o":["Wearable device to monitor blood glucose level","Manufacturing bolts using a CNC machine","Bank web page to monitor customer experience"],"a":[0],"n":"Thiết bị đeo có cảm biến + kết nối gửi dữ liệu = IoT.","src":["SP26-FE","FA25-FE","FA25-Half1","SU25-RE"]},{"id":118,"q":"An IoT device can most easily be differentiated from a standard computer based on ______.","o":["Computational performance","Interface with the user and the world","Memory capacity","Weight/size"],"a":[1],"n":"Thiết bị IoT/nhúng tương tác với thế giới thực qua cảm biến/actuator thay vì bàn phím-màn hình.","src":["SP26-FE","FA25-FE","FA25-Half1","SU25-RE"]},{"id":119,"q":"When integrating IoT devices with cloud platforms, what is the main programming challenge related to data flow?","o":["Minimizing the physical size of data packets","Ensuring real-time data synchronization across devices","Prioritizing graphical data over textual data","Creating aesthetically pleasing data visualizations"],"a":[1],"n":"Thách thức chính: đồng bộ dữ liệu thời gian thực giữa thiết bị và cloud.","src":["SP26-FE","FA25-FE","FA25-Half1"]},{"id":120,"q":"What is the definition of 'Big Data'?","o":["Data represented using a binary system of zeros and ones","A data unit that is one-eighth the size of a byte","Data sets that have become so large and complex they require advanced programming and processing","Data packaged into bite-sized pieces moved through a network using various protocols"],"a":[2],"n":"Big Data: khối lượng/tốc độ/đa dạng vượt khả năng công cụ truyền thống.","src":["SP26-FE"]},{"id":121,"q":"IoT devices gather private information about users. Which statement is most true about the security of that data?","o":["Users can ensure security of collected data by encrypting it manually","Users can sue data collecting agencies if their data is not held securely","Users must rely on data collecting agencies to securely store and transmit their data","Most data gathered by IoT devices is safe because IoT devices are not a target of hackers"],"a":[2],"n":"Người dùng không kiểm soát được dữ liệu sau khi thu thập - phụ thuộc vào bên thu thập.","src":["SP26-FE","FA25-FE","FA25-Half1","SU25-FE"]},{"id":122,"q":"What is the primary purpose of a schematic diagram in electrical engineering?","o":["To display the physical arrangement of components in a finished device","To provide a detailed description of the electrical properties of components","To illustrate the components and their connections in a circuit using standardized symbols","To demonstrate the three-dimensional structure of the components"],"a":[2],"n":"Sơ đồ nguyên lý dùng ký hiệu chuẩn để thể hiện linh kiện và kết nối, không phải bố trí vật lý.","src":["SP26-FE","FA25-Half1"]},{"id":123,"q":"At what voltage does the LM35 output when the temperature is 0°C?","o":["0.5V","0V","1V","0.1V"],"a":[1],"n":"LM35 xuất 10 mV/°C, 0 °C → 0 V; 25 °C → 0.25 V.","src":["SP26-FE"]},{"id":124,"q":"Why are resistors called passive components?","o":["They have electric properties but do not need an external power supply to show them","They actively produce power but do not require an external power supply","They are the only type of components that have electric properties","They only function when connected to a large external power supply"],"a":[0],"n":"Linh kiện thụ động (R, L, C) không cần nguồn ngoài và không khuếch đại tín hiệu.","src":["SP26-FE"]},{"id":125,"q":"Why is it essential to focus on the unique value proposition of an IoT product in the early planning stages of development and commercialization?","o":["It helps reduce the cost of production","It allows for more efficient product distribution","Differentiation from competitors is crucial for success","It ensures compatibility with all existing IoT devices"],"a":[2],"n":"Giá trị độc đáo giúp sản phẩm khác biệt với đối thủ.","src":["SP26-FE","FA25-Half1"]},{"id":126,"q":"An Arduino sketch: digitalWrite(13, HIGH); delay(1000); digitalWrite(13, LOW); delay(1000); How long is the built-in LED on?","o":["1000 seconds","100 seconds","1 second","100 milliseconds"],"a":[2],"n":"delay(1000) = 1000 ms = 1 giây.","src":["SP26-FE","FA25-FE","SU25-RE"]},{"id":127,"q":"What is the significance of programming sensors/actuators in IoT projects?","o":["To display information","To interact with the physical world","To improve battery life","To enhance audio quality"],"a":[1],"n":"Cảm biến đọc, actuator tác động → hệ thống tương tác với thế giới vật lý.","src":["SP26-FE"]},{"id":128,"q":"What does NFC stand for?","o":["Near Fast Connection","Near Field Connection","Near Fast Communication","Near Field Communication"],"a":[3],"n":"NFC = Near Field Communication.","src":["SP26-FE","FA25-FEB5"]},{"id":129,"q":"A huge number of networked devices communicate without human intervention. What is this called?","o":["IoT","M2M","Thingsboard","Particle"],"a":[1],"n":"M2M (Machine-to-Machine): thiết bị giao tiếp trực tiếp không cần con người. Đáp án theo cộng đồng.","flag":true,"src":["SP26-FE"]},{"id":130,"q":"Which of the following is NOT an IoT platform?","o":["Wish","Salesforce","Particle","Exosite"],"a":[0],"n":"Wish là sàn thương mại điện tử; Salesforce IoT Cloud, Particle, Exosite là nền tảng IoT.","src":["SP26-FE","FA25-FE"]},{"id":131,"q":"What is a potential security risk when IoT devices lack proper authentication?","o":["Unauthorized access","Reduced network congestion","Increased baud rate","Improved device performance"],"a":[0],"n":"Không xác thực → kẻ lạ truy cập/điều khiển thiết bị.","src":["SP26-FE"]},{"id":132,"q":"Which protocol is suitable for IoT devices requiring low power and low data rate communication over a few kilometers?","o":["Bluetooth","Zigbee","LoRaWAN","WiFi"],"a":[2],"n":"LoRaWAN: tầm vài km đến 15 km, tiết kiệm pin, tốc độ thấp.","src":["SP26-FE","FA25-FE"]},{"id":133,"q":"In IoT, what is the purpose of a gateway?","o":["To act as an intermediary for data transmission between different network protocols","To store data collected from IoT devices","To increase the power supply to IoT devices","To directly connect sensors to the internet"],"a":[0],"n":"Gateway trung gian/chuyển đổi giao thức giữa mạng thiết bị và Internet.","src":["SP26-FE","FA25-FE","FA25-Half1","SU25-RE"]},{"id":134,"q":"In the context of IoT and networking, what does the abbreviation LPWAN stand for?","o":["Lightweight Protocol for Wide Area Network","Low-Profile Wireless Access Node","Low Power Wide Area Network","Longitudinal Packet Wireless Architecture"],"a":[2],"n":"LPWAN = Low Power Wide Area Network (LoRa, Sigfox, NB-IoT).","src":["SP26-FE","FA25-FE","FA25-Half1","SU25-RE"]},{"id":135,"q":"What type of microcontroller does the Arduino Uno use?","o":["32-bit microcontroller","8-bit microcontroller","16-bit microcontroller","64-bit microcontroller"],"a":[1],"n":"ATmega328P là vi điều khiển AVR 8-bit.","src":["FA25-FEB5"]},{"id":136,"q":"What is the size of the SRAM of the Arduino Uno R3?","o":["1 KB","2 KB","4 KB","8 KB"],"a":[1],"n":"SRAM 2 KB (lưu biến lúc chạy). Flash 32 KB, EEPROM 1 KB.","src":["FA25-FEB5"]},{"id":137,"q":"Given a hash table of size 100 using the division hashing method, in what location will the key 124 be hashed?","o":["24","1","4","12"],"a":[0],"n":"h(k) = k mod m = 124 mod 100 = 24.","src":["FA25-FEB5"]},{"id":138,"q":"Which type of input pins does the Arduino Uno have?","o":["Digital pins only","Digital and Analog input pins","PWM pins only","UART and SPI pins"],"a":[1],"n":"14 chân digital (D0-D13) + 6 chân analog in (A0-A5).","src":["FA25-FEB5"]},{"id":139,"q":"In what scenarios would you observe the TX LED blinking on an Arduino?","o":["When the Arduino is reading analog values","When the Arduino is processing data","When the Arduino is transmitting data through the serial port","When the Arduino is in deep sleep mode"],"a":[2],"n":"TX = Transmit: nháy khi Arduino gửi dữ liệu qua Serial/USB.","src":["FA25-FEB5"]},{"id":140,"q":"Which of the following devices is considered an input device in an IoT system?","o":["Microcontroller","Temperature sensor","LCD screen","Servo motor"],"a":[1],"n":"Cảm biến = đầu vào; LCD, servo = đầu ra; vi điều khiển = xử lý.","src":["FA25-FEB5"]},{"id":141,"q":"Which of the following wireless technologies has the longest communication range?","o":["Wi-Fi","Zigbee","LoRa","Bluetooth"],"a":[2],"n":"Tầm xa: LoRa (km) > Wi-Fi > Zigbee > Bluetooth.","src":["FA25-FEB5"]},{"id":142,"q":"What is the correct syntax to make a digital pin (say D7) an output pin?","o":["pinMode(7, output)","pinMode(7, Output)","pinMode(7, OUTPUT)","pinmode(7, OUTPUT)"],"a":[2],"n":"C/C++ phân biệt hoa thường: hàm pinMode, hằng OUTPUT viết hoa.","src":["FA25-FEB5"]},{"id":143,"q":"What symbol is used to indicate a comment in C?","o":["//","#","<>","&"],"a":[0],"n":"// một dòng, /* */ nhiều dòng. # dùng cho chỉ thị tiền xử lý (#include).","src":["FA25-FEB5"]},{"id":144,"q":"Which function is used to read an analog sensor value in Arduino?","o":["analogWrite()","digitalRead()","analogRead()","pulseIn()"],"a":[2],"n":"analogRead() đọc; analogWrite() xuất PWM.","src":["FA25-FEB5"]},{"id":145,"q":"What type of device could allow a vehicle to show a warning on the dashboard, which might also alert the car's manufacturer?","o":["Digital network","Smart phone","Sensor","Bluetooth"],"a":[2],"n":"Cảm biến phát hiện sự cố → hiện cảnh báo và có thể gửi dữ liệu về hãng.","src":["FA25-FEB5","SU25-RE"]},{"id":146,"q":"Why is C commonly used in IoT programming?","o":["Easy to use in graphic design","Efficient in memory and performance","Strong support for artificial intelligence","Beautiful user interface"],"a":[1],"n":"C gần phần cứng, nhẹ và nhanh - hợp vi điều khiển ít RAM.","src":["FA25-FEB5"]},{"id":147,"q":"To send sensor data to the Serial Monitor, you use: (Select all that apply)","o":["Serial.write()","Serial.print() or Serial.println()","Send.toMonitor()","console.log()"],"a":[0,1],"n":"Serial.print/println gửi dạng chữ dễ đọc; Serial.write gửi byte thô - cả hai đều gửi lên Serial Monitor. Cộng đồng chọn A và B.","flag":true,"src":["FA25-FEB5"]},{"id":148,"q":"What is a key consideration when choosing hardware for an IoT device with limited power, memory, and computational resources?","o":["A high-resolution display for user interaction","A high-performance processor for faster computations","Energy-efficient components and minimal storage needs","Compatibility with multiple third-party applications"],"a":[2],"n":"Tài nguyên hạn chế → ưu tiên linh kiện tiết kiệm năng lượng, gọn nhẹ.","src":["FA25-FEB5"]},{"id":149,"q":"In the Linux OS, which key combination stops the ping command in the terminal?","o":["Ctrl+Break","Ctrl+D","Ctrl+C","Ctrl+Z"],"a":[2],"n":"Ctrl+C gửi SIGINT dừng lệnh. Ctrl+Z chỉ tạm dừng (suspend), Ctrl+D là EOF.","src":["FA25-FEB5"]},{"id":150,"q":"Which of these colors is NOT used in the resistor color code?","o":["Violet","Yellow","Magenta","White"],"a":[2],"n":"Mã màu: Đen, Nâu, Đỏ, Cam, Vàng, Lục, Lam, Tím, Xám, Trắng (+ Nhũ vàng/bạc). Không có Magenta.","src":["FA25-FEB5"]},{"id":151,"q":"Which digit does the color violet denote on the first color band of a resistor?","o":["2","5","4","7"],"a":[3],"n":"Đen0 Nâu1 Đỏ2 Cam3 Vàng4 Lục5 Lam6 Tím7 Xám8 Trắng9.","src":["FA25-FEB5"]},{"id":152,"q":"What is the use of PWM signals in IoT development boards?","o":["They are used by sensors to have analog input","They are used by sensors to have digital input","They are used by actuators to have analog input","They are used by actuators to have digital input"],"a":[2],"n":"PWM giả lập đầu ra analog để điều khiển actuator (độ sáng LED, tốc độ motor).","src":["FA25-FEB5","FA25-FE"]},{"id":153,"q":"What is the function of a photoresistor?","o":["It changes voltage according to light level","It increases or decreases current through a wire","It stores an image","It changes resistance according to light level"],"a":[3],"n":"Quang trở thay đổi ĐIỆN TRỞ theo ánh sáng (sáng → điện trở giảm).","src":["FA25-FEB5","SU25-RE"]},{"id":154,"q":"How many bits are in an IPv6 address?","o":["8","32","64","128"],"a":[3],"n":"IPv6 128 bit; IPv4 32 bit.","src":["FA25-FEB5"]},{"id":155,"q":"Which factor is NOT essential for a successful IoT project?","o":["Addressing a real-world problem","Providing a unique benefit","Targeting a specific audience","Using the most expensive technology available"],"a":[3],"n":"Thành công đến từ giải quyết vấn đề thật và giá trị khác biệt, không phải công nghệ đắt nhất.","src":["FA25-FEB5"]},{"id":156,"q":"What is a mesh network in the context of IoT?","o":["A topology where devices are interconnected with each other to relay data","A topology where devices are connected to a central hub","A topology where devices are connected in a linear fashion","A topology where devices are connected to multiple networks simultaneously"],"a":[0],"n":"Mesh: các nút kết nối lẫn nhau và chuyển tiếp dữ liệu cho nhau. Hub trung tâm là Star.","src":["FA25-FEB5"]},{"id":157,"q":"In terms of output format, how does the LM35 temperature sensor differ from the DS1820?","o":["LM35 provides temperature readings in digital format","DS1820 provides temperature readings in analog format","LM35 provides temperature readings as an analog voltage","DS1820 provides temperature readings via a serial communication protocol"],"a":[2],"n":"LM35 xuất điện áp analog (10 mV/°C); DS18x20 xuất số qua 1-Wire. Đề chỉ chấp nhận một đáp án → C.","src":["FA25-FEB5"]},{"id":158,"q":"What is the maximum value a single number can have in an IPv4 address?","o":["255","128","1024","512"],"a":[0],"n":"Mỗi octet 8 bit → 0-255.","src":["FA25-FEB5"]},{"id":159,"q":"What technology is primarily used for short-range, contactless data exchange in payment systems?","o":["Bluetooth","NFC (Near Field Communication)","Wi-Fi","LoRa"],"a":[1],"n":"Thanh toán chạm (Apple Pay, thẻ contactless) dùng NFC.","src":["FA25-FEB5"]},{"id":160,"q":"Which industry benefits the most from IoT?","o":["Healthcare","Traditional farming","Printing press","Textile industry"],"a":[0],"n":"Y tế: theo dõi bệnh nhân từ xa, thiết bị đeo... (đáp án theo đề).","src":["FA25-FEB5"]},{"id":161,"q":"What is the use of the Vin pin present on some Arduino boards?","o":["To ground the Arduino board","To power the Arduino board","To provide a 5V output","It is used for plugging in a 3V supply"],"a":[1],"n":"Vin nhận nguồn ngoài (7-12 V) để cấp cho board qua bộ ổn áp.","src":["FA25-FE","FA25-Half1","SU25-RE"]},{"id":162,"q":"Which board is commonly used for IoT projects?","o":["Raspberry Pi","Arduino UNO","BeagleBone Black","All of the above"],"a":[3],"n":"Cả ba đều phổ biến trong dự án IoT.","src":["FA25-FE"]},{"id":163,"q":"Which sensor is the SRF05?","o":["Water level sensor","Ranging sensor","Sound intensity sensor","Temperature sensor"],"a":[1],"n":"SRF05 là cảm biến siêu âm đo khoảng cách (ranging), tương tự HC-SR04.","src":["FA25-FE"]},{"id":164,"q":"Given the graph (edges: A-B, A-E, A-D, E-D, B-C, C-D), what is the depth-first traversal starting from node B (visit neighbors in ABC order)?","o":["BADCE","BAEDC","BCDEA","BACDE"],"a":[0],"n":"B → A (kề B nhỏ nhất) → D (kề A: D trước E) → C (kề D: C trước E) → C hết đường, lùi về D → E. Kết quả BADCE.","src":["FA25-FE","SU25-RE"]},{"id":165,"q":"How many pins does a servo motor have?","o":["2","3","4","5"],"a":[1],"n":"Servo có 3 dây: VCC (đỏ), GND (nâu/đen), tín hiệu (cam/vàng).","src":["FA25-FE","SU25-RE"]},{"id":166,"q":"Is it possible to have multiple software serial ports (UART) with speeds up to 115200 bps?","o":["Yes, but only one software serial port is possible","Yes, but the maximum speed is limited to 9600 bps","No, software serial ports are limited to a single port","Yes, multiple software serial ports are possible with speeds up to 115200 bps"],"a":[3],"n":"Tài liệu SoftwareSerial: có thể tạo nhiều cổng, tốc độ tới 115200 bps - nhưng mỗi lúc chỉ một cổng nhận.","src":["FA25-FE","FA25-Half1","SU25-RE"]},{"id":167,"q":"What is the input voltage limit of the Arduino Uno Rev3?","o":["7~12 V","3.3~5 V","6~20 V","1.5~9 V"],"a":[2],"n":"Hỏi 'limit' → 6-20 V; 7-12 V là mức khuyến nghị. Bình luận cộng đồng chia giữa A và C.","flag":true,"src":["FA25-FE"]},{"id":168,"q":"What is the difference between an IDE and a compiler?","o":["The compiler executes the code while the IDE gives a graphical environment for writing the code","The compiler links the code to the respective files and the IDE takes it from there","The compiler and the IDE are the same thing","The IDE executes the code while the compiler gives a graphical environment for writing the code"],"a":[0],"n":"IDE là môi trường soạn thảo đồ hoạ; compiler xử lý (biên dịch) mã. Đáp án theo đề là A.","src":["FA25-FE","SU25-FE"]},{"id":169,"q":"Which Arduino command is used to generate a pulse width modulated signal?","o":["analogWrite()","tone()","digitalRead()","digitalWrite()"],"a":[0],"n":"analogWrite() xuất PWM. tone() tạo sóng vuông 50% ở tần số cho trước.","src":["FA25-FE"]},{"id":170,"q":"What is the objective of the code below if it is executed on the Arduino?","code":"#include <EEPROM.h>\nint pin=13;\nvoid setup() {\n  pinMode(pin,OUTPUT);\n  Serial.begin(9600);\n}\nvoid loop() {\n  for (int i=0; i<EEPROM.length(); i++) {\n    EEPROM.write(i, 1);\n  }\n  digitalWrite(pin,HIGH);\n  exit(0);\n}","o":["Clear EEPROM","Fill EEPROM with 1's","Export EEPROM data","Fill EEPROM with 0's"],"a":[1],"n":"Ghi giá trị 1 vào mọi ô EEPROM, bật LED báo xong rồi dừng.","src":["FA25-FE"]},{"id":171,"q":"What is the purpose of the following Arduino code?","code":"void setup() {\n  Serial.begin(9600);\n}\nvoid loop() {\n  Serial.write(40);\n}","o":["Send a signal to pin 40 on the Arduino board","Send an octal number 40 through the Serial pins","Send a byte with value 40 through the Serial pins","Send a hexadecimal number 40 through the Serial pins"],"a":[2],"n":"Serial.write gửi byte thô giá trị 40 (ký tự '('); Serial.print(40) mới gửi chuỗi \"40\".","src":["FA25-FE","SU25-RE"]},{"id":172,"q":"Which trend is NOT related to the growth in IoT technology?","o":["Increase in computer monitor size over time","Decrease in computer size over time","Increase in computer performance over time","Decrease in computer cost over time"],"a":[0],"n":"IoT phát triển nhờ máy tính nhỏ hơn, mạnh hơn, rẻ hơn; kích thước màn hình không liên quan.","src":["FA25-FE","FA25-Half1"]},{"id":173,"q":"What does fog extend the cloud to?","o":["Application to process logic","Storage of processed data","Things that process and act on data","Hardware for executing boot loading"],"a":[2],"n":"Fog đưa khả năng của cloud xuống gần các 'things' xử lý và phản ứng với dữ liệu.","src":["FA25-FE","FA25-Half1"]},{"id":174,"q":"What are the 4 V's of Big Data, as described by IBM?","o":["Volume, Velocity, Value, Variability","Velocity, Versatility, Verification, Viscosity","Volume, Velocity, Variety, Veracity","Volatility, Vibration, Visualization, Viability"],"a":[2],"n":"IBM: Volume (khối lượng), Velocity (tốc độ), Variety (đa dạng), Veracity (độ tin cậy).","src":["FA25-FE","FA25-Half1","SU25-RE","SU25-FE"]},{"id":175,"q":"Which operation is appropriate when system calls notify the OS that a file is coming and set some attributes?","o":["Delete","Create","Read","Write"],"a":[1],"n":"Create: báo OS có file mới và thiết lập thuộc tính ban đầu.","src":["FA25-FE"]},{"id":176,"q":"What is the DISADVANTAGE of segmentation in memory management?","o":["It can have external fragmentation","The average segment size is larger than the actual page size","It is easier to relocate segments than the entire address space","The segment table is smaller compared to the page table"],"a":[0],"n":"Phân đoạn có kích thước thay đổi → sinh phân mảnh ngoài. C, D là ưu điểm.","src":["FA25-FE"]},{"id":177,"q":"If a resistor has bands of yellow, violet, and orange, what is its resistance value?","o":["43 kilo Ohms","470 Ohms","47 kilo Ohms","4.7 kilo Ohms"],"a":[2],"n":"Vàng=4, Tím=7, Cam=×10^3 → 47 000 Ω = 47 kΩ.","src":["FA25-FE","FA25-Half1"]},{"id":178,"q":"For a voltage divider with R1 = 10 kΩ and R2 = 15 kΩ, Vin = 12 V and Vout is the voltage across R1. What is Vout?","o":["4.8 V","4 V","8 V","7.2 V"],"a":[0],"n":"Vout = Vin × R1/(R1+R2) = 12 × 10/25 = 4.8 V. (Nếu đo trên R2 thì 7.2 V.)","src":["FA25-FE"]},{"id":179,"q":"What is a critical consideration when programming analog input/output for IoT applications?","o":["The color depth of the display","The refresh rate of the display","The precision of the sensor data","The size of the code"],"a":[2],"n":"Analog I/O cần chú ý độ chính xác/độ phân giải dữ liệu cảm biến.","src":["FA25-FE"]},{"id":180,"q":"Which pins support serial communication between the Arduino Uno and the computer?","o":["UART pins","ADC pins","I2C pins","PWM pins"],"a":[0],"n":"UART: D0 (RX) và D1 (TX), nối qua chip USB-serial tới máy tính.","src":["FA25-FE"]},{"id":181,"q":"What is Arduino?","o":["Programming language","Open-source electronics platform","Image editing software","Text editor","None of the others"],"a":[1],"n":"Arduino là nền tảng điện tử mã nguồn mở (phần cứng + phần mềm).","src":["FA25-FE"]},{"id":182,"q":"Which of the following is NOT an example of an open loop system?","o":["Automatic water faucet","Traffic signals","Electronic lift","Automatic electric iron"],"a":[3],"n":"Bàn là tự động có thermostat phản hồi nhiệt độ → hệ kín (closed loop). Đèn giao thông chạy theo thời gian → hệ hở.","flag":true,"src":["FA25-FE"]},{"id":183,"q":"What programming language is used for a sketch in the Arduino IDE?","o":["Python","Java","C/C++","Assembly"],"a":[2],"n":"Sketch Arduino viết bằng C/C++ (dùng thêm thư viện Arduino).","src":["FA25-FE","SU25-FE"]},{"id":184,"q":"What type of communication do the RX and TX pins on the Arduino Uno facilitate?","o":["Power transfer","Wireless communication","Serial communication","Analog signal processing"],"a":[2],"n":"RX/TX (D0/D1) là chân UART - giao tiếp nối tiếp.","src":["FA25-Half1","SU25-FE"]},{"id":185,"q":"Which sensor is the LM35?","o":["Pressure sensor","Humidity sensor","Touch sensor","Temperature sensor"],"a":[3],"n":"LM35 là cảm biến nhiệt độ analog.","src":["FA25-Half1","SU25-RE"]},{"id":186,"q":"Which of the following is NOT a sensor in IoT?","o":["BMP280","DHT11","Photoresistor","LED"],"a":[3],"n":"BMP280 (áp suất), DHT11 (nhiệt-ẩm), quang trở (ánh sáng) là cảm biến; LED là đầu ra.","src":["FA25-Half1"]},{"id":187,"q":"What type of network is the connection between a Bluetooth headset and a smartphone?","o":["PAN","MAN","LAN","WAN"],"a":[0],"n":"PAN (Personal Area Network) - mạng cá nhân tầm vài mét.","src":["FA25-Half1","SU25-RE"]},{"id":188,"q":"How many times does the loop() function run on every startup of the Arduino system?","o":["1","Depends upon the setup() function","Infinitely, as long as power is supplied to the Arduino","3"],"a":[2],"n":"loop() lặp vô hạn cho tới khi mất nguồn hoặc reset; setup() chạy 1 lần.","src":["FA25-Half1"]},{"id":189,"q":"In circuit design, choose the correct way to connect an LED to the Arduino board.","o":["Anode connected through a resistor to the 5V pin, cathode connected to the A0 pin","Anode connected through a resistor to the 5V pin, cathode connected to the 3V pin","Anode connected through a resistor to the 5V pin, cathode connected to the 5V pin","Anode connected through a resistor to the 5V pin, cathode connected to the TX pin"],"a":[0],"n":"A0 có thể đặt làm OUTPUT mức LOW để hút dòng → LED sáng. Cathode nối 5V thì không có chênh áp; 3V và TX không phải cách dùng đúng.","src":["FA25-Half1"]},{"id":190,"q":"In a thin client setup, where is most of the software and data processing performed?","o":["Locally on the thin client device","On a central server or cloud infrastructure","On a central server or client infrastructure","On a dedicated network switch"],"a":[1],"n":"Thin client chỉ hiển thị/nhập liệu; xử lý nằm trên server hoặc cloud.","src":["FA25-Half1"]},{"id":191,"q":"Which issue in the cloud focuses on protecting data from theft or corruption?","o":["Data privacy","Data access","Data theft","Secure network"],"a":[2],"n":"Đáp án theo đa số cộng đồng (C). Một số người chọn A.","flag":true,"src":["FA25-Half1"]},{"id":192,"q":"In an IR remote control, what does IR stand for?","o":["Indirect Radio","Infrared","Inside Remote","Instant Reception"],"a":[1],"n":"IR = Infrared (hồng ngoại).","src":["FA25-Half1"]},{"id":193,"q":"Which function in Arduino is used to initialize serial communication?","o":["Serial.println()","Serial.available()","Serial.read()","Serial.begin()"],"a":[3],"n":"Serial.begin(baud) khởi tạo cổng nối tiếp, thường đặt trong setup().","src":["FA25-Half1","SU25-RE"]},{"id":194,"q":"Which layer of the IoT architecture involves sensors and devices that collect data?","o":["Perception layer","Network layer","Application layer","Data layer"],"a":[0],"n":"Perception layer = lớp cảm nhận (cảm biến, RFID, actuator).","src":["FA25-Half1"]},{"id":195,"q":"Which of the following is NOT an advantage of IoT?","o":["Security","Enhanced data collection","Reduced waste","Improved customer engagement"],"a":[0],"n":"Bảo mật là thách thức/nhược điểm lớn của IoT, không phải ưu điểm.","src":["FA25-Half1"]},{"id":196,"q":"What is another name for a hardware address?","o":["MAC address","IP address","Postal address","Gateway address"],"a":[0],"n":"Địa chỉ phần cứng = MAC (48 bit, gắn với card mạng). IP là địa chỉ logic.","src":["SU25-RE"]},{"id":197,"q":"What does the analogRead() function return when the potentiometer is turned all the way to connect with +5 volts?","o":["0","Between 1 and 1022","1023","5"],"a":[2],"n":"5 V là mức tối đa của ADC 10-bit → 1023.","src":["SU25-RE"]},{"id":198,"q":"What is PWM (Pulse Width Modulation) primarily used for in Arduino projects?","o":["To enhance digital signal strength","To achieve analog-like results from digital outputs","To increase the digital pin voltage","To decrease the processing time for digital outputs"],"a":[1],"n":"PWM tạo hiệu ứng như analog (dim LED, điều tốc motor) từ chân số.","src":["SU25-RE"]},{"id":199,"q":"How does the veracity of big data impact IoT applications?","o":["By increasing the data transmission range","By improving the energy efficiency of devices","By ensuring the reliability and accuracy of the data used for decision-making","By decreasing the cost of data storage"],"a":[2],"n":"Veracity = độ tin cậy/chính xác của dữ liệu → ảnh hưởng quyết định dựa trên dữ liệu.","src":["SU25-RE"]},{"id":200,"q":"IoT devices create more significant security challenges for networks due to all of these concerns EXCEPT which?","o":["They do not have security alerts","They are always on","They are always connected","They produce an event log"],"a":[3],"n":"Event log giúp giám sát - là điểm có lợi, không phải mối lo.","src":["SU25-RE"]},{"id":201,"q":"How has the Internet of Things prompted new concerns over security issues?","o":["Devices are equipped with security from the manufacturer","Devices are less likely to be compromised in today's age","Devices are not compatible with traditional security measures","Devices respond only to user-installed security protocols"],"a":[2],"n":"Thiết bị IoT tài nguyên yếu, không chạy được antivirus/firewall truyền thống.","src":["SU25-RE"]},{"id":202,"q":"What happens to the LED's blink rate in the code below when the potentiometer is turned all the way to provide the maximum voltage to the analog pin?","code":"const int ledPin = 13;\nconst int sensorPin = A0;\nint sensorValue = 0;\nvoid setup() {\n  pinMode(ledPin, OUTPUT);\n  Serial.begin(9600);\n}\nvoid loop() {\n  sensorValue = analogRead(sensorPin);\n  Serial.println(sensorValue);\n  digitalWrite(ledPin, HIGH);\n  delay(sensorValue);\n  digitalWrite(ledPin, LOW);\n  delay(sensorValue);\n}","o":["The LED blinks faster","The LED blinks slower","The LED stops blinking","The LED blinks at a constant rate regardless of the potentiometer's position"],"a":[1],"n":"Điện áp max → sensorValue = 1023 → delay dài nhất (~1 s mỗi pha) → nháy chậm nhất.","src":["SU25-RE"]},{"id":203,"q":"Which of the following best describes the role of sensors in the context of IoT?","o":["Sensors are used to create data signatures for various devices","Sensors collect and transmit data about the physical environment","Sensors generate power for IoT devices","Sensors are responsible for controlling mechanical movements"],"a":[1],"n":"Cảm biến thu thập dữ liệu môi trường vật lý; điều khiển cơ khí là việc của actuator.","src":["SU25-RE"]},{"id":204,"q":"Digital pin D2 of an Arduino Uno generates a square wave, making an LED on for 1 second and off for 4 seconds. If the LED's anode is connected to 5 V and the cathode to pin D2, what is the duty cycle of this square wave?","o":["20%","25%","80%","90%"],"a":[2],"n":"Anode ở 5V → LED sáng khi D2 = LOW. Sáng 1 s = LOW 1 s, tắt 4 s = HIGH 4 s → duty = 4/5 = 80%.","src":["SU25-RE"]},{"id":205,"q":"Which of the following is NOT related to the Arduino IDE software?","o":["Serial monitor","Upload","Terminate","Verify"],"a":[2],"n":"IDE có Verify, Upload, Serial Monitor; không có nút Terminate.","src":["SU25-RE"]},{"id":206,"q":"Which communication medium is most affected by environmental conditions like interference?","o":["Fibre optic cables","Copper cables","Wireless transmission","All of the others"],"a":[2],"n":"Sóng vô tuyến dễ bị nhiễu, vật cản, thời tiết; cáp quang gần như miễn nhiễm.","src":["SU25-RE"]},{"id":207,"q":"What factors should be considered when selecting a communication medium in a network?","o":["The distance a signal needs to travel","The environment the signal will travel in","The amount and speed of data","All of the others"],"a":[3],"n":"Chọn môi trường truyền cần xét khoảng cách, môi trường và lưu lượng/tốc độ.","src":["SU25-RE"]},{"id":208,"q":"What role do embedded sensors play in IoT systems?","o":["They enhance power generation","They store excess energy","They convert environmental signals into digital data for processing","They eliminate the need for power management"],"a":[2],"n":"Cảm biến nhúng chuyển tín hiệu môi trường thành dữ liệu số để xử lý.","src":["SU25-RE"]},{"id":209,"q":"What types of programming languages are commonly used for IoT systems?","o":["JavaScript, HTML, and CSS","Python, C++, Java, Arduino, and Raspberry Pi platforms","PHP and SQL","Assembly language only"],"a":[1],"n":"IoT thường dùng C/C++ (Arduino), Python (Raspberry Pi), Java.","src":["SU25-RE"]},{"id":210,"q":"Which IoT deployment model involves direct communication between nearby devices without relying on a centralized infrastructure?","o":["Cloud-based IoT","Peer-to-peer IoT","Hybrid IoT","Edge computing IoT"],"a":[1],"n":"Peer-to-peer: thiết bị nói chuyện trực tiếp với nhau, không qua máy chủ trung tâm.","src":["SU25-RE"]},{"id":211,"q":"Which of the following is true about the Arduino Ethernet shield?","o":["It connects the Arduino to a network through a wired Ethernet connection","It allows the Arduino to communicate wirelessly over a local area network","It requires a Bluetooth connection to function","It is used for motor control and sensor interaction"],"a":[0],"n":"Ethernet shield (W5100/W5500) nối mạng có dây qua cổng RJ45.","src":["SU25-RE"]},{"id":212,"q":"What type of sensor detects motion or presence using infrared light?","o":["Hall effect sensor","Photoresistor","Infrared sensor","Force sensitive resistor"],"a":[2],"n":"Cảm biến hồng ngoại (PIR/IR) phát hiện chuyển động/hiện diện.","src":["SU25-RE"]},{"id":213,"q":"What type of network does the Wi-Fi shield allow the Arduino to connect to?","o":["A Bluetooth network","A wired Ethernet network","A Wi-Fi network","A ZigBee mesh network"],"a":[2],"n":"Wi-Fi shield → mạng Wi-Fi (không dây 802.11).","src":["SU25-RE"]},{"id":214,"q":"What are the properties of a tree?","o":["One node is marked as the root node","Every node other than the root is associated with one parent node","Each node can have an arbitrary number of child nodes","All of the others"],"a":[3],"n":"Cây: một gốc, mỗi nút (trừ gốc) có đúng một cha, số con tuỳ ý.","src":["SU25-RE"]},{"id":215,"q":"Who coined the term \"Internet of Things\"?","o":["Kevin Ashton","John Wright","Edward Jameson","George Garton"],"a":[0],"n":"Kevin Ashton (MIT Auto-ID Center) đặt ra thuật ngữ năm 1999.","src":["SU25-RE"]},{"id":216,"q":"Which function is used to enable an interrupt in Arduino UNO?","o":["enableInterrupt()","attachInterrupt()","activateInterrupt()","startInterrupt()"],"a":[1],"n":"attachInterrupt(digitalPinToInterrupt(pin), ISR, mode). Tắt bằng detachInterrupt().","src":["SU25-RE"]},{"id":217,"q":"What is the use of the ESP8266 WiFi module?","o":["Network provider","Switches circuits","Evaluates air pressure","Monitors motion"],"a":[0],"n":"ESP8266 cung cấp kết nối Wi-Fi (TCP/IP) cho vi điều khiển.","src":["SU25-FE"]},{"id":218,"q":"How many pins are there in a 7-segment LED display?","o":["5","7","9","10"],"a":[3],"n":"Loại phổ biến có 10 chân: 7 đoạn a-g + dấu chấm DP + 2 chân chung (COM).","src":["SU25-FE"]},{"id":219,"q":"Which pins of the Arduino Uno are the external interrupt pins?","o":["2, 3","3, 4","5, 6","7, 8"],"a":[0],"n":"Uno có 2 ngắt ngoài: INT0 = D2, INT1 = D3.","src":["SU25-FE"]},{"id":220,"q":"What is a \"Sketch\" in Arduino terminology?","o":["A program written for the board and shields","A blueprint for designing a circuit","A diagram of the microcontroller layout","An input data format for sensors"],"a":[0],"n":"Sketch = chương trình Arduino (file .ino).","src":["SU25-FE"]},{"id":221,"q":"Which digital pin is used as the LED_BUILTIN value on an Arduino UNO board?","o":["D10","D11","D12","D13"],"a":[3],"n":"LED onboard của Uno nối chân 13.","src":["SU25-FE"]},{"id":222,"q":"True or false: In Arduino, a \"Sketch\" is a diagram that shows the physical arrangement of the components.","o":["TRUE","FALSE"],"a":[1],"n":"Sai - sketch là chương trình, không phải sơ đồ.","src":["SU25-FE"]},{"id":223,"q":"Is Arduino code an object-oriented or a procedural programming language?","o":["Arduino code follows the top-down procedural ideology","Arduino code follows a custom procedural ideology","Arduino code follows the object-oriented ideology","Arduino code follows the bottom-up procedural ideology"],"a":[2],"n":"Arduino dựa trên C++ và dùng lớp/đối tượng (Serial, Servo, LiquidCrystal...). Đáp án theo cộng đồng.","flag":true,"src":["SU25-FE"]},{"id":224,"q":"Why do you use a breadboard?","o":["It's an inexpensive way to check the design and function of your circuit","It can be used to mass produce lots of identical circuits easily and cost effectively","The plug board versions are extremely reliable and will last for years","Breadboards aren't used any more; it's an old technology"],"a":[0],"n":"Breadboard để lắp thử mạch nhanh, không cần hàn.","src":["SU25-FE"]},{"id":225,"q":"In the Windows OS, which statement is true about the blocked state of a process?","o":["Waiting for an event triggered by the CPU's scheduling mechanism","Waiting for an event that has not happened yet","Waiting for input/output and waiting for an event that has not happened yet","The CPU and memory are waiting for other events"],"a":[2],"n":"Blocked: tiến trình chờ I/O hoặc chờ một sự kiện chưa xảy ra (đầy đủ nhất là C).","src":["SU25-FE"]},{"id":226,"q":"What is the primary advantage of using EEPROM memory in an Arduino project?","o":["EEPROM memory is faster than SRAM","EEPROM memory retains its data even when the power is turned off","EEPROM memory has unlimited write cycles","EEPROM memory is less expensive than flash memory"],"a":[1],"n":"EEPROM không bay hơi; nhưng chậm và giới hạn ~100 000 lần ghi.","src":["SU25-FE"]},{"id":227,"q":"How is the distance to an object calculated using the ultrasonic sensor?","o":["By measuring the intensity of the returned pulse","By calculating the time it takes for a pulse to return","By detecting the angle of the returned pulse","By the frequency shift of the returned pulse"],"a":[1],"n":"Khoảng cách = thời gian vọng × vận tốc âm (~343 m/s) / 2.","src":["SU25-FE"]},{"id":228,"q":"What is one of the main impacts of IoT on urban areas?","o":["Creating smart cities with smart buildings and transportation","Improving public entertainment services","Reducing air pollution by enhancing public transportation","Enhancing cybersecurity for personal devices"],"a":[0],"n":"IoT tạo nên thành phố thông minh (giao thông, toà nhà, chiếu sáng...).","src":["SU25-FE"]},{"id":229,"q":"Which mode parameter triggers the interrupt when the pin goes from LOW to HIGH?","o":["LOW","CHANGE","RISING","FALLING"],"a":[2],"n":"RISING = sườn lên (LOW→HIGH); FALLING = sườn xuống; CHANGE = cả hai.","src":["SU25-FE"]},{"id":230,"q":"In the IoT case study of a dairy farm, what is the primary purpose of the responders attached to the cows?","o":["To measure the quantity of milk produced by each cow","To monitor the health and movement of the cows","To control the feeding mechanism for the cows","To provide a wireless internet connection to the farm"],"a":[1],"n":"Responder theo dõi vận động/sức khoẻ và nhận diện từng con bò.","src":["SU25-FE"]},{"id":231,"q":"Why is the delay(1000); function used in the Arduino sketch for blinking an LED?","o":["To increase the voltage supplied to the LED","To turn the LED off","To keep the LED on or off for a visible amount of time","To set the LED_BUILTIN pin as an input"],"a":[2],"n":"Không có delay, LED đổi trạng thái quá nhanh, mắt không thấy nháy.","src":["SU25-FE"]},{"id":232,"q":"Which factor is NOT typically considered when choosing the medium for network communication in an IoT setup?","o":["The distance a signal needs to travel","The type of data being transmitted","The color of the cables","The cost of the media and its installation"],"a":[2],"n":"Màu dây không ảnh hưởng chất lượng truyền.","src":["SU25-FE"]},{"id":233,"q":"When using the LCD 1602 display with an Arduino, what is the purpose of wiring a 10k ohm potentiometer to the VO pin of the LCD?","o":["To adjust the display contrast","To provide power to the LCD","To set the refresh rate of the display","To enable the autoscroll feature"],"a":[0],"n":"VO (V0) chỉnh độ tương phản.","src":["SU25-FE"]},{"id":234,"q":"What is the purpose of the TRIG pin on the SRF05 ultrasonic sensor?","o":["To receive the echo signal","To send out ultrasound bursts","To supply power to the sensor","To process the incoming data"],"a":[1],"n":"TRIG kích phát xung siêu âm; ECHO trả về độ rộng xung tỉ lệ khoảng cách.","src":["SU25-FE"]},{"id":235,"q":"How does IoT help improve tire maintenance in mining vehicles?","o":["By inflating tires automatically","By monitoring tire pressure","By replacing tires remotely","By making tires more durable"],"a":[1],"n":"Cảm biến theo dõi áp suất/nhiệt độ lốp để bảo trì dự đoán.","src":["SU25-FE"]},{"id":236,"q":"Why might having 20 billion connected devices cause a major disruption in employment?","o":["Automation may replace jobs traditionally done by humans","New job sectors will be created, making previous roles obsolete","There will be fewer jobs available due to more devices doing the work","Workers will need to learn new internet communication tools"],"a":[0],"n":"Tự động hoá thay thế công việc truyền thống. Đáp án theo đa số cộng đồng.","flag":true,"src":["SU25-FE"]},{"id":237,"q":"What is the primary purpose of the Internet of Things (IoT)?","o":["To connect only computers to the internet","To connect everyday physical objects to the internet","To increase internet speed","To allow humans to communicate directly with each other online"],"a":[1],"n":"IoT kết nối các vật thể hằng ngày với Internet.","src":["SU25-FE"]},{"id":238,"q":"Which protocol is most commonly used for small data transmission in IoT devices?","o":["HTTP","MQTT","FTP","SMTP"],"a":[1],"n":"MQTT nhẹ, hợp gói tin nhỏ.","src":["SU25-FE"]},{"id":239,"q":"How many digital I/O pins does the Arduino Uno have?","o":["8","10","14","16"],"a":[2],"n":"14 chân digital D0-D13 (6 chân có PWM).","src":["SU25-FE"]},{"id":240,"q":"True or false: Arduino can be used to develop interactive objects that can work without a computer.","o":["TRUE","FALSE"],"a":[0],"n":"Sau khi nạp code, Arduino chạy độc lập chỉ cần nguồn.","src":["SU25-FE"]},{"id":241,"q":"Which component is referred to as the 'brain' of the Arduino?","o":["ATmega328","16 MHz crystal","FTDI USB-to-Serial chip","Power regulator"],"a":[0],"n":"Vi điều khiển ATmega328 thực thi chương trình.","src":["SU25-FE"]},{"id":242,"q":"What is the difference between the INPUT and INPUT_PULLUP arguments in the pinMode() function?","o":["They are both the same","INPUT supports only analog voltages while INPUT_PULLUP supports only digital voltage readings","INPUT takes the default reading as 0 while INPUT_PULLUP takes the default reading as 1023","INPUT takes the default reading as 1023 while INPUT_PULLUP takes the default reading as 0"],"a":[2],"n":"INPUT_PULLUP bật điện trở kéo lên nội → mặc định đọc mức cao (HIGH). Đáp án đề là C.","src":["SU25-FE"]},{"id":243,"q":"Given the array [4, 1, 2, 9, 8], what does the array look like after the first round of Bubble Sort (ascending)?","o":["4, 1, 2, 9, 8","1, 2, 4, 8, 9","1, 4, 2, 8, 9","1, 4, 2, 9, 8"],"a":[1],"n":"(4,1)→đổi, (4,2)→đổi, (4,9) giữ, (9,8)→đổi: 1,2,4,8,9.","src":["SU25-FE"]},{"id":244,"q":"What is a mock-up?","o":["It is a horizontal prototype","It is a particular approach to throwaway prototype","It is a throwaway prototype","It is a non-releasable prototype"],"a":[0],"n":"Mock-up là prototype ngang (giao diện bề mặt, chưa có chức năng sâu).","src":["SU25-FE"]},{"id":245,"q":"How can you create a network of IoT devices that efficiently exchange data?","o":["By using a single protocol for all devices","By connecting all devices directly to the internet","By designing a mesh network topology","By using the highest data rate possible"],"a":[2],"n":"Mesh cho phép các nút chuyển tiếp dữ liệu cho nhau, bền vững.","src":["SU25-FE"]}]</script>
+<script>
+(function () {
+  "use strict";
+  var BANK = JSON.parse(document.getElementById("bank").textContent);
+  var EXAMS = ["SU26-FE", "SP26-RE", "SP26-FE", "FA25-FEB5", "FA25-FE", "FA25-Half1", "SU25-RE", "SU25-FE"];
+  var PREFIX = "iot102_clean_v2.";
+  var LEGACY_PREFIX = "iot102_clean_v1.";
+  var L = "ABCDEFG";
+  var $ = function (s) { return document.querySelector(s); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var store = {
+    get: function (k, d) {
+      try {
+        var v = localStorage.getItem(PREFIX + k);
+        if (v == null && LEGACY_PREFIX && (k === "wrong" || k === "theme")) {
+          var leg = localStorage.getItem(LEGACY_PREFIX + k);
+          if (leg != null) { localStorage.setItem(PREFIX + k, leg); v = leg; }
+        }
+        return v == null ? d : JSON.parse(v);
+      } catch (e) { return d; }
+    },
+    set: function (k, v) { try { localStorage.setItem(PREFIX + k, JSON.stringify(v)); } catch (e) { /* ignore storage errors */ } }
+  };
+
+  var DEFAULT_PRESET = "rep2";
+  var PRESETS = [
+    { id: "hot3", label: "★ Siêu tủ", hint: "Ra ≥ 3/8 đề (36 câu lõi cứng)" },
+    { id: "rep2", label: "🔥 Tủ lặp", hint: "Toàn bộ 100 câu lặp ≥ 2 đề (khuyên học trước)" },
+    { id: "rep_fe26", label: "Lặp + FE 2026", hint: "100 câu lặp + câu mới trong SP26-FE / SU26-FE" },
+    { id: "all", label: "Tất cả", hint: "Toàn bộ 245 câu gốc" }
+  ];
+  function matchPreset(q, pid) {
+    if (pid === "hot3") return q.src.length >= 3;
+    if (pid === "rep2") return q.src.length >= 2;
+    if (pid === "rep_fe26") return q.src.length >= 2 || q.src.indexOf("SP26-FE") >= 0 || q.src.indexOf("SU26-FE") >= 0;
+    return true;
+  }
+
+  var ids = {};
+  BANK.forEach(function (q) { ids[q.id] = true; });
+  var validPresets = {};
+  PRESETS.forEach(function (p) { validPresets[p.id] = true; });
+
+  var wrong = new Set((store.get("wrong", []) || []).filter(function (id) { return ids[id]; }));
+  var DEF = { mode: "practice", count: "all", exams: [], repeatOnly: false, preset: DEFAULT_PRESET };
+  var settings = Object.assign({}, DEF, store.get("settings", {}) || {});
+  if (!Array.isArray(settings.exams)) settings.exams = [];
+  if (["20", "50", "100", "all"].indexOf(String(settings.count)) < 0) settings.count = "all";
+  if (settings.mode !== "practice" && settings.mode !== "exam") settings.mode = "practice";
+  if (settings.preset !== "custom" && !validPresets[settings.preset]) settings.preset = DEFAULT_PRESET;
+  var theme = store.get("theme", "light") === "dark" ? "dark" : "light";
+  var wrongOnly = false, drawerOpen = false, pending = false, S = null, timerId = null;
+
+  function applyTheme() {
+    document.documentElement.setAttribute("data-theme", theme);
+    var tb = $("#themeBtn");
+    if (tb) tb.textContent = theme === "dark" ? "☀" : "🌙";
+  }
+  function saveSettings() { store.set("settings", settings); }
+  function saveWrong() { store.set("wrong", Array.from(wrong)); }
+  function shuffleArr(a) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function sameSet(a, b) { return a.length === b.length && a.every(function (x) { return b.indexOf(x) >= 0; }); }
+  function fmt(ms) { var s = Math.floor(ms / 1000), m = Math.floor(s / 60); s = s % 60; return (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s; }
+
+  function pool(pidOverride) {
+    var pid = pidOverride || settings.preset;
+    if (pid && pid !== "custom") {
+      var list = BANK.filter(function (q) { return matchPreset(q, pid); });
+      if (pid !== "all") {
+        list.sort(function (a, b) { return (b.src.length - a.src.length) || (a.id - b.id); });
+      }
+      return list;
+    }
+    return BANK.filter(function (q) {
+      if (settings.exams.length && !q.src.some(function (s) { return settings.exams.indexOf(s) >= 0; })) return false;
+      if (settings.repeatOnly && q.src.length < 2) return false;
+      if (wrongOnly && !wrong.has(q.id)) return false;
+      return true;
+    });
+  }
+
+  /* Fixed original option order [0, 1, ..., n-1] */
+  function makeOrder(q) {
+    return q.o.map(function (_, i) { return i; });
+  }
+
+  function newSession(list, doShuffle) {
+    var qs = list ? list.slice() : pool();
+    if (!list) {
+      if (doShuffle) shuffleArr(qs);
+      if (settings.count !== "all") qs = qs.slice(0, parseInt(settings.count, 10));
+    }
+    S = {
+      mode: settings.mode,
+      cur: 0,
+      submitted: false,
+      finished: false,
+      confirm: false,
+      confirmRestart: false,
+      t0: Date.now(),
+      t1: null,
+      items: qs.map(function (q) { return { q: q, order: makeOrder(q), sel: [], checked: false, ok: null }; })
+    };
+    pending = false;
+    render();
+    startTimer();
+  }
+
+  function hasProgress() {
+    return S && !S.finished && !S.submitted && S.items.some(function (it) { return it.sel.length > 0; });
+  }
+  function applySettings() {
+    saveSettings();
+    if (hasProgress()) { pending = true; render(); }
+    else newSession(null, false);
+  }
+  function startTimer() {
+    clearInterval(timerId);
+    timerId = setInterval(function () {
+      var el = $("#timer");
+      if (el && S && !S.submitted) el.textContent = fmt(Date.now() - S.t0);
+    }, 1000);
+  }
+
+  function record(it) { if (it.ok) wrong.delete(it.q.id); else wrong.add(it.q.id); saveWrong(); }
+  function choose(oi) {
+    var it = S.items[S.cur];
+    if (S.submitted || (S.mode === "practice" && it.checked)) return;
+    if (it.q.a.length > 1) {
+      var k = it.sel.indexOf(oi);
+      if (k >= 0) it.sel.splice(k, 1); else it.sel.push(oi);
+    } else {
+      it.sel = [oi];
+      if (S.mode === "practice") { check(); return; }
+    }
+    S.confirm = false;
+    S.confirmRestart = false;
+    render();
+  }
+  function check() {
+    var it = S.items[S.cur];
+    if (!it.sel.length || it.checked) return;
+    it.checked = true;
+    it.ok = sameSet(it.sel, it.q.a);
+    record(it);
+    render();
+  }
+  function finish() {
+    if (S.mode === "exam") {
+      var blank = S.items.filter(function (it) { return !it.sel.length; }).length;
+      if (blank && !S.confirm) { S.confirm = true; render(); return; }
+      S.items.forEach(function (it) { it.checked = true; it.ok = it.sel.length > 0 && sameSet(it.sel, it.q.a); record(it); });
+    }
+    S.submitted = true;
+    S.finished = true;
+    S.t1 = Date.now();
+    render();
+    scrollMain();
+  }
+  function restart() {
+    var ansCount = S.items.filter(function (it) { return it.sel.length > 0; }).length;
+    if (S.mode === "exam" && !S.submitted && ansCount >= 5 && !S.confirmRestart) {
+      S.confirmRestart = true;
+      render();
+      return;
+    }
+    newSession(S.items.map(function (it) { return it.q; }), false);
+    scrollMain();
+  }
+  function go(i) {
+    if (i < 0 || i >= S.items.length) return;
+    S.cur = i;
+    S.finished = false;
+    S.confirmRestart = false;
+    render();
+    scrollMain();
+  }
+  function scrollMain() {
+    var m = $("#main");
+    if (!m) return;
+    if (m.getBoundingClientRect().top < 0) {
+      var smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      m.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+    }
+  }
+
+
+  function initPresetsAndFilters() {
+    $("#presetsBar").innerHTML = '<span class="presets-lbl">Học nhanh</span>' + PRESETS.map(function (p) {
+      var cnt = pool(p.id).length;
+      return '<button type="button" class="preset-btn" data-preset="' + p.id + '" title="' + esc(p.hint) + '">' + esc(p.label) + '<span class="count">' + cnt + '</span></button>';
+    }).join("");
+    $("#repCount").textContent = BANK.filter(function (q) { return q.src.length >= 2; }).length;
+    $("#chips").innerHTML = '<button type="button" class="chip" data-exam="">Tất cả (' + BANK.length + ')</button>' + EXAMS.map(function (e) {
+      var n = BANK.filter(function (q) { return q.src.indexOf(e) >= 0; }).length;
+      return '<button type="button" class="chip" data-exam="' + e + '">' + e + '<small>' + n + '</small></button>';
+    }).join("");
+  }
+
+  function syncControls() {
+    document.querySelectorAll("[data-mode]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.mode === settings.mode));
+    });
+    document.querySelectorAll("[data-preset]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(!wrongOnly && b.dataset.preset === settings.preset));
+    });
+    $("#count").value = settings.count;
+    $("#repeatOnly").checked = !!settings.repeatOnly;
+    document.querySelectorAll("[data-exam]").forEach(function (b) {
+      var e = b.dataset.exam;
+      var active = settings.preset === "custom" && (e ? settings.exams.indexOf(e) >= 0 : settings.exams.length === 0);
+      b.setAttribute("aria-pressed", String(active));
+    });
+    $("#wrongCount").textContent = wrong.size;
+    var wb = $("#wrongBtn");
+    wb.setAttribute("aria-pressed", String(wrongOnly));
+    wb.disabled = wrong.size === 0 && !wrongOnly;
+    $("#clearWrongBtn").disabled = wrong.size === 0;
+
+    var parts = [];
+    if (wrongOnly) parts.push("Đã sai");
+    else if (settings.preset !== "custom") {
+      var pObj = PRESETS.filter(function (x) { return x.id === settings.preset; })[0];
+      if (pObj) parts.push(pObj.label.replace(/^[^A-Za-zÀ-ỹ]+/, "").trim());
+    }
+    if (settings.preset === "custom") {
+      if (settings.repeatOnly) parts.push("Lặp");
+      if (settings.exams.length) parts.push(settings.exams.length + " đề");
+    }
+    parts.push(settings.count === "all" ? (pool().length + " câu") : (settings.count + " câu"));
+    $("#filterSummary").textContent = parts.join(" · ");
+
+    var ft = $("#filterToggle");
+    ft.setAttribute("aria-expanded", String(drawerOpen));
+    ft.classList.toggle("active", drawerOpen || settings.preset === "custom" || settings.count !== "all" || wrongOnly);
+    $("#filterDrawer").hidden = !drawerOpen;
+    $("#pending").hidden = !pending;
+
+    var trb = $("#topRestartBtn");
+    if (trb) {
+      var needConfirm = S && S.confirmRestart;
+      trb.textContent = needConfirm ? "Xác nhận làm lại?" : "↺ Làm lại từ đầu";
+      trb.classList.toggle("warn", !!needConfirm);
+      trb.disabled = !S || !S.items.length;
+    }
+  }
+
+  function render() {
+    syncControls();
+    var main = $("#main");
+    if (!S.items.length) main.innerHTML = emptyHTML();
+    else if (S.finished) main.innerHTML = resultsHTML();
+    else main.innerHTML = cardHTML();
+    $("#panel").innerHTML = S.items.length ? panelHTML() : "";
+  }
+
+  function emptyHTML() {
+    var msg = wrongOnly
+      ? "Chưa có câu sai nào khớp bộ lọc. Làm thêm câu mới hoặc tắt bộ lọc 'Chỉ câu đã sai'."
+      : "Không có câu nào khớp bộ lọc hiện tại.";
+    return '<article class="card empty"><p class="qnum">Chưa có câu hỏi</p><p>' + msg + '</p><button type="button" class="btn primary" data-act="resetFilters">↺ Về bộ chọn lọc mặc định</button></article>';
+  }
+
+  function lettersOf(it, arr) {
+    return arr.map(function (oi) { return L[it.order.indexOf(oi)]; }).sort().join(", ");
+  }
+
+  function cardHTML() {
+    var it = S.items[S.cur], q = it.q, multi = q.a.length > 1;
+    var reveal = S.submitted || (S.mode === "practice" && it.checked);
+    var doneCount = S.items.filter(function (x) { return x.sel.length > 0; }).length;
+    var pct = Math.round((doneCount / S.items.length) * 100);
+    var h = '<article class="card"><div class="progress-track"><div class="progress-fill" style="width:' + pct + '%"></div></div>';
+    h += '<div class="card-head"><span class="qnum">Câu ' + (S.cur + 1) + '<span class="of"> / ' + S.items.length + '</span></span><div class="badges">';
+    if (multi) h += '<span class="badge multi">Chọn ' + q.a.length + ' đáp án</span>';
+    if (q.flag) h += '<span class="badge flag">Tranh cãi</span>';
+    h += '<span class="badge" title="' + esc(q.src.join(", ")) + '">' + q.src.length + '/' + EXAMS.length + ' đề</span>';
+    h += '</div></div>';
+    h += '<p class="qtext">' + esc(q.q) + '</p>';
+    if (q.code) h += '<pre class="code"><code>' + esc(q.code) + '</code></pre>';
+    
+    h += '<ol class="opts" role="' + (multi ? "group" : "radiogroup") + '" aria-label="Các lựa chọn">';
+    it.order.forEach(function (oi, di) {
+      var chosen = it.sel.indexOf(oi) >= 0, isAns = q.a.indexOf(oi) >= 0, cls = "opt", mark = "";
+      if (reveal) {
+        if (isAns) { cls += chosen ? " is-correct" : " is-missed"; mark = "✓"; }
+        else if (chosen) { cls += " is-wrong"; mark = "✗"; }
+      } else if (chosen) cls += " is-selected";
+      h += '<li><button type="button" class="' + cls + '" data-opt="' + oi + '" aria-pressed="' + chosen + '"' + (reveal ? ' aria-disabled="true"' : "") + '>' +
+        '<span class="key">' + L[di] + '</span><span class="txt' + (q.o[oi].indexOf("\n") >= 0 ? " mono" : "") + '">' + esc(q.o[oi]) + '</span>' + (mark ? '<span class="mark" aria-hidden="true">' + mark + '</span>' : "") + '</button></li>';
+    });
+    h += '</ol>';
+    if (reveal) {
+      var v = it.ok ? "ok" : (it.sel.length ? "bad" : "skip");
+      var vt = { ok: "Chính xác", bad: "Chưa đúng", skip: "Bỏ trống" }[v];
+      h += '<div class="feedback ' + v + '"><p class="verdict">' + vt + '<span> · Đáp án: ' + lettersOf(it, q.a) + '</span></p>';
+      if (q.n) h += '<p class="expl">' + esc(q.n) + '</p>';
+      if (q.flag) h += '<p class="flagnote">Lưu ý: Bình luận trên FuOverflow chưa thống nhất ở câu này, nên đối chiếu thêm slide môn học.</p>';
+      h += '<p class="src">Nguồn: ' + q.src.join(" · ") + '</p></div>';
+    }
+    var last = S.cur === S.items.length - 1;
+    var restartLabel = S.confirmRestart ? "Xác nhận làm lại?" : "↺ Làm lại từ đầu";
+    h += '<div class="nav"><div class="nav-l"><button type="button" class="btn" data-act="prev"' + (S.cur === 0 ? " disabled" : "") + '>← Câu trước</button>' +
+      '<button type="button" class="btn' + (S.confirmRestart ? " warn" : "") + '" data-act="restart">' + restartLabel + '</button></div><div class="nav-r">';
+    if (S.mode === "practice" && !it.checked && !S.submitted && multi) {
+      h += '<button type="button" class="btn primary" data-act="check"' + (it.sel.length ? "" : " disabled") + '>Kiểm tra</button>';
+    }
+    var nextPrimary = S.submitted || S.mode === "exam" || it.checked;
+    if (!last) h += '<button type="button" class="btn ' + (nextPrimary ? "primary" : "") + '" data-act="next">Câu sau →</button>';
+    else if (S.submitted) h += '<button type="button" class="btn primary" data-act="results">Về bảng điểm</button>';
+    else h += '<button type="button" class="btn primary" data-act="finish">' + (S.mode === "exam" ? "Nộp bài" : "Xem kết quả") + '</button>';
+    h += '</div></div>';
+    h += '<p class="hint">Phím tắt: A–' + L[q.o.length - 1] + ' / 1–' + q.o.length + ' chọn · Enter ' + (S.mode === "practice" ? "kiểm tra / tiếp" : "tiếp") + ' · ← → chuyển câu</p>';
+    return h + '</article>';
+  }
+
+  function panelHTML() {
+    var n = S.items.length;
+    var answered = S.items.filter(function (it) { return it.sel.length; }).length;
+    var okN = S.items.filter(function (it) { return it.checked && it.ok; }).length;
+    var badN = S.items.filter(function (it) { return it.checked && !it.ok; }).length;
+    var h = '<div class="panel">';
+    if (S.mode === "exam" && !S.submitted) {
+      h += '<div class="meter"><div><span class="big">' + answered + '</span><span class="unit">/' + n + '</span><p>đã chọn</p></div><div><span class="big" id="timer">' + fmt(Date.now() - S.t0) + '</span><p>thời gian</p></div></div>';
+    } else {
+      h += '<div class="meter"><div><span class="big ok">' + okN + '</span><p>đúng</p></div><div><span class="big bad">' + badN + '</span><p>sai</p></div><div><span class="big">' + (n - okN - badN) + '</span><p>' + (S.submitted ? "bỏ qua" : "còn lại") + '</p></div></div>';
+    }
+    h += '<div class="grid">' + S.items.map(function (it, i) {
+      var c = "pin", rev = S.submitted || (S.mode === "practice" && it.checked);
+      if (rev && it.checked) c += it.ok ? " ok" : " bad";
+      else if (it.sel.length) c += " ans";
+      if (i === S.cur && !S.finished) c += " cur";
+      return '<button type="button" class="' + c + '" data-goto="' + i + '" aria-label="Câu ' + (i + 1) + '">' + (i + 1) + '</button>';
+    }).join("") + '</div>';
+    h += '<div class="panel-actions">';
+    if (!S.submitted) {
+      var label = S.mode === "exam" ? (S.confirm ? "Còn " + (n - answered) + " trống · Bấm để nộp" : "Nộp bài") : "Xem kết quả";
+      h += '<button type="button" class="btn ' + (S.mode === "exam" ? "primary" : "") + ' wide" data-act="finish">' + label + '</button>';
+    } else if (!S.finished) {
+      h += '<button type="button" class="btn primary wide" data-act="results">Về bảng điểm</button>';
+    }
+    h += '<button type="button" class="btn' + (S.confirmRestart ? " warn" : "") + ' wide" data-act="restart">' + (S.confirmRestart ? "Xác nhận làm lại?" : "↺ Làm lại từ đầu") + '</button>';
+    h += '</div></div>';
+    return h;
+  }
+
+  function resultsHTML() {
+    var n = S.items.length;
+    var graded = S.items.filter(function (it) { return it.checked; });
+    var okN = graded.filter(function (it) { return it.ok; }).length;
+    var denom = S.mode === "exam" ? n : Math.max(graded.length, 1);
+    var score = Math.round(okN / denom * 100) / 10;
+    var misses = S.items.map(function (it, i) { return { it: it, i: i }; }).filter(function (x) { return x.it.checked && !x.it.ok; });
+    var time = fmt((S.t1 || Date.now()) - S.t0);
+    var h = '<article class="card"><div class="score"><span class="num">' + score.toFixed(1) + '<small> / 10</small></span><div>';
+    if (S.mode === "exam") h += '<p><b>' + okN + '/' + n + '</b> câu đúng · ' + (n - okN) + ' câu sai hoặc bỏ trống</p>';
+    else h += '<p><b>' + okN + '/' + graded.length + '</b> câu đúng trong số đã làm · ' + (n - graded.length) + ' câu bỏ qua</p>';
+    h += '<p>Thời gian ' + time + ' · ' + (S.mode === "exam" ? "Thi thử" : "Luyện tập") + '</p></div></div>';
+    h += '<div class="res-actions">';
+    if (misses.length) h += '<button type="button" class="btn primary" data-act="retry">Làm lại ' + misses.length + ' câu sai</button>';
+    h += '<button type="button" class="btn' + (misses.length ? "" : " primary") + '" data-act="restart">↺ Làm lại từ đầu</button>' +
+      '<button type="button" class="btn" data-goto="0">Xem lại từ câu 1</button>' +
+      '<button type="button" class="btn" data-act="shuffleNew">Trộn bộ mới</button></div>';
+    if (misses.length) {
+      h += '<h2>Câu cần xem lại</h2><ol class="review">';
+      misses.forEach(function (x) {
+        var it = x.it, q = it.q;
+        var yours = it.sel.length ? it.sel.map(function (oi) { return L[it.order.indexOf(oi)] + ". " + esc(q.o[oi]); }).join(" · ") : "Bỏ trống";
+        var right = q.a.map(function (oi) { return L[it.order.indexOf(oi)] + ". " + esc(q.o[oi]); }).join(" · ");
+        h += '<li><div class="rh"><span>Câu ' + (x.i + 1) + (q.flag ? " · tranh cãi" : "") + '</span><button type="button" class="btn sm" data-goto="' + x.i + '">Mở câu</button></div>' +
+          '<p class="rq">' + esc(q.q) + '</p><p class="ra your">Bạn chọn: <b>' + yours + '</b></p><p class="ra right">Đáp án: <b>' + right + '</b></p><p class="rx">' + esc(q.n) + '</p></li>';
+      });
+      h += '</ol>';
+    } else if (okN) {
+      h += '<p>Không sai câu nào trong bộ này.</p>';
+    }
+    return h + '</article>';
+  }
+
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("button");
+    if (!t || t.disabled) return;
+    if (t.id === "filterToggle") { drawerOpen = !drawerOpen; syncControls(); return; }
+    if (t.id === "themeBtn") { theme = theme === "dark" ? "light" : "dark"; store.set("theme", theme); applyTheme(); return; }
+    if (t.dataset.preset != null) {
+      settings.preset = t.dataset.preset;
+      settings.exams = [];
+      settings.repeatOnly = false;
+      settings.count = "all";
+      wrongOnly = false;
+      saveSettings();
+      newSession(null, false);
+      return;
+    }
+    if (t.id === "wrongBtn") {
+      wrongOnly = !wrongOnly;
+      settings.preset = wrongOnly ? "custom" : DEFAULT_PRESET;
+      applySettings();
+      return;
+    }
+    if (t.id === "clearWrongBtn") {
+      wrong.clear();
+      saveWrong();
+      if (wrongOnly) { wrongOnly = false; settings.preset = DEFAULT_PRESET; }
+      applySettings();
+      return;
+    }
+    if (t.dataset.opt != null) { if (t.getAttribute("aria-disabled") !== "true") choose(parseInt(t.dataset.opt, 10)); return; }
+    if (t.dataset.goto != null) { go(parseInt(t.dataset.goto, 10)); return; }
+    if (t.dataset.mode) { if (settings.mode !== t.dataset.mode) { settings.mode = t.dataset.mode; applySettings(); } return; }
+    if (t.dataset.exam != null) {
+      var ex = t.dataset.exam;
+      settings.preset = "custom";
+      if (!ex) settings.exams = [];
+      else {
+        var k = settings.exams.indexOf(ex);
+        if (k >= 0) settings.exams.splice(k, 1); else settings.exams.push(ex);
+        if (settings.exams.length === EXAMS.length) settings.exams = [];
+      }
+      applySettings();
+      return;
+    }
+    switch (t.dataset.act) {
+      case "prev": go(S.cur - 1); break;
+      case "next": go(S.cur + 1); break;
+      case "check": check(); break;
+      case "finish": finish(); break;
+      case "results": S.finished = true; render(); scrollMain(); break;
+      case "applyFilter": newSession(null, false); break;
+      case "shuffleNew": newSession(null, true); scrollMain(); break;
+      case "restart": restart(); break;
+      case "retry": newSession(S.items.filter(function (it) { return it.checked && !it.ok; }).map(function (it) { return it.q; }), false); scrollMain(); break;
+      case "resetFilters":
+        settings.preset = DEFAULT_PRESET;
+        settings.exams = [];
+        settings.repeatOnly = false;
+        settings.count = "all";
+        wrongOnly = false;
+        saveSettings();
+        newSession(null, false);
+        break;
+    }
+  });
+
+  $("#count").addEventListener("change", function (e) { settings.count = e.target.value; applySettings(); });
+  $("#repeatOnly").addEventListener("change", function (e) {
+    settings.repeatOnly = e.target.checked;
+    settings.preset = "custom";
+    applySettings();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (!S || !S.items.length || S.finished) return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    var tag = (e.target.tagName || "").toLowerCase();
+    if (tag === "select" || tag === "input" || tag === "textarea") return;
+    var it = S.items[S.cur], key = e.key.toLowerCase();
+    var di = "abcdefg".indexOf(key);
+    if (di < 0 && /^[1-7]$/.test(key)) di = parseInt(key, 10) - 1;
+    if (di >= 0 && di < it.order.length) { e.preventDefault(); choose(it.order[di]); return; }
+    if (e.key === "ArrowRight") { e.preventDefault(); go(S.cur + 1); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); go(S.cur - 1); }
+    else if (e.key === "Enter" && tag !== "button") {
+      e.preventDefault();
+      if (S.mode === "practice" && !it.checked && !S.submitted && it.sel.length) check();
+      else if (S.cur < S.items.length - 1) go(S.cur + 1);
+    }
+  });
+
+  applyTheme();
+  initPresetsAndFilters();
+  newSession(null, false);
+})();
+</script>
+</body>
+</html>

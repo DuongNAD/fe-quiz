@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FE Quiz Hub · CSD201 &amp; IOT102 &amp; JPD123</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+:root {
+  --bg: #F8FAFC;
+  --surface: #FFFFFF;
+  --surface-2: #F1F5F9;
+  --ink: #0F172A;
+  --muted: #64748B;
+  --line: #E2E8F0;
+  --csd: #2563EB;
+  --csd-soft: #DBEAFE;
+  --iot: #0D9488;
+  --iot-soft: #CCFBF1;
+  --jpd: #7C3AED;
+  --jpd-soft: #EDE9FE;
+  --shadow: 0 1px 3px rgba(15, 23, 42, .05), 0 6px 16px rgba(15, 23, 42, .04);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0B1120;
+    --surface: #111827;
+    --surface-2: #1E293B;
+    --ink: #F1F5F9;
+    --muted: #94A3B8;
+    --line: #273449;
+    --csd: #60A5FA;
+    --csd-soft: #1E3A5F;
+    --iot: #2DD4BF;
+    --iot-soft: #134E4A;
+    --jpd: #A78BFA;
+    --jpd-soft: #2E1F5E;
+    --shadow: none;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 24px 16px 48px;
+}
+.wrap { max-width: 680px; margin-inline: auto; display: grid; gap: 16px; }
+header h1 { margin: 0 0 4px; font-size: 24px; font-weight: 700; letter-spacing: -.01em; }
+header p { margin: 0; color: var(--muted); font-size: 14px; }
+.cards { display: grid; gap: 14px; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 12px;
+}
+.card-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.pill {
+  font-family: "JetBrains Mono", Consolas, ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 7px;
+}
+.pill.csd { background: var(--csd-soft); color: var(--csd); }
+.pill.iot { background: var(--iot-soft); color: var(--iot); }
+.pill.jpd { background: var(--jpd-soft); color: var(--jpd); }
+.badge {
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+.title { margin: 0; font-size: 19px; font-weight: 700; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+}
+.btn.primary { flex: 1 1 200px; color: #FFFFFF; border-color: transparent; }
+.btn.csd { background: var(--csd); }
+.btn.iot { background: var(--iot); }
+.btn.jpd { background: var(--jpd); }
+@media (prefers-color-scheme: dark) {
+  .btn.primary { color: #0B1120; }
+}
+.btn.sec { padding-inline: 14px; font-size: 14px; }
+.btn:active { transform: scale(.99); }
+footer { font-size: 12.5px; color: var(--muted); text-align: center; margin-top: 8px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <h1>FE Quiz Hub</h1>
+    <p>Mở nhanh trên điện thoại &amp; máy tính · Đáp án A–D giữ cố định theo đề gốc · Tự lưu câu sai trên trình duyệt.</p>
+  </header>
+
+  <section class="cards" aria-label="Danh sách môn">
+    <article class="card">
+      <div class="card-top">
+        <span class="pill csd">CSD201</span>
+        <span class="badge">🔥 69 câu Tủ nóng FA26 · 255 câu tổng · A–D cố định</span>
+      </div>
+      <h2 class="title">CSD201 FE Quiz</h2>
+      <div class="actions">
+        <a class="btn primary csd" href="./CSD201_FE_QUIZ.html">Vào làm CSD201 →</a>
+        <a class="btn sec" href="./TU_CAP_TOC_CSD201.txt">Tủ cấp tốc .txt</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <span class="pill iot">IOT102</span>
+        <span class="badge">🔥 100 câu Tủ lặp · 245 câu tổng · A–D cố định</span>
+      </div>
+      <h2 class="title">IOT102 FE Quiz</h2>
+      <div class="actions">
+        <a class="btn primary iot" href="./IOT102_FE_QUIZ.html">Vào làm IOT102 →</a>
+        <a class="btn sec" href="./TU_CAP_TOC_IOT102.txt">Tủ cấp tốc .txt</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <span class="pill jpd">JPD123</span>
+        <span class="badge">41 câu Kanji thực chiến</span>
+      </div>
+      <h2 class="title">JPD123 Kanji Quiz</h2>
+      <div class="actions">
+        <a class="btn primary jpd" href="https://duongnad.github.io/jpd123-kanji-quiz/">Vào làm Kanji JPD123 →</a>
+      </div>
+    </article>
+  </section>
+
+  <footer>Tiến độ và câu sai lưu riêng theo từng thiết bị (localStorage).</footer>
+</main>
+</body>
+</html>
