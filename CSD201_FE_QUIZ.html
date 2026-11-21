@@ -507,6 +507,7 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
       </div>
       <button type="button" class="btn" id="filterToggle" aria-expanded="false" aria-controls="filterDrawer">Bộ lọc <span class="count" id="filterSummary">Tất cả</span> ▾</button>
       <button type="button" class="btn" id="topRestartBtn" data-act="restart">↺ Làm lại từ đầu</button>
+      <button type="button" class="btn" id="reverseBtn" data-act="reverse" aria-pressed="false" title="Lật ngược thứ tự câu hỏi (câu cuối lên câu 1, giữ nguyên A–D)">⇅ Đảo ngược</button>
       <button type="button" class="btn primary" data-act="shuffleNew" title="Xáo thứ tự câu hỏi trong bộ đang chọn (vẫn giữ nguyên A–D)">Trộn bộ mới</button>
       <button type="button" class="btn icon-btn" id="themeBtn" title="Đổi giao diện Sáng / Tối" aria-label="Đổi giao diện Sáng / Tối">🌙</button>
     </div>
@@ -595,12 +596,13 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
   PRESETS.forEach(function (p) { validPresets[p.id] = true; });
 
   var wrong = new Set((store.get("wrong", []) || []).filter(function (id) { return ids[id]; }));
-  var DEF = { mode: "practice", count: "all", exams: [], repeatOnly: false, preset: DEFAULT_PRESET };
+  var DEF = { mode: "practice", count: "all", exams: [], repeatOnly: false, preset: DEFAULT_PRESET, reversed: false };
   var settings = Object.assign({}, DEF, store.get("settings", {}) || {});
   if (!Array.isArray(settings.exams)) settings.exams = [];
   if (["20", "50", "100", "all"].indexOf(String(settings.count)) < 0) settings.count = "all";
   if (settings.mode !== "practice" && settings.mode !== "exam") settings.mode = "practice";
   if (settings.preset !== "custom" && !validPresets[settings.preset]) settings.preset = DEFAULT_PRESET;
+  settings.reversed = !!settings.reversed;
   var theme = store.get("theme", "light") === "dark" ? "dark" : "light";
   var wrongOnly = false, drawerOpen = false, pending = false, S = null, timerId = null;
 
@@ -648,6 +650,7 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
     if (!list) {
       if (doShuffle) shuffleArr(qs);
       if (settings.count !== "all") qs = qs.slice(0, parseInt(settings.count, 10));
+      if (!doShuffle && settings.reversed) qs.reverse();
     }
     S = {
       mode: settings.mode,
@@ -867,6 +870,12 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
       trb.classList.toggle("warn", !!needConfirm);
       trb.disabled = !S || !S.items.length;
     }
+    var rb = $("#reverseBtn");
+    if (rb) {
+      rb.setAttribute("aria-pressed", String(!!settings.reversed));
+      rb.classList.toggle("active", !!settings.reversed);
+      rb.disabled = !S || !S.items.length;
+    }
   }
 
   function render() {
@@ -1047,7 +1056,19 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
       case "finish": finish(); break;
       case "results": S.finished = true; render(); scrollMain(); break;
       case "applyFilter": newSession(null, false); break;
-      case "shuffleNew": newSession(null, true); scrollMain(); break;
+      case "shuffleNew":
+        settings.reversed = false;
+        saveSettings();
+        newSession(null, true);
+        scrollMain();
+        break;
+      case "reverse":
+        settings.reversed = !settings.reversed;
+        saveSettings();
+        if (pending) newSession(null, false);
+        else newSession(S.items.map(function (it) { return it.q; }).reverse(), false);
+        scrollMain();
+        break;
       case "restart": restart(); break;
       case "retry": newSession(S.items.filter(function (it) { return it.checked && !it.ok; }).map(function (it) { return it.q; }), false); scrollMain(); break;
       case "resetFilters":
@@ -1055,6 +1076,7 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
         settings.exams = [];
         settings.repeatOnly = false;
         settings.count = "all";
+        settings.reversed = false;
         wrongOnly = false;
         saveSettings();
         newSession(null, false);
