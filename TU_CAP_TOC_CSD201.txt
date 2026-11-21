@@ -1,396 +1,178 @@
-========================================================================
-TỦ CẤP TỐC CSD201 FE — TỐI ƯU ÔN FA26 (69 CÂU TỦ NÓNG / 255 CÂU GỐC)
-========================================================================
-Chiến lược giảm tải (-73% khối lượng học):
-- CSD201 có hiện tượng né đề kỳ liền kề (SU26-FE/RE trùng 0 câu với SP26-FE/RE,
-  cả 28 câu lặp của SU26 đều lấy từ kỳ cũ hơn FA25/SU25).
-- Học kỹ 69 câu dưới đây (lặp >= 2 đề & đã 'nghỉ' qua SU26) = phần lõi nóng nhất:
-  + PHẦN 1 (22 câu Siêu tủ 3-5/8 đề vừa nghỉ SU26) -> HỌC ĐẦU TIÊN.
-  + PHẦN 2 (47 câu lặp 2/8 đề nghỉ SU26) -> HỌC TIẾP THEO.
-- Lưu ý: Đáp án A/B/C/D giữ nguyên 100% theo đề gốc. Với câu [CODE]/[HÌNH], mở
-  CSD201_FE_QUIZ.html (đang mặc định sẵn đúng 69 câu này) để xem hình cây/đồ thị.
-
-==================== PHẦN 1: 22 CÂU SIÊU TỦ NGHỈ SU26 (22 CÂU) ====================
-
-[01/69 | ID #140 | 5/8 đề: SP26-RE, FA25-RE, C2FA25-FE, C1FA25-FE, SU25-B5-RE]
-  Câu hỏi: Select the most correct statement.
-  => ĐÁP ÁN: B. The complexity of insertion sort is O(n^2); in the best case it is O(n)
-  Giải thích: Mảng đã sắp: mỗi phần tử chỉ so 1 lần → O(n).
-
-[02/69 | ID #105 | 4/8 đề: SP26-RE, FA25-RE, C1FA25-FE, SU25-B5-RE]
-  Câu hỏi: True or false: In a singly linked list, every element contains some data and a link to the next element, which allows the structure to be kept.
-  => ĐÁP ÁN: A. True
-  Giải thích: Đúng định nghĩa DSLK đơn.
-
-[03/69 | ID #108 | 4/8 đề: SP26-RE, C2FA25-FE, C1FA25-FE, SU25-B5-RE | CODE]
-  Câu hỏi: Suppose a doubly linked list of integers is given: (head) 7 11 6 4 3 10 8 2 (tail), and p is a reference to the node with value 10. What does the list look like after the following Java code snippet is run?
-  Code   : int x = 9; / Node p1, p2; / p1 = new Node(x); / p2 = p.next; / p.next = p1; p1.prev = p; / p1.next = p2; p2.prev = p1;
-  => ĐÁP ÁN: C. 7 11 6 4 3 10 9 8 2
-  Giải thích: p1 (9) được nối giữa p (10) và p2 (8) → chèn sau 10.
-
-[04/69 | ID #110 | 4/8 đề: SP26-RE, FA25-RE, C2FA25-FE, SU25-B5-RE]
-  Câu hỏi: The terms "push" and "pop" are related to
-  => ĐÁP ÁN: B. stacks
-  Giải thích: push/pop là thao tác của stack; queue dùng enqueue/dequeue.
-
-[05/69 | ID #120 | 4/8 đề: SP26-RE, FA25-RE, C2FA25-FE, C1FA25-FE | CODE]
-  Câu hỏi: Consider the function below. Which call will result in the most recursive calls?
-  Code   : int fun(int n) { / if (n < 0) return(fun(-n)); / else if (n < 5) return(2); / else return(n*fun(n/2)); / }
-  => ĐÁP ÁN: E. fun(-1012);
-  Giải thích: 1014 và 1012 đều cần 9 lần gọi (…→ 7 → 3); fun(-1012) thêm 1 lần đổi dấu → nhiều nhất.
-
-[06/69 | ID #139 | 4/8 đề: SP26-RE, FA25-RE, C1FA25-FE, SU25-B5-RE]
-  Câu hỏi: Select the most correct statement.
-  => ĐÁP ÁN: A. In all cases the selection sort is O(n^2)
-  Giải thích: Selection sort luôn so sánh n(n-1)/2 lần, kể cả khi mảng đã sắp.
-
-[07/69 | ID #149 | 4/8 đề: SP26-RE, FA25-RE, C2FA25-FE, SU25-B5-RE]
-  Câu hỏi: Suppose you use the LZW algorithm to encode the message AABCAAAABD; the dictionary at the beginning of encoding is (1) A, (2) B, (3) C, (4) D. What string is denoted by code word (7)?
-  => ĐÁP ÁN: B. BC
-  Giải thích: Thêm lần lượt AA=5, AB=6, BC=7.
-
-[08/69 | ID #157 | 4/8 đề: SP26-FE, FA25-RE, C2FA25-FE, SU25-B5-RE]
-  Câu hỏi: Which statements are true? (Select two)
-  => ĐÁP ÁN: A. In a singly linked list there is no efficient way to insert a node before a given node in the middle of the list (an action is considered efficient if its complexity is O(1)) ; B. In a singly linked list we can insert a node after a given node with time complexity O(1)
-  Giải thích: Chèn sau nút đã biết: O(1). Chèn trước: phải tìm nút đứng trước → O(n).
-
-[09/69 | ID #159 | 4/8 đề: SP26-FE, FA25-RE, C2FA25-FE, SU25-B5-RE | CODE]
-  Câu hỏi: Suppose a doubly linked list of integers is given: (head) 7 1 6 4 31 17 8 2 (tail), and p is a reference to the node with value 17. What does the list look like after the following Java code snippet is run?
-  Code   : int x = 13; / Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
-  => ĐÁP ÁN: B. 7 1 6 4 31 13 17 8 2
-  Giải thích: Chèn 13 trước 17.
-
-[10/69 | ID #182 | 4/8 đề: SP26-FE, FA25-RE, C2FA25-FE, SU25-B5-RE]
-  Câu hỏi: Suppose we are considering a binary search tree. Select the most correct Java code snippet that searches for a node with value x in the subtree with root p.
-  => ĐÁP ÁN: B. Node search(Node p, int x) { if (p == null) return(null); if (p.info == x) return(p); if (x < p.info) return(search(p.left, x)); else return(search(p.right, x)); }
-  Giải thích: Cần điều kiện dừng p == null và đi trái khi x nhỏ hơn.
-
-[11/69 | ID #185 | 4/8 đề: SP26-FE, FA25-RE, C2FA25-FE, SU25-B5-RE | HÌNH]
-  Câu hỏi: Consider the graph below. The cut-vertices (articulation points) in the graph are
-  Hình   : graph (a-b b-d d-c b-c c-e e-f f-g e-g g-h e-h) -> mở CSD201_FE_QUIZ.html ID #185 để xem SVG
-  => ĐÁP ÁN: A. b, c, e
-  Giải thích: Bỏ b → a tách riêng; bỏ c hoặc e → hai cụm bị cắt (c-e là cầu).
-
-[12/69 | ID #190 | 4/8 đề: SP26-FE, FA25-RE, C2FA25-FE, SU25-B5-RE]
-  Câu hỏi: The complexity of heap sort is
-  => ĐÁP ÁN: A. O(n log n)
-  Giải thích: Xây heap O(n) + n lần lấy max O(log n) → O(n log n).
-
-[13/69 | ID #194 | 4/8 đề: SP26-FE, FA25-RE, C2FA25-FE, SU25-B5-RE]
-  Câu hỏi: Specify the correct statement about the chaining method for handling collisions.
-  => ĐÁP ÁN: A. In chaining, each position of the table is associated with a linked list or chain of structures whose info fields store keys or references to keys
-  Giải thích: Mỗi vị trí bảng gắn với một danh sách liên kết.
-
-[14/69 | ID #119 | 3/8 đề: SP26-RE, C1FA25-FE, SU25-B5-RE | CODE]
-  Câu hỏi: Consider the function below. What is the output when the statement fun(3) is run?
-  Code   : void fun(int n) { / if (n == 0) / System.out.println("That's all!"); / else { / for (int i = 1; i <= n; i++) / System.out.print("*"); / System.out.println(); / fun(n - 1); / } / }
-  => ĐÁP ÁN: C. *** / ** / * / That's all!
-  Giải thích: In n dấu * rồi mới gọi fun(n-1): ***, **, *, rồi That's all!
-
-[15/69 | ID #146 | 3/8 đề: SP26-RE, C2FA25-FE, SU25-B5-RE]
-  Câu hỏi: True or false: Run-length encoding is a lossless compression method in which repeated occurrences of a symbol are replaced by one occurrence of the symbol followed by the number of occurrences.
-  => ĐÁP ÁN: A. True
-  Giải thích: RLE là nén không mất mát, thay chuỗi lặp bằng (ký hiệu, số lần).
-
-[16/69 | ID #150 | 3/8 đề: SP26-FE, FA25-RE, C2FA25-FE | CODE]
-  Câu hỏi: Consider the function below. What is the value of fun(3)?
-  Code   : int fun(int n) { / if (n == 1 || n == 2) return(1); / else return(fun(n-1) + 3*fun(n-2)); / }
-  => ĐÁP ÁN: D. 4
-  Giải thích: fun(3) = fun(2) + 3·fun(1) = 1 + 3 = 4.
-
-[17/69 | ID #155 | 3/8 đề: SP26-FE, C2FA25-FE, SU25-B5-RE]
-  Câu hỏi: Select the most correct statement:
-  => ĐÁP ÁN: A. In a linked list, the tail node is introduced for performance purpose only
-  Giải thích: tail chỉ để chèn cuối nhanh (O(1)); không có tail vẫn làm được bằng cách duyệt.
-
-[18/69 | ID #172 | 3/8 đề: SP26-FE, C2FA25-FE, SU25-B5-RE]
-  Câu hỏi: The in-order traversal of a tree will yield a sorted listing of elements of the tree in
-  => ĐÁP ÁN: B. Binary search trees
-  Giải thích: In-order trên BST cho dãy tăng dần.
-
-[19/69 | ID #173 | 3/8 đề: SP26-FE, FA25-RE, C1FA25-FE]
-  Câu hỏi: What is the result of the breadth-first traversal of the binary search tree T after inserting the following keys sequentially (T is empty before insertion): 16, 7, 3, 1, 12, 20, 17
-  => ĐÁP ÁN: D. 16, 7, 20, 3, 12, 17, 1
-  Giải thích: Cây: 16 → (7 → 3 → 1, 12), (20 → 17). Theo mức: 16 | 7, 20 | 3, 12, 17 | 1.
-
-[20/69 | ID #179 | 3/8 đề: SP26-FE, FA25-RE, SU25-B5-RE | HÌNH]
-  Câu hỏi: Given the binary search tree T below, what is the breadth-first traversal of T after you delete the root (node 5) by copying?
-  Hình   : tree (5(2(1,4(3,)),6(,8(7,)))) -> mở CSD201_FE_QUIZ.html ID #179 để xem SVG
-  => ĐÁP ÁN: C. 4, 2, 6, 1, 3, 8, 7
-  Giải thích: Chép 4 lên gốc, 3 thay chỗ 4: 4(2(1,3),6(,8(7,))).
-
-[21/69 | ID #181 | 3/8 đề: SP26-FE, FA25-RE, SU25-B5-RE]
-  Câu hỏi: ______ is a connected graph without any simple circuit.
-  => ĐÁP ÁN: B. Tree
-  Giải thích: Cây = đồ thị liên thông, không có chu trình.
-
-[22/69 | ID #192 | 3/8 đề: SP26-FE, C2FA25-FE, SU25-B5-RE]
-  Câu hỏi: Given h(x) = x % M with M = 10 and linear probing, how does the hash table look after inserting the keys 74, 111, 110, 32, 101, 131 sequentially?
-  => ĐÁP ÁN: A. 0:110, 1:111, 2:32, 3:101, 4:74, 5:131
-  Giải thích: 101 → 1, 2 bị chiếm → 3. 131 → 1, 2, 3, 4 bị chiếm → 5.
-
-==================== PHẦN 2: 47 CÂU LẶP 2 ĐỀ NGHỈ SU26 (47 CÂU) ====================
-
-[23/69 | ID #100 | 2/8 đề: SP26-RE, FA25-RE | CODE]
-  Câu hỏi: Select the most correct statement. Suppose we are considering a doubly linked list and p is some node in the list which has a predecessor node. What does the Java code snippet below do?
-  Code   : Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
-  => ĐÁP ÁN: A. It inserts a new node with value x before the node p
-  Giải thích: q được nối giữa f = p.prev và p → chèn trước p.
-
-[24/69 | ID #101 | 2/8 đề: SP26-RE, C1FA25-FE]
-  Câu hỏi: Suppose we are considering a doubly linked list and p is some node in the list which has both predecessor and successor nodes. Select the most correct Java code snippet that deletes the node p.
-  => ĐÁP ÁN: B. Node p1, p2; p1 = p.prev; // prev is a link to previous node p2 = p.next; p2.prev = p1; p1.next = p2;
-  Giải thích: p1 = nút trước, p2 = nút sau; nối p1 ↔ p2 hai chiều để bỏ qua p.
-
-[25/69 | ID #103 | 2/8 đề: SP26-RE, C2FA25-FE]
-  Câu hỏi: Suppose we are considering a singly linked list and p is some node in the list which has a successor node. Select the most correct Java code snippet that inserts a new node with value x after the node p.
-  => ĐÁP ÁN: A. Node q = new Node(x); q.next = p.next; p.next = q;
-  Giải thích: Phải gán q.next = p.next TRƯỚC khi đổi p.next; làm ngược (D) sẽ tạo vòng q → q.
-
-[26/69 | ID #104 | 2/8 đề: SP26-RE, FA25-RE]
-  Câu hỏi: True or false: In a circular linked list, it is always required to define both head and tail nodes.
-  => ĐÁP ÁN: B. False
-  Giải thích: DSLK vòng chỉ cần tail: head chính là tail.next.
-
-[27/69 | ID #106 | 2/8 đề: SP26-RE, C1FA25-FE]
-  Câu hỏi: True or false: In a singly linked list, there is no efficient way to insert a node before a given node in the middle or at the end of the list, but we can insert a node after a given node or at the beginning of the list with time complexity O(1).
-  => ĐÁP ÁN: B. True
-  Giải thích: Chèn trước một nút cần tìm nút đứng trước (O(n)); chèn sau nút đã biết hoặc vào đầu là O(1).
-
-[28/69 | ID #107 | 2/8 đề: SP26-RE, C2FA25-FE | CODE]
-  Câu hỏi: Suppose a doubly linked list of integers is given: (head) 7 1 6 4 3 12 8 21 (tail), and p is a reference to the node with value 12. What does the list look like after the following Java code snippet is run?
-  Code   : int x = 13; / Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
-  => ĐÁP ÁN: B. 7 1 6 4 3 13 12 8 21
-  Giải thích: Chèn 13 trước 12.
-
-[29/69 | ID #109 | 2/8 đề: SP26-RE, C1FA25-FE | CODE]
-  Câu hỏi: Suppose a doubly linked list of integers is given: (head) 7 11 6 4 13 12 8 2 (tail), and p is a reference to the node with value 12. What does the list look like after the following Java code snippet is run?
-  Code   : int x = 15; / Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
-  => ĐÁP ÁN: B. 7 11 6 4 13 15 12 8 2
-  Giải thích: Chèn 15 trước 12.
-
-[30/69 | ID #112 | 2/8 đề: SP26-RE, C2FA25-FE]
-  Câu hỏi: Suppose we implement a queue using a singly linked list where the head of the list is treated as the head of the queue. Specify the correct implementation of dequeue().
-  => ĐÁP ÁN: C. Object dequeue() { if (isEmpty()) return(null); Node p = head; head = head.next; if (head == null) tail = null; return(p.info); }
-  Giải thích: Lấy ở đầu; khi queue thành rỗng (head == null) phải đặt tail = null.
-
-[31/69 | ID #113 | 2/8 đề: SP26-RE, FA25-RE]
-  Câu hỏi: Consider the pseudocode: declare a queue of characters; for each character read: if it is '*' then dequeue and write the dequeued character to the screen, else enqueue the character. What is written for the input "HowAre**You**To**Day"?
-  => ĐÁP ÁN: A. HowAre
-  Giải thích: Mỗi '*' in phần tử vào sớm nhất: H, o | w, A | r, e → "HowAre".
-
-[32/69 | ID #116 | 2/8 đề: SP26-RE, SU25-B5-RE | ⚠ TRANH CÃI]
-  Câu hỏi: Consider the pseudocode: declare a queue of characters implemented by a circular array of size 6 (indices 0-5); for each character read: if it is '*' then dequeue, else enqueue. How does the queue look after processing the input "Hello***Wor**ld**"? (cells holding the queue's elements)
-  => ĐÁP ÁN: B. [0]=o [1]=r [2]=l [3]=d
-  Giải thích: Đáp án đề/cộng đồng là B (o r l d ở ô 0-3), ứng với chuỗi "Hello***Wor*ld**". Nếu đúng 2 dấu * sau "Wor" thì queue chỉ còn r, l, d ở ô 1-3, không khớp phương án nào.
-
-[33/69 | ID #117 | 2/8 đề: SP26-RE, C1FA25-FE]
-  Câu hỏi: Select the statement about recursive functions that is most correct.
-  => ĐÁP ÁN: B. Every recursive function must have at least one base case
-  Giải thích: Cần ít nhất một trường hợp dừng; có thể có nhiều.
-
-[34/69 | ID #121 | 2/8 đề: SP26-RE, SU25-B5-RE]
-  Câu hỏi: The function f(n) is defined as: f(n) = 1 if n = 1 or n = 2; f(n) = f(n-1) + 2f(n-2) if n > 2. What is the value of f(5)?
-  => ĐÁP ÁN: B. 11
-  Giải thích: f(3) = 1 + 2 = 3; f(4) = 3 + 2 = 5; f(5) = 5 + 2·3 = 11.
-
-[35/69 | ID #122 | 2/8 đề: SP26-RE, SU25-B5-RE]
-  Câu hỏi: Select the correct statement. Suppose T is a binary tree with 14 nodes. What is the minimum possible height of T? (Note: in a tree the height of the root is 1.)
-  => ĐÁP ÁN: B. 4
-  Giải thích: Cây cao h chứa tối đa 2^h - 1 nút: h = 3 → 7 < 14, h = 4 → 15 ≥ 14.
-
-[36/69 | ID #126 | 2/8 đề: SP26-RE, SU25-B5-RE | HÌNH]
-  Câu hỏi: What is the breadth-first traversal of the tree below after deleting the node 5 by copying?
-  Hình   : tree (5(2(1,4(3,)),8(7,9))) -> mở CSD201_FE_QUIZ.html ID #126 để xem SVG
-  => ĐÁP ÁN: B. 4, 2, 8, 1, 3, 7, 9
-  Giải thích: Chép 4 lên gốc, 3 thay chỗ 4: 4(2(1,3),8(7,9)).
-
-[37/69 | ID #128 | 2/8 đề: SP26-RE, C2FA25-FE | HÌNH]
-  Câu hỏi: Given the binary tree below, what is the result of the pre-order traversal?
-  Hình   : tree (1(2(4,5(7,)),3(,6(8,)))) -> mở CSD201_FE_QUIZ.html ID #128 để xem SVG
-  => ĐÁP ÁN: B. 1, 2, 4, 5, 7, 3, 6, 8
-  Giải thích: Gốc-trái-phải: 1, 2, 4, 5, 7, 3, 6, 8.
-
-[38/69 | ID #132 | 2/8 đề: SP26-RE, C1FA25-FE]
-  Câu hỏi: Suppose we are considering a binary search tree. Select the most correct Java code snippet that searches for a node with value x.
-  => ĐÁP ÁN: C. Node search(int x) { Node p = root; while (p != null && p.info != x) { if (x < p.info) p = p.left; else p = p.right; } return(p); }
-  Giải thích: Phải kiểm tra p != null TRƯỚC khi đọc p.info; A và B ném NullPointerException khi không tìm thấy.
-
-[39/69 | ID #135 | 2/8 đề: SP26-RE, C2FA25-FE | HÌNH]
-  Câu hỏi: Given the weighted directed graph below, you use Dijkstra's algorithm to find the shortest path from vertex H to vertex T. What is the correct order of vertices selected into the set S until T is selected?
-  Hình   : graph (H>A:4 H>B:7 H>C:6 A>B:1 A>D:6 B>D:4 B>C:5 D>T:6 C>T:2) -> mở CSD201_FE_QUIZ.html ID #135 để xem SVG
-  => ĐÁP ÁN: D. H, A, B, C, T
-  Giải thích: H(0) → A(4) → B(4+1=5) → C(6) → T(6+2=8). D = 9 chưa kịp chọn.
-
-[40/69 | ID #136 | 2/8 đề: SP26-RE, C1FA25-FE | HÌNH]
-  Câu hỏi: Consider the graph below. One cut-edge (bridge) in the graph is
-  Hình   : graph (a-b b-d d-c b-c c-e e-f f-g e-g g-h e-h) -> mở CSD201_FE_QUIZ.html ID #136 để xem SVG
-  => ĐÁP ÁN: B. {c, e}
-  Giải thích: Bỏ cạnh c-e, đồ thị tách thành 2 phần → cạnh cầu.
-
-[41/69 | ID #138 | 2/8 đề: SP26-RE, C2FA25-FE | HÌNH]
-  Câu hỏi: Given the graph below, colors 1, 2, 3, ... are assigned with the sequential coloring algorithm that orders vertices in decreasing order of their degrees (largest first). What is the color of vertex D?
-  Hình   : graph (A-B A-C A-G A-D B-C B-E C-E E-G E-F D-F) -> mở CSD201_FE_QUIZ.html ID #138 để xem SVG
-  => ĐÁP ÁN: B. 2
-  Giải thích: Thứ tự A(4), E(4), B(3), C(3), D, F, G. A=E=1, B=2, C=3, D (kề A=1) = 2.
-
-[42/69 | ID #142 | 2/8 đề: SP26-RE, C1FA25-FE]
-  Câu hỏi: Select the most correct statement about the complexity of heapsort.
-  => ĐÁP ÁN: D. Both best and worst cases are O(n log n)
-  Giải thích: Heapsort luôn O(n log n).
-
-[43/69 | ID #144 | 2/8 đề: SP26-RE, C1FA25-FE]
-  Câu hỏi: Given h(x) = x % M with M = 10 and quadratic probing ((h(x) + i^2) % M, i = 1, 2, ...), how does the hash table look after inserting the keys 65, 76, 96, 205 sequentially?
-  => ĐÁP ÁN: D. 5:65, 6:76, 7:96, 9:205
-  Giải thích: 96 → 6 bị chiếm → 6+1 = 7. 205 → 5 bị chiếm → 5+1 = 6 bị chiếm → 5+4 = 9.
-
-[44/69 | ID #145 | 2/8 đề: SP26-RE, C1FA25-FE]
-  Câu hỏi: Specify the correct statement about the chaining method for handling collisions.
-  => ĐÁP ÁN: B. In this method, the table can never overflow if free memory is available, because the linked lists are extendible
-  Giải thích: Mỗi ô có danh sách liên kết mở rộng được nên bảng không tràn. A sai vì MỌI vị trí (không phải 'một số') gắn với một chuỗi.
-
-[45/69 | ID #154 | 2/8 đề: SP26-FE, C2FA25-FE]
-  Câu hỏi: Fill in the blank to form the most correct statement: In a ______ every element contains some data and a link to the next element, which allows the structure to be kept.
-  => ĐÁP ÁN: C. singly linked list
-  Giải thích: Chỉ có link tới phần tử kế tiếp → DSLK đơn.
-
-[46/69 | ID #156 | 2/8 đề: SP26-FE, FA25-RE | CODE]
-  Câu hỏi: Suppose a doubly linked list of integers is given: (head) 7 11 6 4 3 12 8 2 (tail), and p is a reference to the node with value 12. What does the list look like after the following Java code snippet is run?
-  Code   : int x = 5; / Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
-  => ĐÁP ÁN: B. 7 11 6 4 3 5 12 8 2
-  Giải thích: Chèn 5 trước 12.
-
-[47/69 | ID #158 | 2/8 đề: SP26-FE, FA25-RE | CODE]
-  Câu hỏi: Suppose a doubly linked list of integers is given: (head) 27 11 6 4 3 10 8 2 (tail), and p is a reference to the node with value 10. What does the list look like after the following Java code snippet is run?
-  Code   : int x = 19; / Node p1, p2; / p1 = new Node(x); / p2 = p.next; / p.next = p1; p1.prev = p; / p1.next = p2; p2.prev = p1;
-  => ĐÁP ÁN: C. 27 11 6 4 3 10 19 8 2
-  Giải thích: Chèn 19 sau 10.
-
-[48/69 | ID #165 | 2/8 đề: SP26-FE, C2FA25-FE]
-  Câu hỏi: Consider the pseudocode: declare a queue of characters implemented by a circular array of size 6 (indices 0-5); for each character read: if it is '*' then dequeue, else enqueue. How does the queue look after processing the input "Hello****Worl**d*"? (cells holding the queue's elements)
-  => ĐÁP ÁN: D. [1]=r [2]=l [3]=d
-  Giải thích: H,e,l,l,o ở 0-4; **** → front=4. W,o,r,l vào 5,0,1,2. ** bỏ o(4), W(5). d vào 3. * bỏ o(0) → còn r l d ở ô 1-3.
-
-[49/69 | ID #170 | 2/8 đề: SP26-FE, FA25-RE | CODE]
-  Câu hỏi: Consider the function below. What is the output when the statement fun(5); is run?
-  Code   : void fun(int n) { / if (n <= 0) / System.out.println("Hello"); / else { / for (int i = 0; i < n; i++) / System.out.print("$"); / System.out.println(); / fun(n - 2); / } / }
-  => ĐÁP ÁN: B. $$$$$ / $$$ / $ / Hello
-  Giải thích: n = 5, 3, 1 in 5, 3, 1 dấu $; n = -1 in Hello.
-
-[50/69 | ID #171 | 2/8 đề: SP26-FE, C2FA25-FE]
-  Câu hỏi: In a max heap tree, ______
-  => ĐÁP ÁN: B. Values in a node are greater than every value in the children of it
-  Giải thích: Max heap: cha ≥ con. A là tính chất của BST.
-
-[51/69 | ID #175 | 2/8 đề: SP26-FE, C2FA25-FE | HÌNH]
-  Câu hỏi: What is the breadth-first traversal of the tree below after deleting the node 30 by copying?
-  Hình   : tree (30(15(5(,10),25(20,)),40(35,))) -> mở CSD201_FE_QUIZ.html ID #175 để xem SVG
-  => ĐÁP ÁN: B. 25, 15, 40, 5, 20, 35, 10
-  Giải thích: Chép 25 (lớn nhất cây con trái) lên gốc, 20 thay chỗ 25: 25(15(5(,10),20),40(35,)).
-
-[52/69 | ID #176 | 2/8 đề: SP26-FE, FA25-RE | HÌNH]
-  Câu hỏi: Given the binary tree below, what is the result of the pre-order traversal?
-  Hình   : tree (1(3(4,5(7,)),2(,6(8,)))) -> mở CSD201_FE_QUIZ.html ID #176 để xem SVG
-  => ĐÁP ÁN: A. 1, 3, 4, 5, 7, 2, 6, 8
-  Giải thích: Gốc-trái-phải: 1, 3, 4, 5, 7, 2, 6, 8.
-
-[53/69 | ID #177 | 2/8 đề: SP26-FE, C2FA25-FE | HÌNH]
-  Câu hỏi: Consider the AVL tree below. What is the breadth-first traversal of the tree after inserting a node with value 24?
-  Hình   : tree (35(22(12,32(27,)),39(37,))) -> mở CSD201_FE_QUIZ.html ID #177 để xem SVG
-  => ĐÁP ÁN: B. 35, 22, 39, 12, 27, 37, 24, 32
-  Giải thích: 24 vào trái của 27 → nút 32 lệch trái 2 (LL) → quay phải tại 32: 27(24,32).
-
-[54/69 | ID #180 | 2/8 đề: SP26-FE, SU25-B5-RE | HÌNH]
-  Câu hỏi: Given the binary search tree T below, what is the breadth-first traversal of T after you delete the node 3 by merging?
-  Hình   : tree (6(3(1(,2),4),8(7,9))) -> mở CSD201_FE_QUIZ.html ID #180 để xem SVG
-  => ĐÁP ÁN: B. 6, 1, 8, 2, 7, 9, 4
-  Giải thích: 2 (phải nhất cây con trái) nhận 4 làm con phải; 1 thay 3: 6(1(,2(,4)),8(7,9)).
-
-[55/69 | ID #183 | 2/8 đề: SP26-FE, FA25-RE | HÌNH]
-  Câu hỏi: Given the weighted directed graph below, you use Dijkstra's algorithm to find the shortest path from vertex A to vertex C. What is the correct order of vertices selected into the set S until C is selected?
-  Hình   : graph (A>B:2 A>D:20 A>E:5 A>C:10 B>D:1 D>C:4 E>C:1 E>D:10) -> mở CSD201_FE_QUIZ.html ID #183 để xem SVG
-  => ĐÁP ÁN: C. A, B, D, E, C
-  Giải thích: A(0) → B(2) → D(2+1=3) → E(5) → C(min(10, 3+4, 5+1) = 6).
-
-[56/69 | ID #184 | 2/8 đề: SP26-FE, FA25-RE | HÌNH]
-  Câu hỏi: Given the graph below, what is the output of the breadth-first traversal from vertex B? (visit nodes in ABC order if several nodes can be selected)
-  Hình   : graph (A-B A-E A-G B-C B-E C-D D-F E-G F-G) -> mở CSD201_FE_QUIZ.html ID #184 để xem SVG
-  => ĐÁP ÁN: D. B, A, C, E, G, D, F, H
-  Giải thích: B → A, C, E; A → G; C → D; G → F; cuối cùng H.
-
-[57/69 | ID #187 | 2/8 đề: SP26-FE, C2FA25-FE | HÌNH]
-  Câu hỏi: Given the weighted graph below, what is the total edge weight of the minimum spanning tree of G?
-  Hình   : graph (A-B:3 B-C:4 B-E:18 C-E:12 A-D:8 C-D:6 E-F:15 D-F:16) -> mở CSD201_FE_QUIZ.html ID #187 để xem SVG
-  => ĐÁP ÁN: D. 40
-  Giải thích: Kruskal: 3, 4, 6, (bỏ 8), 12, 15 → 40.
-
-[58/69 | ID #189 | 2/8 đề: SP26-FE, C2FA25-FE]
-  Câu hỏi: Select the most correct statement about the complexity of selection sort.
-  => ĐÁP ÁN: A. Both best and worst cases are O(n^2)
-  Giải thích: Selection sort luôn O(n^2).
-
-[59/69 | ID #191 | 2/8 đề: SP26-FE, C2FA25-FE]
-  Câu hỏi: Specify the correct statement about the coalesced chaining method for handling collisions (select the best answer).
-  => ĐÁP ÁN: D. In coalesced hashing, the linked list is created inside the hash table and a colliding key is put in the last available position of the table
-  Giải thích: Coalesced hashing (Drozdek): chuỗi nằm trong bảng, khoá va chạm đặt vào ô trống CUỐI CÙNG của bảng rồi nối link.
-
-[60/69 | ID #193 | 2/8 đề: SP26-FE, C2FA25-FE]
-  Câu hỏi: Given h(x) = x % M with M = 10 and quadratic probing ((h(x) + i^2) % M, i = 1, 2, ...), how does the hash table look after inserting the keys 26, 97, 36, 106 sequentially?
-  => ĐÁP ÁN: D. 0:36, 5:106, 6:26, 7:97
-  Giải thích: 36 → 6, 7 bị chiếm → (6+4)%10 = 0. 106 → 6, 7, 0 bị chiếm → (6+9)%10 = 5.
-
-[61/69 | ID #196 | 2/8 đề: SP26-FE, C2FA25-FE]
-  Câu hỏi: Given the raw message 'BBBBQQQQBBBQQBBBBBQQ', run the run-length encoding algorithm. What is the output?
-  => ĐÁP ÁN: B. 4B4Q3B2Q5B2Q
-  Giải thích: BBBB QQQQ BBB QQ BBBBB QQ → 4B4Q3B2Q5B2Q.
-
-[62/69 | ID #198 | 2/8 đề: SP26-FE, SU25-B5-RE | HÌNH]
-  Câu hỏi: Using the Huffman code tree below (left edge = 0, right edge = 1), what is the result of decoding the string 0111000000101?
-  Hình   : huff (*(*(B,C),A)) -> mở CSD201_FE_QUIZ.html ID #198 để xem SVG
-  => ĐÁP ÁN: A. CAABBBAC
-  Giải thích: 01|1|1|00|00|00|1|01 → C A A B B B A C.
-
-[63/69 | ID #200 | 2/8 đề: FA25-RE, C2FA25-FE]
-  Câu hỏi: True or false: "Recursion bears substantial overhead. Each time the program calls a method, the system must assign space for all of the method's local variables and parameters. This can consume considerable memory and requires extra time to manage the additional space."
-  => ĐÁP ÁN: A. True
-  Giải thích: Mỗi lần gọi đệ quy tạo một activation record mới trên stack → tốn bộ nhớ và thời gian.
-
-[64/69 | ID #203 | 2/8 đề: FA25-RE, C1FA25-FE]
-  Câu hỏi: Consider the pseudocode: declare a stack of characters; for each character read: if it is '*' then pop and write the popped character to the screen, else push the character. What is written to the screen for the input "Go*od**Mor*ni*ng*Si*r"?
-  => ĐÁP ÁN: C. odorigi
-  Giải thích: o | d, o | r | i | g | i → "odorigi" (chú ý chỉ có 1 dấu * sau "ni").
-
-[65/69 | ID #205 | 2/8 đề: FA25-RE, C1FA25-FE]
-  Câu hỏi: The height of a complete binary tree with n nodes is
-  => ĐÁP ÁN: D. log2(n+1)
-  Giải thích: Cây complete (mọi lá cùng mức) cao h có 2^h - 1 nút → h = log2(n+1).
-
-[66/69 | ID #207 | 2/8 đề: FA25-RE, SU25-B5-RE | HÌNH]
-  Câu hỏi: Consider the AVL tree below. What is the breadth-first traversal of the tree after inserting a node with value 27?
-  Hình   : tree (40(25(15,35(30,)),50(45,))) -> mở CSD201_FE_QUIZ.html ID #207 để xem SVG
-  => ĐÁP ÁN: C. 40, 25, 50, 15, 30, 45, 27, 35
-  Giải thích: 27 vào trái của 30 → nút 35 lệch trái 2 (LL) → quay phải tại 35: 30(27,35).
-
-[67/69 | ID #209 | 2/8 đề: FA25-RE, C1FA25-FE | HÌNH]
-  Câu hỏi: Given the binary search tree T below, what is the breadth-first traversal of T after you delete the node 3 by merging?
-  Hình   : tree (6(3(1(,2),4(,5)),8(7,))) -> mở CSD201_FE_QUIZ.html ID #209 để xem SVG
-  => ĐÁP ÁN: C. 6, 1, 8, 2, 7, 4, 5
-  Giải thích: 2 nhận 4(,5) làm con phải; 1 thay 3: 6(1(,2(,4(,5))),8(7,)).
-
-[68/69 | ID #212 | 2/8 đề: FA25-RE, C1FA25-FE]
-  Câu hỏi: True or false: In Huffman coding, both the sender and the receiver must have a copy of the same code in order for the decoded file to match the encoded file.
-  => ĐÁP ÁN: A. True
-  Giải thích: Bên nhận cần cùng cây/bảng mã Huffman mới giải mã đúng.
-
-[69/69 | ID #228 | 2/8 đề: C1FA25-FE, SU25-B5-RE]
-  Câu hỏi: Select the most correct statement. Basically, the complexity of finding the position of the minimum value in a doubly linked list of integers is
-  => ĐÁP ÁN: B. O(n)
-  Giải thích: Danh sách không có thứ tự → phải duyệt hết n phần tử.
-
-========================================================================
-MẸO KHOANH MÙ CSD201 KHI KHÔNG BIẾT (4 DÒNG NHỚ NHANH)
-========================================================================
-1. Câu Đúng/Sai (True/False)                -> Chọn TRUE (75.0% unique / 77.8% theo lượt).
-2. Có 1 đáp án dài hơn rõ rệt (>= +15 ký tự)-> Chọn DÀI NHẤT (trúng 58.3%).
-3. Câu phủ định (NOT / FALSE / incorrect)   -> Chọn A (40%) hoặc B (35%), TRÁNH D (0%).
-4. 4-5 đáp án ngắn ngang nhau               -> Mặc định KHOANH B (33.6% unique / 37% lượt, #1 ở 7/8 đề).
+TỦ CẤP TỐC CSD201 FE — 69 CÂU NÓNG FA26 (22 SIÊU TỦ + 47 LẶP 2 ĐỀ, A-D CỐ ĐỊNH)
+Ưu tiên ôn theo thứ tự; câu [HÌNH] xem SVG trực tiếp trong CSD201_FE_QUIZ.html.
+
+--- PHẦN 1: 22 CÂU SIÊU TỦ NGHỈ SU26 (3-5/8 ĐỀ) ---
+01. [5/8] Select the most correct statement.
+    => B. The complexity of insertion sort is O(n^2); in the best case it is O(n)
+02. [4/8] True or false: In a singly linked list, every element contains some data and a link to the next element, which allows the structure to be kept.
+    => A. True
+03. [4/8] Suppose a doubly linked list of integers is given: (head) 7 11 6 4 3 10 8 2 (tail), and p is a reference to the node with value 10. What does the list look like after the following Java code snippet is run? [CODE]
+    Code: int x = 9; / Node p1, p2; / p1 = new Node(x); / p2 = p.next; / p.next = p1; p1.prev = p; / p1.next = p2; p2.prev = p1;
+    => C. 7 11 6 4 3 10 9 8 2
+04. [4/8] The terms "push" and "pop" are related to
+    => B. stacks
+05. [4/8] Consider the function below. Which call will result in the most recursive calls? [CODE]
+    Code: int fun(int n) { / if (n < 0) return(fun(-n)); / else if (n < 5) return(2); / else return(n*fun(n/2)); / }
+    => E. fun(-1012);
+06. [4/8] Select the most correct statement.
+    => A. In all cases the selection sort is O(n^2)
+07. [4/8] Suppose you use the LZW algorithm to encode the message AABCAAAABD; the dictionary at the beginning of encoding is (1) A, (2) B, (3) C, (4) D. What string is denoted by code word (7)?
+    => B. BC
+08. [4/8] Which statements are true? (Select two)
+    => A. In a singly linked list there is no efficient way to insert a node before a given node in the middle of the list (an action is considered efficient if its complexity is O(1)) ; B. In a singly linked list we can insert a node after a given node with time complexity O(1)
+09. [4/8] Suppose a doubly linked list of integers is given: (head) 7 1 6 4 31 17 8 2 (tail), and p is a reference to the node with value 17. What does the list look like after the following Java code snippet is run? [CODE]
+    Code: int x = 13; / Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
+    => B. 7 1 6 4 31 13 17 8 2
+10. [4/8] Suppose we are considering a binary search tree. Select the most correct Java code snippet that searches for a node with value x in the subtree with root p.
+    => B. Node search(Node p, int x) { if (p == null) return(null); if (p.info == x) return(p); if (x < p.info) return(search(p.left, x)); else return(search(p.right, x)); }
+11. [4/8] Consider the graph below. The cut-vertices (articulation points) in the graph are [HÌNH]
+    Hình (graph): a-b b-d d-c b-c c-e e-f f-g e-g g-h e-h
+    => A. b, c, e
+12. [4/8] The complexity of heap sort is
+    => A. O(n log n)
+13. [4/8] Specify the correct statement about the chaining method for handling collisions.
+    => A. In chaining, each position of the table is associated with a linked list or chain of structures whose info fields store keys or references to keys
+14. [3/8] Consider the function below. What is the output when the statement fun(3) is run? [CODE]
+    Code: void fun(int n) { / if (n == 0) / System.out.println("That's all!"); / else { / for (int i = 1; i <= n; i++) / System.out.print("*"); / System.out.println(); / fun(n - 1); / } / }
+    => C. *** / ** / * / That's all!
+15. [3/8] True or false: Run-length encoding is a lossless compression method in which repeated occurrences of a symbol are replaced by one occurrence of the symbol followed by the number of occurrences.
+    => A. True
+16. [3/8] Consider the function below. What is the value of fun(3)? [CODE]
+    Code: int fun(int n) { / if (n == 1 || n == 2) return(1); / else return(fun(n-1) + 3*fun(n-2)); / }
+    => D. 4
+17. [3/8] Select the most correct statement:
+    => A. In a linked list, the tail node is introduced for performance purpose only
+18. [3/8] The in-order traversal of a tree will yield a sorted listing of elements of the tree in
+    => B. Binary search trees
+19. [3/8] What is the result of the breadth-first traversal of the binary search tree T after inserting the following keys sequentially (T is empty before insertion): 16, 7, 3, 1, 12, 20, 17
+    => D. 16, 7, 20, 3, 12, 17, 1
+20. [3/8] Given the binary search tree T below, what is the breadth-first traversal of T after you delete the root (node 5) by copying? [HÌNH]
+    Hình (tree): 5(2(1,4(3,)),6(,8(7,)))
+    => C. 4, 2, 6, 1, 3, 8, 7
+21. [3/8] ______ is a connected graph without any simple circuit.
+    => B. Tree
+22. [3/8] Given h(x) = x % M with M = 10 and linear probing, how does the hash table look after inserting the keys 74, 111, 110, 32, 101, 131 sequentially?
+    => A. 0:110, 1:111, 2:32, 3:101, 4:74, 5:131
+
+--- PHẦN 2: 47 CÂU LẶP 2 ĐỀ NGHỈ SU26 ---
+23. [2/8] Select the most correct statement. Suppose we are considering a doubly linked list and p is some node in the list which has a predecessor node. What does the Java code snippet below do? [CODE]
+    Code: Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
+    => A. It inserts a new node with value x before the node p
+24. [2/8] Suppose we are considering a doubly linked list and p is some node in the list which has both predecessor and successor nodes. Select the most correct Java code snippet that deletes the node p.
+    => B. Node p1, p2; p1 = p.prev; // prev is a link to previous node p2 = p.next; p2.prev = p1; p1.next = p2;
+25. [2/8] Suppose we are considering a singly linked list and p is some node in the list which has a successor node. Select the most correct Java code snippet that inserts a new node with value x after the node p.
+    => A. Node q = new Node(x); q.next = p.next; p.next = q;
+26. [2/8] True or false: In a circular linked list, it is always required to define both head and tail nodes.
+    => B. False
+27. [2/8] True or false: In a singly linked list, there is no efficient way to insert a node before a given node in the middle or at the end of the list, but we can insert a node after a given node or at the beginning of the list with time complexity O(1).
+    => B. True
+28. [2/8] Suppose a doubly linked list of integers is given: (head) 7 1 6 4 3 12 8 21 (tail), and p is a reference to the node with value 12. What does the list look like after the following Java code snippet is run? [CODE]
+    Code: int x = 13; / Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
+    => B. 7 1 6 4 3 13 12 8 21
+29. [2/8] Suppose a doubly linked list of integers is given: (head) 7 11 6 4 13 12 8 2 (tail), and p is a reference to the node with value 12. What does the list look like after the following Java code snippet is run? [CODE]
+    Code: int x = 15; / Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
+    => B. 7 11 6 4 13 15 12 8 2
+30. [2/8] Suppose we implement a queue using a singly linked list where the head of the list is treated as the head of the queue. Specify the correct implementation of dequeue().
+    => C. Object dequeue() { if (isEmpty()) return(null); Node p = head; head = head.next; if (head == null) tail = null; return(p.info); }
+31. [2/8] Consider the pseudocode: declare a queue of characters; for each character read: if it is '*' then dequeue and write the dequeued character to the screen, else enqueue the character. What is written for the input "HowAre**You**To**Day"?
+    => A. HowAre
+32. [2/8] Consider the pseudocode: declare a queue of characters implemented by a circular array of size 6 (indices 0-5); for each character read: if it is '*' then dequeue, else enqueue. How does the queue look after processing the input "Hello***Wor**ld**"? (cells holding the queue's elements) [TRANH CÃI]
+    => B. [0]=o [1]=r [2]=l [3]=d
+33. [2/8] Select the statement about recursive functions that is most correct.
+    => B. Every recursive function must have at least one base case
+34. [2/8] The function f(n) is defined as: f(n) = 1 if n = 1 or n = 2; f(n) = f(n-1) + 2f(n-2) if n > 2. What is the value of f(5)?
+    => B. 11
+35. [2/8] Select the correct statement. Suppose T is a binary tree with 14 nodes. What is the minimum possible height of T? (Note: in a tree the height of the root is 1.)
+    => B. 4
+36. [2/8] What is the breadth-first traversal of the tree below after deleting the node 5 by copying? [HÌNH]
+    Hình (tree): 5(2(1,4(3,)),8(7,9))
+    => B. 4, 2, 8, 1, 3, 7, 9
+37. [2/8] Given the binary tree below, what is the result of the pre-order traversal? [HÌNH]
+    Hình (tree): 1(2(4,5(7,)),3(,6(8,)))
+    => B. 1, 2, 4, 5, 7, 3, 6, 8
+38. [2/8] Suppose we are considering a binary search tree. Select the most correct Java code snippet that searches for a node with value x.
+    => C. Node search(int x) { Node p = root; while (p != null && p.info != x) { if (x < p.info) p = p.left; else p = p.right; } return(p); }
+39. [2/8] Given the weighted directed graph below, you use Dijkstra's algorithm to find the shortest path from vertex H to vertex T. What is the correct order of vertices selected into the set S until T is selected? [HÌNH]
+    Hình (graph): H>A:4 H>B:7 H>C:6 A>B:1 A>D:6 B>D:4 B>C:5 D>T:6 C>T:2
+    => D. H, A, B, C, T
+40. [2/8] Consider the graph below. One cut-edge (bridge) in the graph is [HÌNH]
+    Hình (graph): a-b b-d d-c b-c c-e e-f f-g e-g g-h e-h
+    => B. {c, e}
+41. [2/8] Given the graph below, colors 1, 2, 3, ... are assigned with the sequential coloring algorithm that orders vertices in decreasing order of their degrees (largest first). What is the color of vertex D? [HÌNH]
+    Hình (graph): A-B A-C A-G A-D B-C B-E C-E E-G E-F D-F
+    => B. 2
+42. [2/8] Select the most correct statement about the complexity of heapsort.
+    => D. Both best and worst cases are O(n log n)
+43. [2/8] Given h(x) = x % M with M = 10 and quadratic probing ((h(x) + i^2) % M, i = 1, 2, ...), how does the hash table look after inserting the keys 65, 76, 96, 205 sequentially?
+    => D. 5:65, 6:76, 7:96, 9:205
+44. [2/8] Specify the correct statement about the chaining method for handling collisions.
+    => B. In this method, the table can never overflow if free memory is available, because the linked lists are extendible
+45. [2/8] Fill in the blank to form the most correct statement: In a ______ every element contains some data and a link to the next element, which allows the structure to be kept.
+    => C. singly linked list
+46. [2/8] Suppose a doubly linked list of integers is given: (head) 7 11 6 4 3 12 8 2 (tail), and p is a reference to the node with value 12. What does the list look like after the following Java code snippet is run? [CODE]
+    Code: int x = 5; / Node f = p.prev; // prev is a link to predecessor node / Node q = new Node(x); / q.prev = f; q.next = p; / f.next = q; p.prev = q;
+    => B. 7 11 6 4 3 5 12 8 2
+47. [2/8] Suppose a doubly linked list of integers is given: (head) 27 11 6 4 3 10 8 2 (tail), and p is a reference to the node with value 10. What does the list look like after the following Java code snippet is run? [CODE]
+    Code: int x = 19; / Node p1, p2; / p1 = new Node(x); / p2 = p.next; / p.next = p1; p1.prev = p; / p1.next = p2; p2.prev = p1;
+    => C. 27 11 6 4 3 10 19 8 2
+48. [2/8] Consider the pseudocode: declare a queue of characters implemented by a circular array of size 6 (indices 0-5); for each character read: if it is '*' then dequeue, else enqueue. How does the queue look after processing the input "Hello****Worl**d*"? (cells holding the queue's elements)
+    => D. [1]=r [2]=l [3]=d
+49. [2/8] Consider the function below. What is the output when the statement fun(5); is run? [CODE]
+    Code: void fun(int n) { / if (n <= 0) / System.out.println("Hello"); / else { / for (int i = 0; i < n; i++) / System.out.print("$"); / System.out.println(); / fun(n - 2); / } / }
+    => B. $$$$$ / $$$ / $ / Hello
+50. [2/8] In a max heap tree, ______
+    => B. Values in a node are greater than every value in the children of it
+51. [2/8] What is the breadth-first traversal of the tree below after deleting the node 30 by copying? [HÌNH]
+    Hình (tree): 30(15(5(,10),25(20,)),40(35,))
+    => B. 25, 15, 40, 5, 20, 35, 10
+52. [2/8] Given the binary tree below, what is the result of the pre-order traversal? [HÌNH]
+    Hình (tree): 1(3(4,5(7,)),2(,6(8,)))
+    => A. 1, 3, 4, 5, 7, 2, 6, 8
+53. [2/8] Consider the AVL tree below. What is the breadth-first traversal of the tree after inserting a node with value 24? [HÌNH]
+    Hình (tree): 35(22(12,32(27,)),39(37,))
+    => B. 35, 22, 39, 12, 27, 37, 24, 32
+54. [2/8] Given the binary search tree T below, what is the breadth-first traversal of T after you delete the node 3 by merging? [HÌNH]
+    Hình (tree): 6(3(1(,2),4),8(7,9))
+    => B. 6, 1, 8, 2, 7, 9, 4
+55. [2/8] Given the weighted directed graph below, you use Dijkstra's algorithm to find the shortest path from vertex A to vertex C. What is the correct order of vertices selected into the set S until C is selected? [HÌNH]
+    Hình (graph): A>B:2 A>D:20 A>E:5 A>C:10 B>D:1 D>C:4 E>C:1 E>D:10
+    => C. A, B, D, E, C
+56. [2/8] Given the graph below, what is the output of the breadth-first traversal from vertex B? (visit nodes in ABC order if several nodes can be selected) [HÌNH]
+    Hình (graph): A-B A-E A-G B-C B-E C-D D-F E-G F-G
+    => D. B, A, C, E, G, D, F, H
+57. [2/8] Given the weighted graph below, what is the total edge weight of the minimum spanning tree of G? [HÌNH]
+    Hình (graph): A-B:3 B-C:4 B-E:18 C-E:12 A-D:8 C-D:6 E-F:15 D-F:16
+    => D. 40
+58. [2/8] Select the most correct statement about the complexity of selection sort.
+    => A. Both best and worst cases are O(n^2)
+59. [2/8] Specify the correct statement about the coalesced chaining method for handling collisions (select the best answer).
+    => D. In coalesced hashing, the linked list is created inside the hash table and a colliding key is put in the last available position of the table
+60. [2/8] Given h(x) = x % M with M = 10 and quadratic probing ((h(x) + i^2) % M, i = 1, 2, ...), how does the hash table look after inserting the keys 26, 97, 36, 106 sequentially?
+    => D. 0:36, 5:106, 6:26, 7:97
+61. [2/8] Given the raw message 'BBBBQQQQBBBQQBBBBBQQ', run the run-length encoding algorithm. What is the output?
+    => B. 4B4Q3B2Q5B2Q
+62. [2/8] Using the Huffman code tree below (left edge = 0, right edge = 1), what is the result of decoding the string 0111000000101? [HÌNH]
+    Hình (huff): *(*(B,C),A)
+    => A. CAABBBAC
+63. [2/8] True or false: "Recursion bears substantial overhead. Each time the program calls a method, the system must assign space for all of the method's local variables and parameters. This can consume considerable memory and requires extra time to manage the additional space."
+    => A. True
+64. [2/8] Consider the pseudocode: declare a stack of characters; for each character read: if it is '*' then pop and write the popped character to the screen, else push the character. What is written to the screen for the input "Go*od**Mor*ni*ng*Si*r"?
+    => C. odorigi
+65. [2/8] The height of a complete binary tree with n nodes is
+    => D. log2(n+1)
+66. [2/8] Consider the AVL tree below. What is the breadth-first traversal of the tree after inserting a node with value 27? [HÌNH]
+    Hình (tree): 40(25(15,35(30,)),50(45,))
+    => C. 40, 25, 50, 15, 30, 45, 27, 35
+67. [2/8] Given the binary search tree T below, what is the breadth-first traversal of T after you delete the node 3 by merging? [HÌNH]
+    Hình (tree): 6(3(1(,2),4(,5)),8(7,))
+    => C. 6, 1, 8, 2, 7, 4, 5
+68. [2/8] True or false: In Huffman coding, both the sender and the receiver must have a copy of the same code in order for the decoded file to match the encoded file.
+    => A. True
+69. [2/8] Select the most correct statement. Basically, the complexity of finding the position of the minimum value in a doubly linked list of integers is
+    => B. O(n)
+
+--- MẸO KHOANH MÙ CSD201 ---
+1. Đúng/Sai -> Chọn TRUE (75%).
+2. Dài hơn hẳn (>= +15 ký tự) -> Chọn DÀI NHẤT (58.3%).
+3. Phủ định (NOT/FALSE/incorrect) -> Chọn A (40%) / B (35%), tránh D (0%).
+4. Ngắn ngang nhau -> Mặc định khoanh B (33.6% unique / 37% lượt).

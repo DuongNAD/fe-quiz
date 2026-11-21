@@ -1,526 +1,216 @@
-========================================================================
-TỦ CẤP TỐC IOT102 FE — TỐI ƯU ÔN THI (100 CÂU LẶP / 245 CÂU GỐC)
-========================================================================
-Chiến lược giảm tải (-59% khối lượng học):
-- IOT102 lặp lại câu cũ rất mạnh (~50% - 66% đề FE 2026 là câu đã xuất hiện).
-- 100 câu lặp >= 2/8 đề dưới đây phủ 33/50 câu của SU26-FE (66%), 36/50 SP26-FE (72%),
-  38/50 FA25-FE (76%) và 42/50 FA25-Half1 (84%):
-  + PHẦN 1 (36 câu Siêu tủ 3-6/8 đề) -> HỌC ĐẦU TIÊN.
-  + PHẦN 2 (64 câu lặp 2/8 đề)      -> HỌC TIẾP THEO.
-- Lưu ý: Đáp án A/B/C/D giữ nguyên 100% theo đề gốc (mặc định mở IOT102_FE_QUIZ.html là đúng 100 câu này).
-
-==================== PHẦN 1: 36 CÂU SIÊU TỦ 3–6/8 ĐỀ (36 CÂU) ====================
-
-[01/100 | ID #5 | 6/8 đề: SU26-FE, SP26-FE, FA25-FEB5, FA25-FE, FA25-Half1, SU25-FE]
-  Câu hỏi: What is the maximum input voltage limit for the Arduino Uno?
-  => ĐÁP ÁN: A. 6-20 V
-  Giải thích: Giới hạn (limit) 6-20 V; ngoài khoảng này board có thể không ổn định hoặc hỏng regulator.
-
-[02/100 | ID #13 | 4/8 đề: SU26-FE, SP26-FE, FA25-FE, SU25-RE]
-  Câu hỏi: What is the correct syntax to output a string like "I like IoT" in a C program?
-  => ĐÁP ÁN: D. printf("I like IoT");
-  Giải thích: C dùng printf; các lựa chọn khác là Java/C#.
-
-[03/100 | ID #15 | 4/8 đề: SU26-FE, SP26-FE, FA25-FEB5, SU25-FE]
-  Câu hỏi: Can the setup() function change the value of constant variables?
-  => ĐÁP ÁN: B. No, it cannot change
-  Giải thích: Biến const không thể gán lại ở bất kỳ đâu - trình biên dịch báo lỗi.
-
-[04/100 | ID #21 | 4/8 đề: SU26-FE, SP26-FE, FA25-Half1, SU25-FE | CODE]
-  Câu hỏi: What is the output of "pin1" if "pin2" is sent "1011", where 1 is 5V and 0 is 0V?
-  Code   : int pin1 = 12; / int pin2 = 11; / void setup() { / pinMode(pin1, OUTPUT); / pinMode(pin2, INPUT); / Serial.begin(9600); / } / void loop() { / if (digitalRead(pin2)==1) { / digitalWrite(pin1, LOW); / } / else if (digitalRead(pin2)==0) { / digitalWrite(pin1, HIGH); / } / }
-  => ĐÁP ÁN: B. 0100
-  Giải thích: Chương trình đảo bit: vào 1 → ra LOW, vào 0 → ra HIGH. 1011 → 0100.
-
-[05/100 | ID #40 | 4/8 đề: SU26-FE, SP26-FE, FA25-Half1, SU25-RE]
-  Câu hỏi: Given that the nominal voltage of an AAA battery is 1.5 V, what is the nominal voltage of 5 AAA batteries connected in parallel?
-  => ĐÁP ÁN: D. 1.5 V
-  Giải thích: Mắc song song: điện áp giữ nguyên (1.5 V), dung lượng cộng dồn. Nối tiếp mới là 7.5 V.
-
-[06/100 | ID #42 | 4/8 đề: SU26-FE, SP26-FE, FA25-FEB5, SU25-RE]
-  Câu hỏi: Which of the following is NOT a fundamental component of an IoT system?
-  => ĐÁP ÁN: D. Voltage regulator
-  Giải thích: Bốn thành phần: thiết bị/cảm biến, kết nối, xử lý dữ liệu, giao diện người dùng.
-
-[07/100 | ID #98 | 4/8 đề: SP26-FE, FA25-FE, FA25-Half1, SU25-RE]
-  Câu hỏi: What is the type of USB port on Arduino Uno R3?
-  => ĐÁP ÁN: B. Type B
-  Giải thích: Uno R3 dùng cổng USB Type-B (cổng vuông như máy in).
-
-[08/100 | ID #100 | 4/8 đề: SP26-FE, FA25-FE, FA25-Half1, SU25-RE]
-  Câu hỏi: What is the operating voltage of the ATmega328?
-  => ĐÁP ÁN: B. 1.8V to 5.5V
-  Giải thích: Datasheet ATmega328P: 1.8-5.5 V (tần số tối đa phụ thuộc điện áp).
-
-[09/100 | ID #109 | 4/8 đề: SP26-FE, FA25-FE, FA25-Half1, SU25-RE]
-  Câu hỏi: How is the input voltage range of 0 to 5 volts converted to a digital value between 0 and 1023 in an Arduino microcontroller?
-  => ĐÁP ÁN: C. By a process called analog-to-digital conversion (ADC) inside the microcontroller
-  Giải thích: ADC 10-bit tích hợp trong ATmega328P.
-
-[10/100 | ID #115 | 4/8 đề: SP26-FE, FA25-FE, FA25-Half1, SU25-RE]
-  Câu hỏi: What is the purpose of Fritzing in the context of designing circuits?
-  => ĐÁP ÁN: C. To create circuit diagrams and layouts
-  Giải thích: Fritzing vẽ sơ đồ breadboard/schematic/PCB; không phải công cụ mô phỏng như Tinkercad.
-
-[11/100 | ID #117 | 4/8 đề: SP26-FE, FA25-FE, FA25-Half1, SU25-RE]
-  Câu hỏi: Which of the following is an example of an IoT application?
-  => ĐÁP ÁN: A. Wearable device to monitor blood glucose level
-  Giải thích: Thiết bị đeo có cảm biến + kết nối gửi dữ liệu = IoT.
-
-[12/100 | ID #118 | 4/8 đề: SP26-FE, FA25-FE, FA25-Half1, SU25-RE]
-  Câu hỏi: An IoT device can most easily be differentiated from a standard computer based on ______.
-  => ĐÁP ÁN: B. Interface with the user and the world
-  Giải thích: Thiết bị IoT/nhúng tương tác với thế giới thực qua cảm biến/actuator thay vì bàn phím-màn hình.
-
-[13/100 | ID #121 | 4/8 đề: SP26-FE, FA25-FE, FA25-Half1, SU25-FE]
-  Câu hỏi: IoT devices gather private information about users. Which statement is most true about the security of that data?
-  => ĐÁP ÁN: C. Users must rely on data collecting agencies to securely store and transmit their data
-  Giải thích: Người dùng không kiểm soát được dữ liệu sau khi thu thập - phụ thuộc vào bên thu thập.
-
-[14/100 | ID #133 | 4/8 đề: SP26-FE, FA25-FE, FA25-Half1, SU25-RE]
-  Câu hỏi: In IoT, what is the purpose of a gateway?
-  => ĐÁP ÁN: A. To act as an intermediary for data transmission between different network protocols
-  Giải thích: Gateway trung gian/chuyển đổi giao thức giữa mạng thiết bị và Internet.
-
-[15/100 | ID #134 | 4/8 đề: SP26-FE, FA25-FE, FA25-Half1, SU25-RE]
-  Câu hỏi: In the context of IoT and networking, what does the abbreviation LPWAN stand for?
-  => ĐÁP ÁN: C. Low Power Wide Area Network
-  Giải thích: LPWAN = Low Power Wide Area Network (LoRa, Sigfox, NB-IoT).
-
-[16/100 | ID #174 | 4/8 đề: FA25-FE, FA25-Half1, SU25-RE, SU25-FE]
-  Câu hỏi: What are the 4 V's of Big Data, as described by IBM?
-  => ĐÁP ÁN: C. Volume, Velocity, Variety, Veracity
-  Giải thích: IBM: Volume (khối lượng), Velocity (tốc độ), Variety (đa dạng), Veracity (độ tin cậy).
-
-[17/100 | ID #11 | 3/8 đề: SU26-FE, FA25-Half1, SU25-FE]
-  Câu hỏi: How many pins on Arduino Uno R3 support pulse width modulation (PWM)?
-  => ĐÁP ÁN: D. 6
-  Giải thích: 6 chân PWM: 3, 5, 6, 9, 10, 11 (ký hiệu ~).
-
-[18/100 | ID #17 | 3/8 đề: SU26-FE, FA25-Half1, SU25-FE]
-  Câu hỏi: In the given Arduino code, what is the purpose of the analogWrite() function and how is it used to control the LED's behavior?
-  => ĐÁP ÁN: C. It controls the brightness of the LED
-  Giải thích: analogWrite xuất PWM (0-255) để điều chỉnh độ sáng LED.
-
-[19/100 | ID #27 | 3/8 đề: SU26-FE, FA25-FE, FA25-Half1]
-  Câu hỏi: Which category of actuators includes mechanisms that use air pressure to control or move objects?
-  => ĐÁP ÁN: D. Pneumatic
-  Giải thích: Pneumatic = khí nén; Hydraulic = chất lỏng.
-
-[20/100 | ID #28 | 3/8 đề: SU26-FE, SP26-FE, FA25-FEB5]
-  Câu hỏi: Why is the motion sensor in the responder important on a dairy farm?
-  => ĐÁP ÁN: B. It monitors the cow's movements, potentially detecting health issues
-  Giải thích: Mức vận động bất thường → dấu hiệu bệnh hoặc động dục.
-
-[21/100 | ID #29 | 3/8 đề: SU26-FE, FA25-Half1, SU25-FE]
-  Câu hỏi: What programming strategies could be employed to handle the "velocity" aspect of big data in an IoT system?
-  => ĐÁP ÁN: C. Employing data streaming and real-time processing frameworks
-  Giải thích: Velocity = tốc độ dữ liệu đến → cần xử lý luồng thời gian thực (stream processing).
-
-[22/100 | ID #36 | 3/8 đề: SU26-FE, FA25-FEB5, SU25-RE]
-  Câu hỏi: A narrow pipe in a water system is analogous to what concept in an electrical circuit?
-  => ĐÁP ÁN: A. Resistance
-  Giải thích: Mô hình nước: áp suất = điện áp, lưu lượng = dòng điện, ống hẹp = điện trở.
-
-[23/100 | ID #44 | 3/8 đề: SU26-FE, SP26-FE, FA25-FE]
-  Câu hỏi: What are the two main functions of a program in Arduino IDE?
-  => ĐÁP ÁN: C. setup() and loop()
-  Giải thích: setup() chạy một lần; loop() lặp mãi.
-
-[24/100 | ID #65 | 3/8 đề: SP26-RE, FA25-Half1, SU25-FE]
-  Câu hỏi: To declare a variable that stores the value read from analog pin A0, what data type is this variable?
-  => ĐÁP ÁN: D. Int
-  Giải thích: analogRead trả về số nguyên 0-1023 → int.
-
-[25/100 | ID #67 | 3/8 đề: SP26-RE, FA25-Half1, SU25-RE | ⚠ TRANH CÃI]
-  Câu hỏi: Which button on the ESP8266 is used to load the code again?
-  => ĐÁP ÁN: A. GND
-  Giải thích: Để nạp lại code cho ESP8266 phải kéo GPIO0 xuống GND (nút FLASH) rồi reset. Đề không có lựa chọn chuẩn; đa số bình luận ở SU25-RE và FA25-Half1 chọn GND, ở SP26-RE lại chọn A0.
-
-[26/100 | ID #86 | 3/8 đề: SP26-RE, FA25-FEB5, SU25-FE]
-  Câu hỏi: Which of the following statements is WRONG about IoT devices?
-  => ĐÁP ÁN: D. IoT devices are completely safe
-  Giải thích: Không thiết bị nào an toàn tuyệt đối - IoT có nhiều lỗ hổng.
-
-[27/100 | ID #90 | 3/8 đề: SP26-RE, FA25-FE, FA25-Half1]
-  Câu hỏi: What kind of control system is one in which the output quantity has no effect upon the input quantity?
-  => ĐÁP ÁN: A. Open loop
-  Giải thích: Open loop không có phản hồi; closed loop dùng phản hồi đầu ra để điều chỉnh.
-
-[28/100 | ID #96 | 3/8 đề: SP26-RE, SP26-FE, FA25-FEB5]
-  Câu hỏi: What are the key components in ensuring the security of IoT networks and devices?
-  => ĐÁP ÁN: B. Authentication, authorization, network enforced policy, and secure analytics
-  Giải thích: 4 trụ cột bảo mật IoT (Cisco): xác thực, phân quyền, chính sách mạng, phân tích an toàn.
-
-[29/100 | ID #97 | 3/8 đề: SP26-FE, FA25-Half1, SU25-FE]
-  Câu hỏi: Which component on tinkercad.com allows displaying the results of the simulation program?
-  => ĐÁP ÁN: D. Serial monitor
-  Giải thích: Serial Monitor trong Tinkercad hiển thị dữ liệu Serial.print khi mô phỏng.
-
-[30/100 | ID #101 | 3/8 đề: SP26-FE, FA25-FE, SU25-FE]
-  Câu hỏi: What is an interrupt in the context of Arduino UNO programming?
-  => ĐÁP ÁN: B. A signal that pauses the current process to execute a specific function
-  Giải thích: Ngắt tạm dừng chương trình chính để chạy hàm ISR, xong quay lại.
-
-[31/100 | ID #110 | 3/8 đề: SP26-FE, FA25-FE, FA25-Half1]
-  Câu hỏi: Which software is used to upload Arduino sketches to the board?
-  => ĐÁP ÁN: D. Avrdude
-  Giải thích: avr-gcc biên dịch, avrdude nạp file .hex xuống board.
-
-[32/100 | ID #113 | 3/8 đề: SP26-FE, FA25-Half1, SU25-RE]
-  Câu hỏi: In a software simulation environment (Tinkercad) for Arduino programming, which option is typically used to write and run code for your Arduino projects?
-  => ĐÁP ÁN: A. Selecting the Code option to start coding
-  Giải thích: Trong Tinkercad bấm nút Code để mở trình soạn (Blocks/Text) rồi Start Simulation.
-
-[33/100 | ID #119 | 3/8 đề: SP26-FE, FA25-FE, FA25-Half1]
-  Câu hỏi: When integrating IoT devices with cloud platforms, what is the main programming challenge related to data flow?
-  => ĐÁP ÁN: B. Ensuring real-time data synchronization across devices
-  Giải thích: Thách thức chính: đồng bộ dữ liệu thời gian thực giữa thiết bị và cloud.
-
-[34/100 | ID #126 | 3/8 đề: SP26-FE, FA25-FE, SU25-RE]
-  Câu hỏi: An Arduino sketch: digitalWrite(13, HIGH); delay(1000); digitalWrite(13, LOW); delay(1000); How long is the built-in LED on?
-  => ĐÁP ÁN: C. 1 second
-  Giải thích: delay(1000) = 1000 ms = 1 giây.
-
-[35/100 | ID #161 | 3/8 đề: FA25-FE, FA25-Half1, SU25-RE]
-  Câu hỏi: What is the use of the Vin pin present on some Arduino boards?
-  => ĐÁP ÁN: B. To power the Arduino board
-  Giải thích: Vin nhận nguồn ngoài (7-12 V) để cấp cho board qua bộ ổn áp.
-
-[36/100 | ID #166 | 3/8 đề: FA25-FE, FA25-Half1, SU25-RE]
-  Câu hỏi: Is it possible to have multiple software serial ports (UART) with speeds up to 115200 bps?
-  => ĐÁP ÁN: D. Yes, multiple software serial ports are possible with speeds up to 115200 bps
-  Giải thích: Tài liệu SoftwareSerial: có thể tạo nhiều cổng, tốc độ tới 115200 bps - nhưng mỗi lúc chỉ một cổng nhận.
-
-==================== PHẦN 2: 64 CÂU LẶP 2/8 ĐỀ (64 CÂU) ====================
-
-[37/100 | ID #2 | 2/8 đề: SU26-FE, SU25-FE]
-  Câu hỏi: What is the size of the flash memory of the microcontroller of Arduino Uno Rev3?
-  => ĐÁP ÁN: A. 32 KB
-  Giải thích: ATmega328P có 32 KB flash (0.5 KB dùng cho bootloader), 2 KB SRAM, 1 KB EEPROM.
-
-[38/100 | ID #4 | 2/8 đề: SU26-FE, FA25-Half1]
-  Câu hỏi: What is the recommended input voltage for an Arduino Uno?
-  => ĐÁP ÁN: B. 7-12 V
-  Giải thích: Khuyến nghị 7-12 V; giới hạn tuyệt đối 6-20 V.
-
-[39/100 | ID #9 | 2/8 đề: SU26-FE, FA25-Half1 | CODE | ⚠ TRANH CÃI]
-  Câu hỏi: How many errors are present in the code below?
-  Code   : int pin1=12; / void setup() { / pinmode(pin1, IN); / Serial.begin(9600); / } / void loop() { / int value=analogRead(pin1); / Serial.println(value); / }
-  => ĐÁP ÁN: C. 3
-  Giải thích: pinmode → pinMode, IN → INPUT (2 lỗi biên dịch) và analogRead trên chân số 12 (phải dùng A0-A5). Cộng đồng chia giữa 2 và 3; đa số chọn 3.
-
-[40/100 | ID #19 | 2/8 đề: SU26-FE, SP26-FE]
-  Câu hỏi: Which symbol is used to start a comment in Arduino code?
-  => ĐÁP ÁN: B. //
-  Giải thích: // cho chú thích một dòng; /* ... */ cho nhiều dòng.
-
-[41/100 | ID #22 | 2/8 đề: SU26-FE, SU25-FE | CODE]
-  Câu hỏi: What is the output of the program below if a voltage of 5V is supplied to the A0 pin on an Arduino UNO?
-  Code   : void setup() { / Serial.begin(9600); / pinMode(A0, INPUT); / } / void loop() { / int s = analogRead(A0); / Serial.println(s); / }
-  => ĐÁP ÁN: B. 1023
-  Giải thích: ADC 10-bit: 0 V → 0, 5 V → 1023.
-
-[42/100 | ID #23 | 2/8 đề: SU26-FE, SU25-FE]
-  Câu hỏi: In circuit design, which component is used to limit the current from the Arduino board to the LED?
-  => ĐÁP ÁN: C. Resistor
-  Giải thích: Điện trở hạn dòng (220-330 Ω) bảo vệ LED và chân Arduino.
-
-[43/100 | ID #24 | 2/8 đề: SU26-FE, SP26-RE]
-  Câu hỏi: You read a DS18B20 temperature sensor (1-Wire) on Arduino and get rawTemp = 0x0191. How do you convert this value to degrees Celsius?
-  => ĐÁP ÁN: A. float tempC = (float)rawTemp / 16.0;
-  Giải thích: Độ phân giải 12-bit = 0.0625 °C/LSB → chia 16. 0x0191 = 401 → 25.06 °C. (>>4 làm mất phần thập phân.)
-
-[44/100 | ID #25 | 2/8 đề: SU26-FE, SU25-FE]
-  Câu hỏi: How might the evolving nature of the internet - no longer just a means of communication but also connecting devices like refrigerators - impact various aspects of our society?
-  => ĐÁP ÁN: C. It could introduce new security challenges, require advanced big data solutions, and potentially disrupt employment
-  Giải thích: IoT mở rộng bề mặt tấn công, sinh dữ liệu lớn và thay đổi việc làm.
-
-[45/100 | ID #26 | 2/8 đề: SU26-FE, FA25-FEB5]
-  Câu hỏi: Which of the following is an example of an IoT device?
-  => ĐÁP ÁN: A. Smart thermostat
-  Giải thích: Thiết bị IoT có cảm biến + kết nối mạng, ví dụ thermostat thông minh.
-
-[46/100 | ID #31 | 2/8 đề: SU26-FE, SU25-FE]
-  Câu hỏi: Consider the statement: "Each resource is either currently assigned to exactly one process or is available." Which deadlock condition matches this statement?
-  => ĐÁP ÁN: C. Mutual exclusion
-  Giải thích: Mutual exclusion: tài nguyên chỉ thuộc một tiến trình tại một thời điểm.
-
-[47/100 | ID #32 | 2/8 đề: SU26-FE, SP26-RE]
-  Câu hỏi: Which of the following is an example of an authentication method used in IoT devices?
-  => ĐÁP ÁN: A. Biometric data
-  Giải thích: Xác thực = chứng minh danh tính (vân tay, khuôn mặt, mật khẩu, chứng chỉ). Mã hoá là bảo mật dữ liệu, không phải xác thực.
-
-[48/100 | ID #33 | 2/8 đề: SU26-FE, SP26-FE]
-  Câu hỏi: What is the potential risk of a hacked IoT device being misused?
-  => ĐÁP ÁN: B. Damage to other devices or operations
-  Giải thích: Thiết bị bị chiếm có thể tấn công thiết bị khác (botnet) hoặc phá hoại vận hành vật lý.
-
-[49/100 | ID #34 | 2/8 đề: SU26-FE, FA25-FE]
-  Câu hỏi: What is the role of resistors in an electrical circuit?
-  => ĐÁP ÁN: B. To control the flow of electric current
-  Giải thích: Điện trở cản/giới hạn dòng điện. Tụ mới lưu năng lượng, LED mới phát sáng.
-
-[50/100 | ID #35 | 2/8 đề: SU26-FE, SP26-RE]
-  Câu hỏi: When does electricity occur?
-  => ĐÁP ÁN: A. When negatively charged electrons jump between atoms
-  Giải thích: Dòng điện là dòng electron di chuyển giữa các nguyên tử; proton nằm cố định trong hạt nhân.
-
-[51/100 | ID #37 | 2/8 đề: SU26-FE, SP26-FE]
-  Câu hỏi: How many pins does the LM35 temperature sensor module have?
-  => ĐÁP ÁN: C. 3
-  Giải thích: LM35 có 3 chân: VCC, Vout, GND.
-
-[52/100 | ID #41 | 2/8 đề: SU26-FE, FA25-Half1]
-  Câu hỏi: Which of the following is an example of a fog computing concept in IoT?
-  => ĐÁP ÁN: C. Performing data analytics on edge devices
-  Giải thích: Fog/edge: xử lý gần nguồn dữ liệu thay vì gửi hết lên cloud.
-
-[53/100 | ID #43 | 2/8 đề: SU26-FE, FA25-Half1]
-  Câu hỏi: What is the full form of IDE in Arduino IDE software?
-  => ĐÁP ÁN: C. Integrated Development Environment
-  Giải thích: IDE = Integrated Development Environment.
-
-[54/100 | ID #45 | 2/8 đề: SU26-FE, SP26-RE]
-  Câu hỏi: How many parts does a complete IoT system have?
-  => ĐÁP ÁN: B. 4
-  Giải thích: 4 phần: cảm biến/thiết bị, kết nối, xử lý dữ liệu, giao diện người dùng.
-
-[55/100 | ID #47 | 2/8 đề: SU26-FE, SU25-RE]
-  Câu hỏi: Which of the following IoT network topologies provides the highest reliability?
-  => ĐÁP ÁN: B. Mesh topology
-  Giải thích: Mesh có nhiều đường đi dự phòng, một nút hỏng không làm sập mạng.
-
-[56/100 | ID #48 | 2/8 đề: SU26-FE, FA25-Half1]
-  Câu hỏi: What is the role of a gateway in an IoT network, and how does it relate to routing?
-  => ĐÁP ÁN: C. Gateways connect IoT devices to the internet and perform protocol translation between IoT devices and the internet, aiding in data routing
-  Giải thích: Gateway nối mạng thiết bị (Zigbee, BLE...) với Internet và chuyển đổi giao thức.
-
-[57/100 | ID #52 | 2/8 đề: SP26-RE, FA25-FEB5]
-  Câu hỏi: What is the role of the ATmega168/328 in an Arduino circuit?
-  => ĐÁP ÁN: A. Run the program
-  Giải thích: ATmega là vi điều khiển - 'bộ não' chạy chương trình.
-
-[58/100 | ID #56 | 2/8 đề: SP26-RE, SU25-RE]
-  Câu hỏi: What is the function of a Digital-to-Analog Converter?
-  => ĐÁP ÁN: A. To generate an analog voltage from digital signals
-  Giải thích: DAC biến giá trị số thành điện áp analog; ADC làm điều ngược lại.
-
-[59/100 | ID #57 | 2/8 đề: SP26-RE, FA25-FEB5]
-  Câu hỏi: What is the function of serial communication in Arduino?
-  => ĐÁP ÁN: A. Send and receive data to/from external devices
-  Giải thích: Serial (UART) truyền/nhận dữ liệu với máy tính hoặc module khác.
-
-[60/100 | ID #66 | 2/8 đề: SP26-RE, FA25-FEB5]
-  Câu hỏi: Which data type is used to store integer values in C?
-  => ĐÁP ÁN: C. int
-  Giải thích: int lưu số nguyên; float/double lưu số thực.
-
-[61/100 | ID #68 | 2/8 đề: SP26-RE, FA25-FE]
-  Câu hỏi: Which communication technology has a range of about 10 cm?
-  => ĐÁP ÁN: A. NFC
-  Giải thích: NFC tầm ngắn ~4-10 cm (thanh toán chạm).
-
-[62/100 | ID #69 | 2/8 đề: SP26-RE, FA25-FE]
-  Câu hỏi: At what voltage does the ESP8266 chip work?
-  => ĐÁP ÁN: A. 3.3V
-  Giải thích: ESP8266 chạy 3.3 V; cấp 5 V trực tiếp vào chip có thể làm hỏng.
-
-[63/100 | ID #71 | 2/8 đề: SP26-RE, FA25-FE]
-  Câu hỏi: What is the purpose of digital input/output programming in Arduino UNO?
-  => ĐÁP ÁN: B. To control LEDs and buttons
-  Giải thích: Digital I/O làm việc với tín hiệu HIGH/LOW như LED, nút nhấn.
-
-[64/100 | ID #72 | 2/8 đề: SP26-RE, FA25-FEB5]
-  Câu hỏi: Which function is used to configure pins as input or output?
-  => ĐÁP ÁN: B. pinMode()
-  Giải thích: pinMode(pin, INPUT/OUTPUT/INPUT_PULLUP).
-
-[65/100 | ID #73 | 2/8 đề: SP26-RE, FA25-FEB5]
-  Câu hỏi: In C programming for IoT, what does digitalWrite(13, HIGH); mean?
-  => ĐÁP ÁN: C. Turn on pin 13 (set HIGH level)
-  Giải thích: Đặt chân 13 lên mức HIGH (5 V) - LED onboard sáng.
-
-[66/100 | ID #75 | 2/8 đề: SP26-RE, FA25-FEB5]
-  Câu hỏi: In a typical three-layer IoT architecture, which layer includes sensors, actuators, and RFID tags?
-  => ĐÁP ÁN: D. Perception Layer
-  Giải thích: 3 lớp: Perception (cảm nhận) - Network - Application.
-
-[67/100 | ID #78 | 2/8 đề: SP26-RE, FA25-FEB5]
-  Câu hỏi: What is the function of an actuator in an IoT system?
-  => ĐÁP ÁN: B. To convert electrical signals into physical action
-  Giải thích: Actuator: điện → hành động vật lý. Sensor thì ngược lại.
-
-[68/100 | ID #79 | 2/8 đề: SP26-RE, FA25-FEB5]
-  Câu hỏi: Why is it important to consider limited power supply when programming IoT devices?
-  => ĐÁP ÁN: C. Devices need to operate efficiently on minimal power for long durations
-  Giải thích: Thiết bị chạy pin cần tiết kiệm năng lượng (sleep mode, giảm tần suất gửi).
-
-[69/100 | ID #81 | 2/8 đề: SP26-RE, FA25-FEB5]
-  Câu hỏi: What is one of the primary components that need to be secured in an IoT system?
-  => ĐÁP ÁN: B. The devices, network, programs, and data
-  Giải thích: Bảo mật IoT bao trùm thiết bị, mạng, chương trình và dữ liệu.
-
-[70/100 | ID #84 | 2/8 đề: SP26-RE, FA25-Half1]
-  Câu hỏi: The first three color bands of a 4-band resistor are brown, green, and yellow. What is its value?
-  => ĐÁP ÁN: B. 150k Ohm
-  Giải thích: Nâu=1, Lục=5, Vàng=×10^4 → 15 × 10 000 = 150 kΩ.
-
-[71/100 | ID #85 | 2/8 đề: SP26-RE, FA25-FE]
-  Câu hỏi: A part of an Arduino sketch: digitalWrite(11, HIGH); delay(300); digitalWrite(11, LOW); delay(200); What is the frequency of the waveform at digital pin D11?
-  => ĐÁP ÁN: A. 2 Hz
-  Giải thích: T = 300 + 200 = 500 ms → f = 1/0.5 s = 2 Hz.
-
-[72/100 | ID #87 | 2/8 đề: SP26-RE, FA25-Half1]
-  Câu hỏi: In an IoT system, many devices are connected to the same set of wires. What is this connection mode?
-  => ĐÁP ÁN: B. Bus
-  Giải thích: Bus: nhiều thiết bị dùng chung một đường dây (I2C, CAN...).
-
-[73/100 | ID #88 | 2/8 đề: SP26-RE, FA25-FEB5]
-  Câu hỏi: What is MQTT primarily used for?
-  => ĐÁP ÁN: D. Machine to Machine Communication
-  Giải thích: MQTT là giao thức M2M nhẹ theo mô hình publish/subscribe.
-
-[74/100 | ID #89 | 2/8 đề: SP26-RE, FA25-FEB5]
-  Câu hỏi: What is the role of a network router in an IoT system?
-  => ĐÁP ÁN: C. Directing data between devices
-  Giải thích: Router định tuyến gói tin giữa các thiết bị/mạng.
-
-[75/100 | ID #93 | 2/8 đề: SP26-RE, FA25-FEB5]
-  Câu hỏi: What additional consideration is necessary to make an IoT project successful compared to existing solutions?
-  => ĐÁP ÁN: C. Be better than current solutions
-  Giải thích: Sản phẩm IoT phải tốt hơn giải pháp hiện có mới đáng để dùng.
-
-[76/100 | ID #94 | 2/8 đề: SP26-RE, SU25-FE]
-  Câu hỏi: What is the main purpose of routing in network communication?
-  => ĐÁP ÁN: B. To select a path for traffic in a network
-  Giải thích: Routing = chọn đường đi cho gói tin.
-
-[77/100 | ID #102 | 2/8 đề: SP26-FE, FA25-FEB5]
-  Câu hỏi: What is the size of the EEPROM of the Arduino Uno R3?
-  => ĐÁP ÁN: A. 1 KB
-  Giải thích: Uno R3: 32 KB flash, 2 KB SRAM, 1 KB EEPROM.
-
-[78/100 | ID #104 | 2/8 đề: SP26-FE, SU25-RE]
-  Câu hỏi: What does the RX LED blinking on an Arduino board signify?
-  => ĐÁP ÁN: A. The Arduino is receiving data from a connected device
-  Giải thích: RX = Receive (nhận), TX = Transmit (gửi).
-
-[79/100 | ID #108 | 2/8 đề: SP26-FE, FA25-FE]
-  Câu hỏi: What is the primary function of the ultrasonic sensor in IoT applications?
-  => ĐÁP ÁN: D. Proximity detection
-  Giải thích: Đo khoảng cách bằng thời gian sóng siêu âm phản xạ.
-
-[80/100 | ID #114 | 2/8 đề: SP26-FE, FA25-FEB5]
-  Câu hỏi: Which function is used to create a PWM signal to dim an LED?
-  => ĐÁP ÁN: A. analogWrite(pin, value);
-  Giải thích: analogWrite(pin, 0-255) xuất PWM.
-
-[81/100 | ID #122 | 2/8 đề: SP26-FE, FA25-Half1]
-  Câu hỏi: What is the primary purpose of a schematic diagram in electrical engineering?
-  => ĐÁP ÁN: C. To illustrate the components and their connections in a circuit using standardized symbols
-  Giải thích: Sơ đồ nguyên lý dùng ký hiệu chuẩn để thể hiện linh kiện và kết nối, không phải bố trí vật lý.
-
-[82/100 | ID #125 | 2/8 đề: SP26-FE, FA25-Half1]
-  Câu hỏi: Why is it essential to focus on the unique value proposition of an IoT product in the early planning stages of development and commercialization?
-  => ĐÁP ÁN: C. Differentiation from competitors is crucial for success
-  Giải thích: Giá trị độc đáo giúp sản phẩm khác biệt với đối thủ.
-
-[83/100 | ID #128 | 2/8 đề: SP26-FE, FA25-FEB5]
-  Câu hỏi: What does NFC stand for?
-  => ĐÁP ÁN: D. Near Field Communication
-  Giải thích: NFC = Near Field Communication.
-
-[84/100 | ID #130 | 2/8 đề: SP26-FE, FA25-FE]
-  Câu hỏi: Which of the following is NOT an IoT platform?
-  => ĐÁP ÁN: A. Wish
-  Giải thích: Wish là sàn thương mại điện tử; Salesforce IoT Cloud, Particle, Exosite là nền tảng IoT.
-
-[85/100 | ID #132 | 2/8 đề: SP26-FE, FA25-FE]
-  Câu hỏi: Which protocol is suitable for IoT devices requiring low power and low data rate communication over a few kilometers?
-  => ĐÁP ÁN: C. LoRaWAN
-  Giải thích: LoRaWAN: tầm vài km đến 15 km, tiết kiệm pin, tốc độ thấp.
-
-[86/100 | ID #145 | 2/8 đề: FA25-FEB5, SU25-RE]
-  Câu hỏi: What type of device could allow a vehicle to show a warning on the dashboard, which might also alert the car's manufacturer?
-  => ĐÁP ÁN: C. Sensor
-  Giải thích: Cảm biến phát hiện sự cố → hiện cảnh báo và có thể gửi dữ liệu về hãng.
-
-[87/100 | ID #152 | 2/8 đề: FA25-FEB5, FA25-FE]
-  Câu hỏi: What is the use of PWM signals in IoT development boards?
-  => ĐÁP ÁN: C. They are used by actuators to have analog input
-  Giải thích: PWM giả lập đầu ra analog để điều khiển actuator (độ sáng LED, tốc độ motor).
-
-[88/100 | ID #153 | 2/8 đề: FA25-FEB5, SU25-RE]
-  Câu hỏi: What is the function of a photoresistor?
-  => ĐÁP ÁN: D. It changes resistance according to light level
-  Giải thích: Quang trở thay đổi ĐIỆN TRỞ theo ánh sáng (sáng → điện trở giảm).
-
-[89/100 | ID #164 | 2/8 đề: FA25-FE, SU25-RE]
-  Câu hỏi: Given the graph (edges: A-B, A-E, A-D, E-D, B-C, C-D), what is the depth-first traversal starting from node B (visit neighbors in ABC order)?
-  => ĐÁP ÁN: A. BADCE
-  Giải thích: B → A (kề B nhỏ nhất) → D (kề A: D trước E) → C (kề D: C trước E) → C hết đường, lùi về D → E. Kết quả BADCE.
-
-[90/100 | ID #165 | 2/8 đề: FA25-FE, SU25-RE]
-  Câu hỏi: How many pins does a servo motor have?
-  => ĐÁP ÁN: B. 3
-  Giải thích: Servo có 3 dây: VCC (đỏ), GND (nâu/đen), tín hiệu (cam/vàng).
-
-[91/100 | ID #168 | 2/8 đề: FA25-FE, SU25-FE]
-  Câu hỏi: What is the difference between an IDE and a compiler?
-  => ĐÁP ÁN: A. The compiler executes the code while the IDE gives a graphical environment for writing the code
-  Giải thích: IDE là môi trường soạn thảo đồ hoạ; compiler xử lý (biên dịch) mã. Đáp án theo đề là A.
-
-[92/100 | ID #171 | 2/8 đề: FA25-FE, SU25-RE | CODE]
-  Câu hỏi: What is the purpose of the following Arduino code?
-  Code   : void setup() { / Serial.begin(9600); / } / void loop() { / Serial.write(40); / }
-  => ĐÁP ÁN: C. Send a byte with value 40 through the Serial pins
-  Giải thích: Serial.write gửi byte thô giá trị 40 (ký tự '('); Serial.print(40) mới gửi chuỗi "40".
-
-[93/100 | ID #172 | 2/8 đề: FA25-FE, FA25-Half1]
-  Câu hỏi: Which trend is NOT related to the growth in IoT technology?
-  => ĐÁP ÁN: A. Increase in computer monitor size over time
-  Giải thích: IoT phát triển nhờ máy tính nhỏ hơn, mạnh hơn, rẻ hơn; kích thước màn hình không liên quan.
-
-[94/100 | ID #173 | 2/8 đề: FA25-FE, FA25-Half1]
-  Câu hỏi: What does fog extend the cloud to?
-  => ĐÁP ÁN: C. Things that process and act on data
-  Giải thích: Fog đưa khả năng của cloud xuống gần các 'things' xử lý và phản ứng với dữ liệu.
-
-[95/100 | ID #177 | 2/8 đề: FA25-FE, FA25-Half1]
-  Câu hỏi: If a resistor has bands of yellow, violet, and orange, what is its resistance value?
-  => ĐÁP ÁN: C. 47 kilo Ohms
-  Giải thích: Vàng=4, Tím=7, Cam=×10^3 → 47 000 Ω = 47 kΩ.
-
-[96/100 | ID #183 | 2/8 đề: FA25-FE, SU25-FE]
-  Câu hỏi: What programming language is used for a sketch in the Arduino IDE?
-  => ĐÁP ÁN: C. C/C++
-  Giải thích: Sketch Arduino viết bằng C/C++ (dùng thêm thư viện Arduino).
-
-[97/100 | ID #184 | 2/8 đề: FA25-Half1, SU25-FE]
-  Câu hỏi: What type of communication do the RX and TX pins on the Arduino Uno facilitate?
-  => ĐÁP ÁN: C. Serial communication
-  Giải thích: RX/TX (D0/D1) là chân UART - giao tiếp nối tiếp.
-
-[98/100 | ID #185 | 2/8 đề: FA25-Half1, SU25-RE]
-  Câu hỏi: Which sensor is the LM35?
-  => ĐÁP ÁN: D. Temperature sensor
-  Giải thích: LM35 là cảm biến nhiệt độ analog.
-
-[99/100 | ID #187 | 2/8 đề: FA25-Half1, SU25-RE]
-  Câu hỏi: What type of network is the connection between a Bluetooth headset and a smartphone?
-  => ĐÁP ÁN: A. PAN
-  Giải thích: PAN (Personal Area Network) - mạng cá nhân tầm vài mét.
-
-[100/100 | ID #193 | 2/8 đề: FA25-Half1, SU25-RE]
-  Câu hỏi: Which function in Arduino is used to initialize serial communication?
-  => ĐÁP ÁN: D. Serial.begin()
-  Giải thích: Serial.begin(baud) khởi tạo cổng nối tiếp, thường đặt trong setup().
-
-========================================================================
-MẸO KHOANH MÙ IOT102 KHI KHÔNG BIẾT (4 DÒNG NHỚ NHANH)
-========================================================================
-1. Thấy 'All of the above / All of the others' -> Chọn LUÔN (trúng 75.0%).
-2. Có 1 đáp án dài hơn rõ rệt (>= +15 ký tự)    -> Chọn DÀI NHẤT (trúng 70.0%; dài nhất TB 3.61/10).
-3. Câu chọn nhiều (Select all that apply)      -> Chắc chắn ưu tiên A và B (5/5 câu đều chứa A, B).
-4. 4 đáp án dài ngang nhau                     -> Khoanh B (30.8%) hoặc C, TRÁNH D (12.9% - thấp nhất 8/8 đề, trừ câu NOT/FALSE thì D=37.5%).
+TỦ CẤP TỐC IOT102 FE — 100 CÂU LẶP (36 SIÊU TỦ + 64 LẶP 2 ĐỀ, A-D CỐ ĐỊNH)
+Phủ 66%-84% đề FE; ôn gọn từ câu 01 đến 100.
+
+--- PHẦN 1: 36 CÂU SIÊU TỦ (3-6/8 ĐỀ) ---
+01. [6/8] What is the maximum input voltage limit for the Arduino Uno?
+    => A. 6-20 V
+02. [4/8] What is the correct syntax to output a string like "I like IoT" in a C program?
+    => D. printf("I like IoT");
+03. [4/8] Can the setup() function change the value of constant variables?
+    => B. No, it cannot change
+04. [4/8] What is the output of "pin1" if "pin2" is sent "1011", where 1 is 5V and 0 is 0V? [CODE]
+    Code: int pin1 = 12; / int pin2 = 11; / void setup() { / pinMode(pin1, OUTPUT); / pinMode(pin2, INPUT); / Serial.begin(9600); / } / void loop() { / if (digitalRead(pin2)==1) { / digitalWrite(pin1, LOW); / } / else if (digitalRead(pin2)==0) { / digitalWrite(pin1, HIGH); / } / }
+    => B. 0100
+05. [4/8] Given that the nominal voltage of an AAA battery is 1.5 V, what is the nominal voltage of 5 AAA batteries connected in parallel?
+    => D. 1.5 V
+06. [4/8] Which of the following is NOT a fundamental component of an IoT system?
+    => D. Voltage regulator
+07. [4/8] What is the type of USB port on Arduino Uno R3?
+    => B. Type B
+08. [4/8] What is the operating voltage of the ATmega328?
+    => B. 1.8V to 5.5V
+09. [4/8] How is the input voltage range of 0 to 5 volts converted to a digital value between 0 and 1023 in an Arduino microcontroller?
+    => C. By a process called analog-to-digital conversion (ADC) inside the microcontroller
+10. [4/8] What is the purpose of Fritzing in the context of designing circuits?
+    => C. To create circuit diagrams and layouts
+11. [4/8] Which of the following is an example of an IoT application?
+    => A. Wearable device to monitor blood glucose level
+12. [4/8] An IoT device can most easily be differentiated from a standard computer based on ______.
+    => B. Interface with the user and the world
+13. [4/8] IoT devices gather private information about users. Which statement is most true about the security of that data?
+    => C. Users must rely on data collecting agencies to securely store and transmit their data
+14. [4/8] In IoT, what is the purpose of a gateway?
+    => A. To act as an intermediary for data transmission between different network protocols
+15. [4/8] In the context of IoT and networking, what does the abbreviation LPWAN stand for?
+    => C. Low Power Wide Area Network
+16. [4/8] What are the 4 V's of Big Data, as described by IBM?
+    => C. Volume, Velocity, Variety, Veracity
+17. [3/8] How many pins on Arduino Uno R3 support pulse width modulation (PWM)?
+    => D. 6
+18. [3/8] In the given Arduino code, what is the purpose of the analogWrite() function and how is it used to control the LED's behavior?
+    => C. It controls the brightness of the LED
+19. [3/8] Which category of actuators includes mechanisms that use air pressure to control or move objects?
+    => D. Pneumatic
+20. [3/8] Why is the motion sensor in the responder important on a dairy farm?
+    => B. It monitors the cow's movements, potentially detecting health issues
+21. [3/8] What programming strategies could be employed to handle the "velocity" aspect of big data in an IoT system?
+    => C. Employing data streaming and real-time processing frameworks
+22. [3/8] A narrow pipe in a water system is analogous to what concept in an electrical circuit?
+    => A. Resistance
+23. [3/8] What are the two main functions of a program in Arduino IDE?
+    => C. setup() and loop()
+24. [3/8] To declare a variable that stores the value read from analog pin A0, what data type is this variable?
+    => D. Int
+25. [3/8] Which button on the ESP8266 is used to load the code again? [TRANH CÃI]
+    => A. GND
+26. [3/8] Which of the following statements is WRONG about IoT devices?
+    => D. IoT devices are completely safe
+27. [3/8] What kind of control system is one in which the output quantity has no effect upon the input quantity?
+    => A. Open loop
+28. [3/8] What are the key components in ensuring the security of IoT networks and devices?
+    => B. Authentication, authorization, network enforced policy, and secure analytics
+29. [3/8] Which component on tinkercad.com allows displaying the results of the simulation program?
+    => D. Serial monitor
+30. [3/8] What is an interrupt in the context of Arduino UNO programming?
+    => B. A signal that pauses the current process to execute a specific function
+31. [3/8] Which software is used to upload Arduino sketches to the board?
+    => D. Avrdude
+32. [3/8] In a software simulation environment (Tinkercad) for Arduino programming, which option is typically used to write and run code for your Arduino projects?
+    => A. Selecting the Code option to start coding
+33. [3/8] When integrating IoT devices with cloud platforms, what is the main programming challenge related to data flow?
+    => B. Ensuring real-time data synchronization across devices
+34. [3/8] An Arduino sketch: digitalWrite(13, HIGH); delay(1000); digitalWrite(13, LOW); delay(1000); How long is the built-in LED on?
+    => C. 1 second
+35. [3/8] What is the use of the Vin pin present on some Arduino boards?
+    => B. To power the Arduino board
+36. [3/8] Is it possible to have multiple software serial ports (UART) with speeds up to 115200 bps?
+    => D. Yes, multiple software serial ports are possible with speeds up to 115200 bps
+
+--- PHẦN 2: 64 CÂU LẶP (2/8 ĐỀ) ---
+37. [2/8] What is the size of the flash memory of the microcontroller of Arduino Uno Rev3?
+    => A. 32 KB
+38. [2/8] What is the recommended input voltage for an Arduino Uno?
+    => B. 7-12 V
+39. [2/8] How many errors are present in the code below? [CODE] [TRANH CÃI]
+    Code: int pin1=12; / void setup() { / pinmode(pin1, IN); / Serial.begin(9600); / } / void loop() { / int value=analogRead(pin1); / Serial.println(value); / }
+    => C. 3
+40. [2/8] Which symbol is used to start a comment in Arduino code?
+    => B. //
+41. [2/8] What is the output of the program below if a voltage of 5V is supplied to the A0 pin on an Arduino UNO? [CODE]
+    Code: void setup() { / Serial.begin(9600); / pinMode(A0, INPUT); / } / void loop() { / int s = analogRead(A0); / Serial.println(s); / }
+    => B. 1023
+42. [2/8] In circuit design, which component is used to limit the current from the Arduino board to the LED?
+    => C. Resistor
+43. [2/8] You read a DS18B20 temperature sensor (1-Wire) on Arduino and get rawTemp = 0x0191. How do you convert this value to degrees Celsius?
+    => A. float tempC = (float)rawTemp / 16.0;
+44. [2/8] How might the evolving nature of the internet - no longer just a means of communication but also connecting devices like refrigerators - impact various aspects of our society?
+    => C. It could introduce new security challenges, require advanced big data solutions, and potentially disrupt employment
+45. [2/8] Which of the following is an example of an IoT device?
+    => A. Smart thermostat
+46. [2/8] Consider the statement: "Each resource is either currently assigned to exactly one process or is available." Which deadlock condition matches this statement?
+    => C. Mutual exclusion
+47. [2/8] Which of the following is an example of an authentication method used in IoT devices?
+    => A. Biometric data
+48. [2/8] What is the potential risk of a hacked IoT device being misused?
+    => B. Damage to other devices or operations
+49. [2/8] What is the role of resistors in an electrical circuit?
+    => B. To control the flow of electric current
+50. [2/8] When does electricity occur?
+    => A. When negatively charged electrons jump between atoms
+51. [2/8] How many pins does the LM35 temperature sensor module have?
+    => C. 3
+52. [2/8] Which of the following is an example of a fog computing concept in IoT?
+    => C. Performing data analytics on edge devices
+53. [2/8] What is the full form of IDE in Arduino IDE software?
+    => C. Integrated Development Environment
+54. [2/8] How many parts does a complete IoT system have?
+    => B. 4
+55. [2/8] Which of the following IoT network topologies provides the highest reliability?
+    => B. Mesh topology
+56. [2/8] What is the role of a gateway in an IoT network, and how does it relate to routing?
+    => C. Gateways connect IoT devices to the internet and perform protocol translation between IoT devices and the internet, aiding in data routing
+57. [2/8] What is the role of the ATmega168/328 in an Arduino circuit?
+    => A. Run the program
+58. [2/8] What is the function of a Digital-to-Analog Converter?
+    => A. To generate an analog voltage from digital signals
+59. [2/8] What is the function of serial communication in Arduino?
+    => A. Send and receive data to/from external devices
+60. [2/8] Which data type is used to store integer values in C?
+    => C. int
+61. [2/8] Which communication technology has a range of about 10 cm?
+    => A. NFC
+62. [2/8] At what voltage does the ESP8266 chip work?
+    => A. 3.3V
+63. [2/8] What is the purpose of digital input/output programming in Arduino UNO?
+    => B. To control LEDs and buttons
+64. [2/8] Which function is used to configure pins as input or output?
+    => B. pinMode()
+65. [2/8] In C programming for IoT, what does digitalWrite(13, HIGH); mean?
+    => C. Turn on pin 13 (set HIGH level)
+66. [2/8] In a typical three-layer IoT architecture, which layer includes sensors, actuators, and RFID tags?
+    => D. Perception Layer
+67. [2/8] What is the function of an actuator in an IoT system?
+    => B. To convert electrical signals into physical action
+68. [2/8] Why is it important to consider limited power supply when programming IoT devices?
+    => C. Devices need to operate efficiently on minimal power for long durations
+69. [2/8] What is one of the primary components that need to be secured in an IoT system?
+    => B. The devices, network, programs, and data
+70. [2/8] The first three color bands of a 4-band resistor are brown, green, and yellow. What is its value?
+    => B. 150k Ohm
+71. [2/8] A part of an Arduino sketch: digitalWrite(11, HIGH); delay(300); digitalWrite(11, LOW); delay(200); What is the frequency of the waveform at digital pin D11?
+    => A. 2 Hz
+72. [2/8] In an IoT system, many devices are connected to the same set of wires. What is this connection mode?
+    => B. Bus
+73. [2/8] What is MQTT primarily used for?
+    => D. Machine to Machine Communication
+74. [2/8] What is the role of a network router in an IoT system?
+    => C. Directing data between devices
+75. [2/8] What additional consideration is necessary to make an IoT project successful compared to existing solutions?
+    => C. Be better than current solutions
+76. [2/8] What is the main purpose of routing in network communication?
+    => B. To select a path for traffic in a network
+77. [2/8] What is the size of the EEPROM of the Arduino Uno R3?
+    => A. 1 KB
+78. [2/8] What does the RX LED blinking on an Arduino board signify?
+    => A. The Arduino is receiving data from a connected device
+79. [2/8] What is the primary function of the ultrasonic sensor in IoT applications?
+    => D. Proximity detection
+80. [2/8] Which function is used to create a PWM signal to dim an LED?
+    => A. analogWrite(pin, value);
+81. [2/8] What is the primary purpose of a schematic diagram in electrical engineering?
+    => C. To illustrate the components and their connections in a circuit using standardized symbols
+82. [2/8] Why is it essential to focus on the unique value proposition of an IoT product in the early planning stages of development and commercialization?
+    => C. Differentiation from competitors is crucial for success
+83. [2/8] What does NFC stand for?
+    => D. Near Field Communication
+84. [2/8] Which of the following is NOT an IoT platform?
+    => A. Wish
+85. [2/8] Which protocol is suitable for IoT devices requiring low power and low data rate communication over a few kilometers?
+    => C. LoRaWAN
+86. [2/8] What type of device could allow a vehicle to show a warning on the dashboard, which might also alert the car's manufacturer?
+    => C. Sensor
+87. [2/8] What is the use of PWM signals in IoT development boards?
+    => C. They are used by actuators to have analog input
+88. [2/8] What is the function of a photoresistor?
+    => D. It changes resistance according to light level
+89. [2/8] Given the graph (edges: A-B, A-E, A-D, E-D, B-C, C-D), what is the depth-first traversal starting from node B (visit neighbors in ABC order)?
+    => A. BADCE
+90. [2/8] How many pins does a servo motor have?
+    => B. 3
+91. [2/8] What is the difference between an IDE and a compiler?
+    => A. The compiler executes the code while the IDE gives a graphical environment for writing the code
+92. [2/8] What is the purpose of the following Arduino code? [CODE]
+    Code: void setup() { / Serial.begin(9600); / } / void loop() { / Serial.write(40); / }
+    => C. Send a byte with value 40 through the Serial pins
+93. [2/8] Which trend is NOT related to the growth in IoT technology?
+    => A. Increase in computer monitor size over time
+94. [2/8] What does fog extend the cloud to?
+    => C. Things that process and act on data
+95. [2/8] If a resistor has bands of yellow, violet, and orange, what is its resistance value?
+    => C. 47 kilo Ohms
+96. [2/8] What programming language is used for a sketch in the Arduino IDE?
+    => C. C/C++
+97. [2/8] What type of communication do the RX and TX pins on the Arduino Uno facilitate?
+    => C. Serial communication
+98. [2/8] Which sensor is the LM35?
+    => D. Temperature sensor
+99. [2/8] What type of network is the connection between a Bluetooth headset and a smartphone?
+    => A. PAN
+100. [2/8] Which function in Arduino is used to initialize serial communication?
+    => D. Serial.begin()
+
+--- MẸO KHOANH MÙ IOT102 ---
+1. 'All of the above / others' -> Chọn LUÔN (75%).
+2. Dài nhất -> Chọn DÀI NHẤT (70% nếu dài vượt trội; TB 3.61/10).
+3. Chọn nhiều -> Chắc chắn có A và B (5/5 câu).
+4. Ngắn ngang nhau -> Khoanh B (hoặc A nếu 4 đáp án siêu ngắn), tránh D (trừ NOT/FALSE).
