@@ -207,6 +207,54 @@ button:disabled { cursor: not-allowed; opacity: .45; }
   color: var(--accent-ink);
 }
 
+/* 20-question chunk strip */
+.chunks {
+  margin-top: 6px;
+  padding: 5px 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+.chunks[hidden] { display: none; }
+.chunk-lbl {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+  margin-right: 2px;
+}
+.chunk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.chunk-btn:hover { border-color: var(--accent); }
+.chunk-btn[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.chunk-btn.chunk-all {
+  font-family: var(--font-body);
+  font-size: 12px;
+}
+
 /* collapsible filter drawer */
 .drawer {
   margin-top: 8px;
@@ -474,13 +522,15 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
   .icon-btn { width: 30px; padding: 5px 0; }
   .presets { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 5px 8px; }
   .presets::-webkit-scrollbar { display: none; }
+  .chunks { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 5px 8px; }
+  .chunks::-webkit-scrollbar { display: none; }
   .card { padding: 12px 12px 10px; }
   .qtext { font-size: 14.5px; margin: 8px 0 10px; }
   .opt { padding: 8px 10px; gap: 8px; }
   .grid { grid-template-columns: repeat(auto-fill, minmax(28px, 1fr)); }
   .pin { height: 27px; }
 }
-@media (prefers-reduced-motion: no-preference) { .opt, .pin, .btn, .chip, .preset-btn { transition: border-color .15s, background-color .15s; } }
+@media (prefers-reduced-motion: no-preference) { .opt, .pin, .btn, .chip, .preset-btn, .chunk-btn { transition: border-color .15s, background-color .15s; } }
 </style>
 </head>
 <body>
@@ -505,6 +555,7 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
   </header>
 
   <nav class="presets" id="presetsBar" aria-label="Bộ ôn chọn lọc"></nav>
+  <nav class="chunks" id="chunksBar" aria-label="Chia phần 20 câu" hidden></nav>
 
   <section class="drawer" id="filterDrawer" aria-label="Bộ lọc nâng cao" hidden>
     <div class="drow">
@@ -546,6 +597,7 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
   var PREFIX = "iot102_clean_v2.";
   var LEGACY_PREFIX = "iot102_clean_v1.";
   var L = "ABCDEFG";
+  var CHUNK_SIZE = 20;
   var $ = function (s) { return document.querySelector(s); };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   var store = {
@@ -582,15 +634,19 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
   PRESETS.forEach(function (p) { validPresets[p.id] = true; });
 
   var wrong = new Set((store.get("wrong", []) || []).filter(function (id) { return ids[id]; }));
-  var DEF = { mode: "practice", count: "all", exams: [], repeatOnly: false, preset: DEFAULT_PRESET, reversed: false };
+  var DEF = { mode: "practice", count: "all", exams: [], repeatOnly: false, preset: DEFAULT_PRESET, reversed: false, chunk: 0 };
   var settings = Object.assign({}, DEF, store.get("settings", {}) || {});
   if (!Array.isArray(settings.exams)) settings.exams = [];
   if (["20", "50", "100", "all"].indexOf(String(settings.count)) < 0) settings.count = "all";
   if (settings.mode !== "practice" && settings.mode !== "exam") settings.mode = "practice";
   if (settings.preset !== "custom" && !validPresets[settings.preset]) settings.preset = DEFAULT_PRESET;
   settings.reversed = !!settings.reversed;
+  if (settings.chunk !== "all") {
+    var ci = parseInt(settings.chunk, 10);
+    settings.chunk = (isNaN(ci) || ci < 0) ? 0 : ci;
+  }
   var theme = store.get("theme", "light") === "dark" ? "dark" : "light";
-  var wrongOnly = false, drawerOpen = false, pending = false, S = null, timerId = null;
+  var wrongOnly = false, drawerOpen = false, pending = false, S = null, timerId = null, lastChunksLen = -1;
 
   function applyTheme() {
     document.documentElement.setAttribute("data-theme", theme);
@@ -608,6 +664,29 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
   }
   function sameSet(a, b) { return a.length === b.length && a.every(function (x) { return b.indexOf(x) >= 0; }); }
   function fmt(ms) { var s = Math.floor(ms / 1000), m = Math.floor(s / 60); s = s % 60; return (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s; }
+
+  function fmtRange(start, end) {
+    return start === end ? String(start) : (start + "–" + end);
+  }
+  function chunkMetaFor(total, chunkVal) {
+    var num = Math.ceil(total / CHUNK_SIZE);
+    if (num <= 1 || chunkVal === "all") return null;
+    var idx = typeof chunkVal === "number" ? chunkVal : parseInt(chunkVal, 10);
+    if (isNaN(idx) || idx < 0 || idx >= num) idx = 0;
+    var start = idx * CHUNK_SIZE + 1;
+    var end = Math.min((idx + 1) * CHUNK_SIZE, total);
+    var hasNext = idx + 1 < num;
+    return {
+      idx: idx,
+      num: num,
+      total: total,
+      start: start,
+      end: end,
+      label: fmtRange(start, end),
+      nextIdx: hasNext ? idx + 1 : null,
+      nextLabel: hasNext ? fmtRange((idx + 1) * CHUNK_SIZE + 1, Math.min((idx + 2) * CHUNK_SIZE, total)) : null
+    };
+  }
 
   function pool(pidOverride) {
     var pid = pidOverride || settings.preset;
@@ -631,12 +710,25 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
     return q.o.map(function (_, i) { return i; });
   }
 
-  function newSession(list, doShuffle) {
+  function newSession(list, doShuffle, opts) {
     var qs = list ? list.slice() : pool();
+    var meta = (opts && opts.chunkMeta !== undefined) ? opts.chunkMeta : null;
+    var isRetry = !!(opts && opts.isRetry);
     if (!list) {
-      if (doShuffle) shuffleArr(qs);
-      if (settings.count !== "all") qs = qs.slice(0, parseInt(settings.count, 10));
-      if (!doShuffle && settings.reversed) qs.reverse();
+      meta = (settings.count === "all") ? chunkMetaFor(qs.length, settings.chunk) : null;
+      if (meta) {
+        if (settings.chunk !== meta.idx) {
+          settings.chunk = meta.idx;
+          saveSettings();
+        }
+        qs = qs.slice(meta.start - 1, meta.end);
+        if (doShuffle) shuffleArr(qs);
+        else if (settings.reversed) qs.reverse();
+      } else {
+        if (doShuffle) shuffleArr(qs);
+        if (settings.count !== "all") qs = qs.slice(0, parseInt(settings.count, 10));
+        if (!doShuffle && settings.reversed) qs.reverse();
+      }
     }
     S = {
       mode: settings.mode,
@@ -647,6 +739,8 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
       confirmRestart: false,
       t0: Date.now(),
       t1: null,
+      chunkMeta: meta,
+      isRetry: isRetry,
       items: qs.map(function (q) { return { q: q, order: makeOrder(q), sel: [], checked: false, ok: null }; })
     };
     pending = false;
@@ -712,7 +806,7 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
       render();
       return;
     }
-    newSession(S.items.map(function (it) { return it.q; }), false);
+    newSession(S.items.map(function (it) { return it.q; }), false, { chunkMeta: S.chunkMeta, isRetry: S.isRetry });
     scrollMain();
   }
   function go(i) {
@@ -765,6 +859,34 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
     wb.disabled = wrong.size === 0 && !wrongOnly;
     $("#clearWrongBtn").disabled = wrong.size === 0;
 
+    var baseLen = pool().length;
+    var numChunks = Math.ceil(baseLen / CHUNK_SIZE);
+    var cb = $("#chunksBar");
+    if (cb) {
+      if (numChunks <= 1) {
+        cb.hidden = true;
+        if (lastChunksLen !== 0) { cb.innerHTML = ""; lastChunksLen = 0; }
+      } else {
+        cb.hidden = false;
+        if (lastChunksLen !== baseLen) {
+          var ch = '<span class="chunk-lbl">Chia 20 câu:</span>';
+          for (var ci = 0; ci < numChunks; ci++) {
+            var s1 = ci * CHUNK_SIZE + 1;
+            var e1 = Math.min((ci + 1) * CHUNK_SIZE, baseLen);
+            var rng = fmtRange(s1, e1);
+            ch += '<button type="button" class="chunk-btn" data-chunk="' + ci + '" title="Phần ' + (ci + 1) + '/' + numChunks + ' (' + (e1 - s1 + 1) + ' câu)">' + rng + '</button>';
+          }
+          ch += '<button type="button" class="chunk-btn chunk-all" data-chunk="all" title="Làm liền tất cả ' + baseLen + ' câu không chia">Gộp ' + baseLen + '</button>';
+          cb.innerHTML = ch;
+          lastChunksLen = baseLen;
+        }
+        var activeVal = settings.count !== "all" ? null : (settings.chunk === "all" ? "all" : (settings.chunk >= 0 && settings.chunk < numChunks ? settings.chunk : 0));
+        cb.querySelectorAll("[data-chunk]").forEach(function (b) {
+          b.setAttribute("aria-pressed", String(activeVal !== null && b.dataset.chunk === String(activeVal)));
+        });
+      }
+    }
+
     var parts = [];
     if (wrongOnly) parts.push("Đã sai");
     else if (settings.preset !== "custom") {
@@ -775,7 +897,9 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
       if (settings.repeatOnly) parts.push("Lặp");
       if (settings.exams.length) parts.push(settings.exams.length + " đề");
     }
-    parts.push(settings.count === "all" ? (pool().length + " câu") : (settings.count + " câu"));
+    var activeMeta = settings.count === "all" ? chunkMetaFor(baseLen, settings.chunk) : null;
+    if (activeMeta) parts.push(activeMeta.label + "/" + baseLen);
+    else parts.push(settings.count === "all" ? (baseLen + " câu") : (settings.count + " câu"));
     $("#filterSummary").textContent = parts.join(" · ");
 
     var ft = $("#filterToggle");
@@ -826,6 +950,9 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
     var pct = Math.round((doneCount / S.items.length) * 100);
     var h = '<article class="card"><div class="progress-track"><div class="progress-fill" style="width:' + pct + '%"></div></div>';
     h += '<div class="card-head"><span class="qnum">Câu ' + (S.cur + 1) + '<span class="of"> / ' + S.items.length + '</span></span><div class="badges">';
+    if (S.chunkMeta) {
+      h += '<span class="badge">' + (S.isRetry ? ('Phần ' + (S.chunkMeta.idx + 1) + '/' + S.chunkMeta.num + ' · Ôn sai') : ('Phần ' + (S.chunkMeta.idx + 1) + '/' + S.chunkMeta.num + ' · ' + S.chunkMeta.label)) + '</span>';
+    }
     if (multi) h += '<span class="badge multi">Chọn ' + q.a.length + ' đáp án</span>';
     if (q.flag) h += '<span class="badge flag">Tranh cãi</span>';
     h += '<span class="badge" title="' + esc(q.src.join(", ")) + '">' + q.src.length + '/' + EXAMS.length + ' đề</span>';
@@ -905,10 +1032,12 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
     var h = '<article class="card"><div class="score"><span class="num">' + score.toFixed(1) + '<small> / 10</small></span><div>';
     if (S.mode === "exam") h += '<p><b>' + okN + '/' + n + '</b> câu đúng · ' + (n - okN) + ' câu sai hoặc bỏ trống</p>';
     else h += '<p><b>' + okN + '/' + graded.length + '</b> câu đúng trong số đã làm · ' + (n - graded.length) + ' câu bỏ qua</p>';
-    h += '<p>Thời gian ' + time + ' · ' + (S.mode === "exam" ? "Thi thử" : "Luyện tập") + '</p></div></div>';
+    h += '<p>Thời gian ' + time + ' · ' + (S.mode === "exam" ? "Thi thử" : "Luyện tập") + (S.chunkMeta ? (' · Phần ' + (S.chunkMeta.idx + 1) + '/' + S.chunkMeta.num + ' (' + S.chunkMeta.label + ')') : '') + '</p></div></div>';
     h += '<div class="res-actions">';
     if (misses.length) h += '<button type="button" class="btn primary" data-act="retry">Làm lại ' + misses.length + ' câu sai</button>';
-    h += '<button type="button" class="btn' + (misses.length ? "" : " primary") + '" data-act="restart">↺ Làm lại từ đầu</button>' +
+    var hasNext = !!(S.chunkMeta && S.chunkMeta.nextIdx != null);
+    if (hasNext) h += '<button type="button" class="btn' + (misses.length ? "" : " primary") + '" data-act="nextChunk">Phần tiếp theo (' + S.chunkMeta.nextLabel + ') →</button>';
+    h += '<button type="button" class="btn' + (misses.length || hasNext ? "" : " primary") + '" data-act="restart">↺ Làm lại từ đầu</button>' +
       '<button type="button" class="btn" data-goto="0">Xem lại từ câu 1</button>' +
       '<button type="button" class="btn" data-act="shuffleNew">Trộn bộ mới</button></div>';
     if (misses.length) {
@@ -937,14 +1066,27 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
       settings.exams = [];
       settings.repeatOnly = false;
       settings.count = "all";
+      if (settings.chunk !== "all") settings.chunk = 0;
       wrongOnly = false;
       saveSettings();
       newSession(null, false);
       return;
     }
+    if (t.dataset.chunk != null) {
+      var val = t.dataset.chunk === "all" ? "all" : parseInt(t.dataset.chunk, 10);
+      var countWasAll = settings.count === "all";
+      if (countWasAll && settings.chunk === val && !pending && !(S && S.isRetry)) return;
+      settings.count = "all";
+      settings.chunk = val;
+      saveSettings();
+      newSession(null, false);
+      scrollMain();
+      return;
+    }
     if (t.id === "wrongBtn") {
       wrongOnly = !wrongOnly;
       settings.preset = wrongOnly ? "custom" : DEFAULT_PRESET;
+      if (settings.chunk !== "all") settings.chunk = 0;
       applySettings();
       return;
     }
@@ -952,6 +1094,7 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
       wrong.clear();
       saveWrong();
       if (wrongOnly) { wrongOnly = false; settings.preset = DEFAULT_PRESET; }
+      if (settings.chunk !== "all") settings.chunk = 0;
       applySettings();
       return;
     }
@@ -967,6 +1110,7 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
         if (k >= 0) settings.exams.splice(k, 1); else settings.exams.push(ex);
         if (settings.exams.length === EXAMS.length) settings.exams = [];
       }
+      if (settings.chunk !== "all") settings.chunk = 0;
       applySettings();
       return;
     }
@@ -987,17 +1131,29 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
         settings.reversed = !settings.reversed;
         saveSettings();
         if (pending) newSession(null, false);
-        else newSession(S.items.map(function (it) { return it.q; }).reverse(), false);
+        else newSession(S.items.map(function (it) { return it.q; }).reverse(), false, { chunkMeta: S.chunkMeta, isRetry: S.isRetry });
         scrollMain();
         break;
       case "restart": restart(); break;
-      case "retry": newSession(S.items.filter(function (it) { return it.checked && !it.ok; }).map(function (it) { return it.q; }), false); scrollMain(); break;
+      case "retry": newSession(S.items.filter(function (it) { return it.checked && !it.ok; }).map(function (it) { return it.q; }), false, { chunkMeta: S.chunkMeta, isRetry: true }); scrollMain(); break;
+      case "nextChunk":
+        if (S && S.chunkMeta && S.chunkMeta.nextIdx != null) {
+          settings.chunk = S.chunkMeta.nextIdx;
+          settings.count = "all";
+          saveSettings();
+          newSession(null, false);
+          var activeChunkBtn = $("#chunksBar [data-chunk='" + settings.chunk + "']");
+          if (activeChunkBtn && activeChunkBtn.scrollIntoView) activeChunkBtn.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+          scrollMain();
+        }
+        break;
       case "resetFilters":
         settings.preset = DEFAULT_PRESET;
         settings.exams = [];
         settings.repeatOnly = false;
         settings.count = "all";
         settings.reversed = false;
+        settings.chunk = 0;
         wrongOnly = false;
         saveSettings();
         newSession(null, false);
@@ -1005,10 +1161,15 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
     }
   });
 
-  $("#count").addEventListener("change", function (e) { settings.count = e.target.value; applySettings(); });
+  $("#count").addEventListener("change", function (e) {
+    settings.count = e.target.value;
+    if (settings.count !== "all") settings.chunk = "all";
+    applySettings();
+  });
   $("#repeatOnly").addEventListener("change", function (e) {
     settings.repeatOnly = e.target.checked;
     settings.preset = "custom";
+    if (settings.chunk !== "all") settings.chunk = 0;
     applySettings();
   });
   document.addEventListener("keydown", function (e) {
