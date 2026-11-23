@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FE Quiz · CSD201 · IOT102 · JPD123</title>
+<title>FE Quiz · PRJ301 · CSD201 · IOT102 · JPD123</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700&family=JetBrains+Mono:wght@600&display=swap">
@@ -15,6 +15,7 @@
   --ink: #0F172A;
   --muted: #64748B;
   --line: #E2E8F0;
+  --prj: #C2410C;
   --csd: #2563EB;
   --iot: #0D9488;
   --jpd: #7C3AED;
@@ -27,6 +28,7 @@
     --ink: #F1F5F9;
     --muted: #94A3B8;
     --line: #273449;
+    --prj: #FB923C;
     --csd: #60A5FA;
     --iot: #2DD4BF;
     --jpd: #A78BFA;
@@ -63,6 +65,7 @@ h1 { margin: 0 0 2px; font-size: 20px; font-weight: 700; letter-spacing: -.01em;
   background: var(--surface-2);
   border: 1px solid var(--line);
 }
+.pill.prj { color: var(--prj); }
 .pill.csd { color: var(--csd); }
 .pill.iot { color: var(--iot); }
 .pill.jpd { color: var(--jpd); }
@@ -85,6 +88,7 @@ h1 { margin: 0 0 2px; font-size: 20px; font-weight: 700; letter-spacing: -.01em;
   white-space: nowrap;
 }
 .btn.primary { flex: 1 1 auto; color: #FFFFFF; border-color: transparent; }
+.btn.prj { background: var(--prj); }
 .btn.csd { background: var(--csd); }
 .btn.iot { background: var(--iot); }
 .btn.jpd { background: var(--jpd); }
@@ -101,6 +105,20 @@ h1 { margin: 0 0 2px; font-size: 20px; font-weight: 700; letter-spacing: -.01em;
 <body>
 <main class="wrap">
   <h1>FE Quiz</h1>
+
+  <article class="card">
+    <div class="top">
+      <div class="title-row">
+        <span class="pill prj">PRJ301</span>
+        <h2 class="title">PRJ301 FE</h2>
+      </div>
+      <span class="badge">191 câu (4 đề SU26) · A–E cố định</span>
+    </div>
+    <div class="actions">
+      <a class="btn primary prj" href="./PRJ301_FE_QUIZ.html">Vào làm PRJ301 →</a>
+      <a class="btn" href="./TU_CAP_TOC_PRJ301.txt">Tủ .txt</a>
+    </div>
+  </article>
 
   <article class="card">
     <div class="top">
