@@ -622,13 +622,34 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
         "hint": "Toàn bộ 191 câu từ 4 đề PRJ301 đã giải"
     },
     {
+        "id": "ex_SU26-B5-RE",
+        "label": "📝 SU26-B5-RE",
+        "hint": "Trọn bộ 50 câu đề SU26-B5-RE"
+    },
+    {
+        "id": "ex_SU26-B5-FE",
+        "label": "📝 SU26-B5-FE",
+        "hint": "Trọn bộ 50 câu đề SU26-B5-FE"
+    },
+    {
+        "id": "ex_SU26-RE",
+        "label": "📝 SU26-RE",
+        "hint": "Trọn bộ 50 câu đề SU26-RE"
+    },
+    {
+        "id": "ex_SU26-FE",
+        "label": "📝 SU26-FE",
+        "hint": "Trọn bộ 50 câu đề SU26-FE"
+    },
+    {
         "id": "rep2",
-        "label": "🔥 Tủ lặp ≥ 2 đề",
+        "label": "🔥 Lặp ≥ 2 đề",
         "hint": "8 câu lặp từ 2/4 đề trở lên"
     }
 ];
   function matchPreset(q, pid) {
     if (pid === "rep2") return q.src.length >= 2;
+    if (pid.indexOf("ex_") === 0) return q.src.indexOf(pid.slice(3)) >= 0;
     return true;
   }
 
