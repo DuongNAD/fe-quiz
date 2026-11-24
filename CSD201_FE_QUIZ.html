@@ -371,6 +371,10 @@ select {
 }
 .badge.multi { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
 .badge.flag { background: var(--warn-soft); border-color: var(--warn); color: var(--warn); font-weight: 600; }
+.badge.ans-pill { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); font-weight: 700; }
+.study-list { display: grid; gap: 10px; }
+.study-card { scroll-margin-top: 12px; }
+.study-foot { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center; }
 
 .qtext {
   font-size: 15px;
@@ -552,6 +556,7 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
     </div>
     <div class="top-actions">
       <div class="seg" role="group" aria-label="Chế độ">
+        <button type="button" data-mode="study" aria-pressed="false" title="Hiện sẵn đáp án đúng để học nhanh, không tính điểm sai">Học đáp án</button>
         <button type="button" data-mode="practice" aria-pressed="true">Luyện tập</button>
         <button type="button" data-mode="exam" aria-pressed="false">Thi thử</button>
       </div>
@@ -653,13 +658,14 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
   PRESETS.forEach(function (p) { validPresets[p.id] = true; });
 
   var wrong = new Set((store.get("wrong", []) || []).filter(function (id) { return ids[id]; }));
-  var DEF = { mode: "practice", count: "all", exams: [], repeatOnly: false, preset: DEFAULT_PRESET, reversed: false, chunk: 0 };
+  var DEF = { mode: "practice", count: "all", exams: [], repeatOnly: false, preset: DEFAULT_PRESET, reversed: false, chunk: 0, studyList: false };
   var settings = Object.assign({}, DEF, store.get("settings", {}) || {});
   if (!Array.isArray(settings.exams)) settings.exams = [];
   if (["20", "50", "100", "all"].indexOf(String(settings.count)) < 0) settings.count = "all";
-  if (settings.mode !== "practice" && settings.mode !== "exam") settings.mode = "practice";
+  if (settings.mode !== "study" && settings.mode !== "practice" && settings.mode !== "exam") settings.mode = "practice";
   if (settings.preset !== "custom" && !validPresets[settings.preset]) settings.preset = DEFAULT_PRESET;
   settings.reversed = !!settings.reversed;
+  settings.studyList = !!settings.studyList;
   if (settings.chunk !== "all") {
     var ci = parseInt(settings.chunk, 10);
     settings.chunk = (isNaN(ci) || ci < 0) ? 0 : ci;
@@ -786,7 +792,7 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
   function record(it) { if (it.ok) wrong.delete(it.q.id); else wrong.add(it.q.id); saveWrong(); }
   function choose(oi) {
     var it = S.items[S.cur];
-    if (S.submitted || (S.mode === "practice" && it.checked)) return;
+    if (S.mode === "study" || S.submitted || (S.mode === "practice" && it.checked)) return;
     if (it.q.a.length > 1) {
       var k = it.sel.indexOf(oi);
       if (k >= 0) it.sel.splice(k, 1); else it.sel.push(oi);
@@ -833,6 +839,19 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
     S.cur = i;
     S.finished = false;
     S.confirmRestart = false;
+    if (S.mode === "study" && settings.studyList) {
+      document.querySelectorAll("#panel .pin").forEach(function (b, idx) {
+        b.classList.toggle("cur", idx === i);
+      });
+      var sc = $("#studyCur");
+      if (sc) sc.textContent = String(i + 1);
+      var target = $("#sq-" + i);
+      if (target && target.scrollIntoView) {
+        var smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        target.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+      }
+      return;
+    }
     render();
     scrollMain();
   }
@@ -1012,6 +1031,7 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
     var main = $("#main");
     if (!S.items.length) main.innerHTML = emptyHTML();
     else if (S.finished) main.innerHTML = resultsHTML();
+    else if (S.mode === "study" && settings.studyList) main.innerHTML = studyListHTML();
     else main.innerHTML = cardHTML();
     $("#panel").innerHTML = S.items.length ? panelHTML() : "";
   }
@@ -1029,9 +1049,10 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
 
   function cardHTML() {
     var it = S.items[S.cur], q = it.q, multi = q.a.length > 1;
-    var reveal = S.submitted || (S.mode === "practice" && it.checked);
+    var isStudy = S.mode === "study";
+    var reveal = isStudy || S.submitted || (S.mode === "practice" && it.checked);
     var doneCount = S.items.filter(function (x) { return x.sel.length > 0; }).length;
-    var pct = Math.round((doneCount / S.items.length) * 100);
+    var pct = isStudy ? Math.round(((S.cur + 1) / S.items.length) * 100) : Math.round((doneCount / S.items.length) * 100);
     var h = '<article class="card"><div class="progress-track"><div class="progress-fill" style="width:' + pct + '%"></div></div>';
     h += '<div class="card-head"><span class="qnum">Câu ' + (S.cur + 1) + '<span class="of"> / ' + S.items.length + '</span></span><div class="badges">';
     if (S.chunkMeta) {
@@ -1048,7 +1069,7 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
     it.order.forEach(function (oi, di) {
       var chosen = it.sel.indexOf(oi) >= 0, isAns = q.a.indexOf(oi) >= 0, cls = "opt", mark = "";
       if (reveal) {
-        if (isAns) { cls += chosen ? " is-correct" : " is-missed"; mark = "✓"; }
+        if (isAns) { cls += (isStudy || chosen) ? " is-correct" : " is-missed"; mark = "✓"; }
         else if (chosen) { cls += " is-wrong"; mark = "✗"; }
       } else if (chosen) cls += " is-selected";
       h += '<li><button type="button" class="' + cls + '" data-opt="' + oi + '" aria-pressed="' + chosen + '"' + (reveal ? ' aria-disabled="true"' : "") + '>' +
@@ -1056,27 +1077,86 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
     });
     h += '</ol>';
     if (reveal) {
-      var v = it.ok ? "ok" : (it.sel.length ? "bad" : "skip");
-      var vt = { ok: "Chính xác", bad: "Chưa đúng", skip: "Bỏ trống" }[v];
-      h += '<div class="feedback ' + v + '"><span class="verdict">' + vt + '</span><span class="ans-tag">Đáp án: ' + lettersOf(it, q.a) + '</span>' + (q.flag ? '<span class="badge flag">Tranh cãi</span>' : '') + '</div>';
+      if (isStudy) {
+        h += '<div class="feedback ok"><span class="verdict">Học đáp án</span><span class="ans-tag">Đáp án đúng: ' + lettersOf(it, q.a) + '</span>' + (q.flag ? '<span class="badge flag">Tranh cãi</span>' : '') + '</div>';
+      } else {
+        var v = it.ok ? "ok" : (it.sel.length ? "bad" : "skip");
+        var vt = { ok: "Chính xác", bad: "Chưa đúng", skip: "Bỏ trống" }[v];
+        h += '<div class="feedback ' + v + '"><span class="verdict">' + vt + '</span><span class="ans-tag">Đáp án: ' + lettersOf(it, q.a) + '</span>' + (q.flag ? '<span class="badge flag">Tranh cãi</span>' : '') + '</div>';
+      }
     }
     var last = S.cur === S.items.length - 1;
     var restartLabel = S.confirmRestart ? "Xác nhận làm lại?" : "↺ Làm lại từ đầu";
-    h += '<div class="nav"><div class="nav-l"><button type="button" class="btn" data-act="prev"' + (S.cur === 0 ? " disabled" : "") + '>← Câu trước</button>' +
-      '<button type="button" class="btn' + (S.confirmRestart ? " warn" : "") + '" data-act="restart">' + restartLabel + '</button></div><div class="nav-r">';
+    h += '<div class="nav"><div class="nav-l"><button type="button" class="btn" data-act="prev"' + (S.cur === 0 ? " disabled" : "") + '>← Câu trước</button>';
+    if (isStudy) h += '<button type="button" class="btn" data-act="toggleStudyList">☰ Xem cả danh sách</button>';
+    h += '<button type="button" class="btn' + (S.confirmRestart ? " warn" : "") + '" data-act="restart">' + (isStudy ? "↺ Về câu 1" : restartLabel) + '</button></div><div class="nav-r">';
     if (S.mode === "practice" && !it.checked && !S.submitted && multi) {
       h += '<button type="button" class="btn primary" data-act="check"' + (it.sel.length ? "" : " disabled") + '>Kiểm tra</button>';
     }
-    var nextPrimary = S.submitted || S.mode === "exam" || it.checked;
+    var nextPrimary = isStudy || S.submitted || S.mode === "exam" || it.checked;
     if (!last) h += '<button type="button" class="btn ' + (nextPrimary ? "primary" : "") + '" data-act="next">Câu sau →</button>';
+    else if (isStudy) {
+      if (S.chunkMeta && S.chunkMeta.nextIdx != null) {
+        h += '<button type="button" class="btn" data-act="startPractice">✎ Luyện phần này</button>' +
+          '<button type="button" class="btn primary" data-act="nextChunk">Phần tiếp theo (' + S.chunkMeta.nextLabel + ') →</button>';
+      } else {
+        h += '<button type="button" class="btn primary" data-act="startPractice">✎ Luyện bộ này ngay</button>';
+      }
+    }
     else if (S.submitted) h += '<button type="button" class="btn primary" data-act="results">Về bảng điểm</button>';
     else h += '<button type="button" class="btn primary" data-act="finish">' + (S.mode === "exam" ? "Nộp bài" : "Xem kết quả") + '</button>';
     h += '</div></div>';
     return h + '</article>';
   }
 
+  function studyListHTML() {
+    var h = '<div class="study-list">';
+    S.items.forEach(function (it, i) {
+      var q = it.q, multi = q.a.length > 1;
+      h += '<article class="card study-card" id="sq-' + i + '">';
+      h += '<div class="card-head"><span class="qnum">Câu ' + (i + 1) + '<span class="of"> / ' + S.items.length + '</span></span><div class="badges">';
+      if (multi) h += '<span class="badge multi">Chọn ' + q.a.length + ' đáp án</span>';
+      if (q.flag) h += '<span class="badge flag">Tranh cãi</span>';
+      h += '<span class="badge" title="' + esc(q.src.join(", ")) + '">' + q.src.length + '/' + EXAMS.length + ' đề</span>';
+      h += '<span class="badge ans-pill">Đáp án: ' + lettersOf(it, q.a) + '</span>';
+      h += '</div></div>';
+      h += '<p class="qtext">' + esc(q.q) + '</p>';
+      if (q.code) h += '<pre class="code"><code>' + esc(q.code) + '</code></pre>';
+      if (q.fig) h += '<figure class="fig" aria-label="Hình minh hoạ">' + figSVG(q.fig) + '</figure>';
+      h += '<ol class="opts" role="' + (multi ? "group" : "radiogroup") + '" aria-label="Các lựa chọn">';
+      it.order.forEach(function (oi, di) {
+        var isAns = q.a.indexOf(oi) >= 0;
+        h += '<li><button type="button" class="opt' + (isAns ? " is-correct" : "") + '" data-opt="' + oi + '" aria-pressed="' + isAns + '" aria-disabled="true">' +
+          '<span class="key">' + L[di] + '</span><span class="txt' + (q.o[oi].indexOf("\n") >= 0 ? " mono" : "") + '">' + esc(q.o[oi]) + '</span>' + (isAns ? '<span class="mark" aria-hidden="true">✓</span>' : "") + '</button></li>';
+      });
+      h += '</ol></article>';
+    });
+    h += '<div class="card study-foot"><button type="button" class="btn" data-act="toggleStudyList">▢ Xem từng câu</button><div class="nav-r"><button type="button" class="btn primary" data-act="startPractice">✎ Luyện bộ này ngay</button>';
+    if (S.chunkMeta && S.chunkMeta.nextIdx != null) {
+      h += '<button type="button" class="btn" data-act="nextChunk">Phần tiếp theo (' + S.chunkMeta.nextLabel + ') →</button>';
+    }
+    h += '</div></div></div>';
+    return h;
+  }
+
   function panelHTML() {
     var n = S.items.length;
+    if (S.mode === "study") {
+      var hs = '<div class="panel">';
+      hs += '<div class="meter"><div><span class="big" id="studyCur">' + (S.cur + 1) + '</span><span class="unit">/' + n + '</span><p>câu đang xem</p></div><div><span class="big ok">✓</span><p>hiện đáp án</p></div></div>';
+      hs += '<div class="grid">' + S.items.map(function (_, i) {
+        return '<button type="button" class="pin' + (i === S.cur && !S.finished ? " cur" : "") + '" data-goto="' + i + '" aria-label="Câu ' + (i + 1) + '">' + (i + 1) + '</button>';
+      }).join("") + '</div>';
+      hs += '<div class="panel-actions">';
+      hs += '<button type="button" class="btn wide" data-act="toggleStudyList">' + (settings.studyList ? "▢ Xem từng câu" : "☰ Xem cả danh sách") + '</button>';
+      hs += '<button type="button" class="btn primary wide" data-act="startPractice">✎ Luyện bộ này ngay</button>';
+      if (S.chunkMeta && S.chunkMeta.nextIdx != null) {
+        hs += '<button type="button" class="btn wide" data-act="nextChunk">Phần tiếp (' + S.chunkMeta.nextLabel + ') →</button>';
+      }
+      hs += '<button type="button" class="btn wide" data-act="restart">↺ Về câu 1</button>';
+      hs += '</div></div>';
+      return hs;
+    }
     var answered = S.items.filter(function (it) { return it.sel.length; }).length;
     var okN = S.items.filter(function (it) { return it.checked && it.ok; }).length;
     var badN = S.items.filter(function (it) { return it.checked && !it.ok; }).length;
@@ -1219,6 +1299,19 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
         scrollMain();
         break;
       case "restart": restart(); break;
+      case "toggleStudyList":
+        settings.studyList = !settings.studyList;
+        saveSettings();
+        render();
+        scrollMain();
+        break;
+      case "startPractice":
+        settings.mode = "practice";
+        saveSettings();
+        if (pending) newSession(null, false);
+        else newSession(S.items.map(function (it) { return it.q; }), false, { chunkMeta: S.chunkMeta, isRetry: S.isRetry });
+        scrollMain();
+        break;
       case "retry": newSession(S.items.filter(function (it) { return it.checked && !it.ok; }).map(function (it) { return it.q; }), false, { chunkMeta: S.chunkMeta, isRetry: true }); scrollMain(); break;
       case "nextChunk":
         if (S && S.chunkMeta && S.chunkMeta.nextIdx != null) {
@@ -1258,6 +1351,7 @@ h2 { font-size: 16px; font-weight: 700; margin: 16px 0 0; }
   });
   document.addEventListener("keydown", function (e) {
     if (!S || !S.items.length || S.finished) return;
+    if (S.mode === "study" && settings.studyList) return;
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     var tag = (e.target.tagName || "").toLowerCase();
     if (tag === "select" || tag === "input" || tag === "textarea") return;
