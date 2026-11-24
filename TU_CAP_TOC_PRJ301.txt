@@ -1,751 +1,833 @@
-TỦ CẤP TỐC PRJ301 FE — TỔNG HỢP 238 CÂU TỪ 6 ĐỀ (SU26-B5-RE, SU26-B5-FE, SU26-RE, SU26-FE, SP26-B5FE, SP26-RE)
+TỦ CẤP TỐC PRJ301 FE — TỔNG HỢP 264 CÂU TỪ 7 ĐỀ (SU26-B5-RE, SU26-B5-FE, SU26-RE, SU26-FE, SP26-B5FE, SP26-RE, SP26-FE)
 Đáp án cố định theo thứ tự A–F của đề gốc; ưu tiên thuộc kỹ Phần 1 (câu lặp ≥ 2 đề), sau đó quét nhanh từng đề.
 
-=== PHẦN 1: 57 CÂU LẶP ≥ 2/6 ĐỀ ===
-001. [4/6 | SU26-B5-RE#Q50, SU26-RE#Q49, SU26-FE#Q49, SP26-B5FE#Q50] In a Java web application, when two filters match an incoming request—one via a URL pattern and the other via a Servlet name—which filter takes precedence in the processing chain?
+=== PHẦN 1: 79 CÂU LẶP ≥ 2/7 ĐỀ ===
+001. [4/7 | SU26-B5-RE#Q50, SU26-RE#Q49, SU26-FE#Q49, SP26-B5FE#Q50] In a Java web application, when two filters match an incoming request—one via a URL pattern and the other via a Servlet name—which filter takes precedence in the processing chain?
      => A. The filter matching the request via a URL pattern.
      Giải thích: Theo Servlet Spec mục 6.2.4, các filter khớp theo <url-pattern> luôn được xếp chạy trước các filter khớp theo <servlet-name>
-002. [3/6 | SU26-B5-RE#Q26, SU26-RE#Q22, SP26-B5FE#Q23] How do you manage database transaction with JDBC driver?
+002. [3/7 | SU26-B5-RE#Q26, SU26-RE#Q22, SP26-B5FE#Q23] How do you manage database transaction with JDBC driver?
      => D. Invoke con.commit() or con,rollback()
      Giải thích: Quản lý giao dịch JDBC bằng các phương thức commit()/rollback() trên Connection (con.commit() / con.rollback(); đề ghi lỗi đánh máy 'con,rollback()')
-003. [3/6 | SU26-B5-RE#Q49, SU26-B5-FE#Q15, SP26-RE#Q37] Which Listener should be used to load JDBC Driver automatically for a web application?
+003. [3/7 | SU26-B5-RE#Q49, SU26-B5-FE#Q15, SP26-RE#Q37] Which Listener should be used to load JDBC Driver automatically for a web application?
      => D. ServletContextListener
      Giải thích: ServletContextListener chạy 1 lần lúc khởi động ứng dụng nên phù hợp để nạp JDBC Driver tự động
-004. [3/6 | SU26-B5-FE#Q48, SU26-FE#Q12, SP26-RE#Q12] What is the purpose of the RequestDispatcher interface in servlets?
-     => B. To forward the request to another resource
-     Giải thích: RequestDispatcher dùng để forward (chuyển tiếp) hoặc include request tới một tài nguyên khác trên server
-005. [2/6 | SU26-B5-RE#Q02, SP26-RE#Q01] Which of the following statements are correct about the status code = 401 of the Http response?
-     => B. Indicates that the request requires HTTP authentication.
-     Giải thích: HTTP 401 Unauthorized cho biết request yêu cầu xác thực HTTP (HTTP authentication)
-006. [2/6 | SU26-B5-RE#Q05, SP26-B5FE#Q04] How can you create a drop-down list in an HTML form?
-     => C. Using the <select> element
-     Giải thích: Thẻ HTML <select> (kết hợp <option>) dùng để tạo danh sách thả xuống (drop-down list)
-007. [2/6 | SU26-B5-RE#Q10, SP26-RE#Q08] Which technology helps to manage session in Java Web?
-     => D. Both A, B and C
-     Giải thích: Cả Cookies, HttpSession và URL Rewriting đều là kỹ thuật quản lý session trong Java Web
-008. [2/6 | SU26-B5-RE#Q19, SP26-B5FE#Q16] For generating an HTML page in JSP, which content type must be set using the page directive?
-     => C. text/html
-     Giải thích: Để sinh trang HTML trong JSP, đặt contentType="text/html" trong page directive
-009. [2/6 | SU26-B5-RE#Q20, SP26-RE#Q16] Which of the following method can be used to read a form parameter in JSP?
-     => A. request.getParameter()
-     Giải thích: request.getParameter() dùng để đọc tham số gửi từ HTML form trong JSP/Servlet
-010. [2/6 | SU26-B5-RE#Q23, SP26-RE#Q19] When using PreparedStatement, what is the main benefit over Statement?
-     => D. Both A and B are correct
-     Giải thích: PreparedStatement vừa biên dịch sẵn giúp tăng hiệu năng cho truy vấn lặp, vừa chống SQL Injection
-011. [2/6 | SU26-B5-RE#Q30, SP26-RE#Q25] Evaluate the impact of adopting an MVC2 architecture on the testability of a web application.
-     => B. It would improve testability by allowing the components to be tested in isolation
-     Giải thích: MVC2 tách bạch Model, View và Controller nên các thành phần có thể kiểm thử độc lập (in isolation), tăng testability
-012. [2/6 | SU26-B5-RE#Q35, SP26-B5FE#Q33] Given a Java class Employee with a field named tel, consider the following Expression Language (EL) code, where emp is an instance of the Employee class: Which of the following statements accurately describes the requirements for accessing and displaying the tel field using this EL expression? [CODE]
-     Code: ${emp.tel}
-     => B. The tel field may be private, but a getTel() method must be provided.
-     Giải thích: EL ${emp.tel} truy cập property theo chuẩn JavaBean thông qua getter getTel() (field tel có thể private)
-013. [2/6 | SU26-B5-RE#Q37, SP26-B5FE#Q34] When accessing ${sessionScope.cart.items[0]}, what happens?
-     => D. Both A and B are correct
-     Giải thích: EL vừa truy xuất phần tử đầu tiên items[0] của cart trong sessionScope, vừa an toàn null (trả null nếu cart không tồn tại)
-014. [2/6 | SU26-B5-RE#Q44, SP26-RE#Q47] What is NOT the use of filter in JSP?
-     => D. Link to my bootstrap.min.css in a JSP file
-     Giải thích: Nhúng file bootstrap.min.css vào JSP là việc của thẻ HTML <link>, không phải công dụng của Servlet Filter (A/B/C/E đều là ứng dụng chuẩn của Filter)
-015. [2/6 | SU26-B5-RE#Q46, SP26-RE#Q49] What is the primary purpose of the doFilter() method in a filter's life cycle?
-     => C. To perform the actual filtering of requests and responses.
-     Giải thích: doFilter() là nơi thực hiện logic lọc thực tế đối với request và response trong vòng đời Filter
-016. [2/6 | SU26-B5-FE#Q02, SP26-B5FE#Q26] Which is NOT considered a standard component of a typical MVC architecture in web applications?
-     => A. Database
-     Giải thích: 3 thành phần chuẩn của MVC là Model, View, Controller; Database không phải một thành phần chuẩn trong tên kiến trúc MVC
-017. [2/6 | SU26-B5-FE#Q04, SP26-RE#Q40] What will be the output of the following JSTL code if userList is an empty list? [CODE]
-     Code: <c:forEach var="user" items="${userList}"> / <p>${user.name}</p> / </c:forEach> / <p>End of list</p>
-     => C. It will only print "End of list".
-     Giải thích: Khi userList rỗng, <c:forEach> không lặp lần nào và không ném lỗi, trang chỉ in "End of list"
-018. [2/6 | SU26-B5-FE#Q08, SP26-B5FE#Q38] What does a session listener do in a web application?
-     => B. It watches for changes in user sessions, like when someone logs in or out
-     Giải thích: Session listener (HttpSessionListener) theo dõi các sự kiện thay đổi phiên người dùng như tạo mới/huỷ phiên khi đăng nhập/đăng xuất
-019. [2/6 | SU26-B5-FE#Q09, SP26-B5FE#Q08] Which of the following is NOT typically configured in the web.xml file of a Java web application?
-     => C. Database table schema
-     Giải thích: Lược đồ bảng cơ sở dữ liệu (Database table schema) được định nghĩa trong DBMS/SQL, không cấu hình trong web.xml
-020. [2/6 | SU26-B5-FE#Q10, SP26-B5FE#Q49] When is the destroy() method of a servlet filter called?
-     => A. At the end of the filter's lifecycle
-     Giải thích: Container gọi destroy() ở cuối vòng đời của filter (khi đưa filter ra khỏi trạng thái phục vụ, trước khi hoàn tất undeploy)
-021. [2/6 | SU26-B5-FE#Q13, SP26-RE#Q07] In which directory is the web.xml file typically located in a Java web application?
-     => D. /WEB-INF
-     Giải thích: File triển khai web.xml luôn nằm trực tiếp trong thư mục /WEB-INF
-022. [2/6 | SU26-B5-FE#Q14, SP26-RE#Q34] What is the correct syntax for accessing the first element of a List named "myList" in EL?
-     => A. ${myList[0]}
-     Giải thích: Truy xuất phần tử đầu tiên của List myList trong EL bằng chỉ số mảng ${myList[0]}
-023. [2/6 | SU26-B5-FE#Q16, SP26-RE#Q26] How would you synthesize the multi-tier architecture principles to enhance data security in an application that is heavily reliant on user-generated content?
-     => B. Distribute user-generated content across multiple tiers, applying appropriate security measures at each level.
-     Giải thích: Kiến trúc đa tầng tăng bảo mật bằng cách phân tách dữ liệu/xử lý qua nhiều tầng và áp dụng cơ chế bảo vệ phù hợp ở từng tầng
-024. [2/6 | SU26-B5-FE#Q18, SU26-FE#Q48] Which file in Java Web Application is used to declare application configuration, servlet, filter?
-     => A. web.xml
-     Giải thích: web.xml là deployment descriptor khai báo cấu hình ứng dụng, servlet, filter, listener...
-025. [2/6 | SU26-B5-FE#Q21, SP26-RE#Q05] Which package provides the JDBC API in Java?
-     => A. java.sql
-     Giải thích: Gói chuẩn chứa JDBC API trong Java là java.sql
-026. [2/6 | SU26-B5-FE#Q22, SP26-RE#Q30] What method is used to store an attribute in the ServletContext object?
-     => C. setAttribute()
-     Giải thích: Lưu attribute vào ServletContext bằng phương thức setAttribute(String name, Object object)
-027. [2/6 | SU26-B5-FE#Q25, SU26-RE#Q19] Which of the following is NOT a step involved in using JDBC to interact with a database in a web application?
-     => D. Parsing HTML forms
-     Giải thích: Phân tích cú pháp HTML form (Parsing HTML forms) không phải là một bước khi làm việc với JDBC
-028. [2/6 | SU26-B5-FE#Q26, SP26-B5FE#Q42] Which JSTL tag is used to format dates and times according to the user's locale?
-     => C. <fmt:formatDate>
-     Giải thích: Thẻ JSTL <fmt:formatDate> định dạng ngày giờ theo locale của người dùng
-029. [2/6 | SU26-B5-FE#Q27, SP26-RE#Q35] What is a Web Application Listener in the context of Java EE applications?
-     => C. An interface for intercepting events that occur in a web application
-     Giải thích: Web Application Listener là interface cho phép lắng nghe/bắt các sự kiện vòng đời (context, session, request) trong ứng dụng web
-030. [2/6 | SU26-B5-FE#Q33, SP26-RE#Q24] How does the MVC architecture help in scaling an application?
-     => A. By allowing separate scaling of user interface and data processing components.
-     Giải thích: MVC tách biệt giao diện (View) và xử lý dữ liệu (Model) nên cho phép mở rộng (scale) độc lập từng thành phần
-031. [2/6 | SU26-B5-FE#Q38, SU26-FE#Q46] What method must be implemented by all filters?
+004. [3/7 | SU26-B5-FE#Q38, SU26-FE#Q46, SP26-FE#Q47] What method must be implemented by all filters?
      => C. doFilter
      Giải thích: doFilter() là phương thức bắt buộc phải cài đặt ở mọi Servlet Filter (init() và destroy() là default method từ Servlet 4+)
-032. [2/6 | SU26-B5-FE#Q39, SU26-FE#Q50] What is the purpose of the error-code element in the <error-page> configuration of the web.xml file in a Java web application?
+005. [3/7 | SU26-B5-FE#Q39, SU26-FE#Q50, SP26-FE#Q18] What is the purpose of the error-code element in the <error-page> configuration of the web.xml file in a Java web application?
      => D. To map a specific HTTP error code to a designated error page.
      Giải thích: <error-code> trong <error-page> ánh xạ một mã lỗi HTTP cụ thể (như 404, 500) tới trang báo lỗi tương ứng
-033. [2/6 | SU26-B5-FE#Q44, SP26-B5FE#Q15] Consider the code written on a JSP page that has the following content. What is the incorrect output produced by the JSP page above? [CODE] [LỖI ĐỀ]
-     Code: <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> / ... / <c:set var="x" value="10" /> / <c:set var="y" value="5" /> / ${x + y}
-     => A. 15
-     Giải thích: Lưu ý lỗi đề FPTU: đề gõ nhầm 'incorrect output' thay vì 'correct output' — trong EL, toán tử + luôn ép kiểu số học nên "10" + "5" = 15 (A đúng, cả B/C/D đều sai)
-034. [2/6 | SU26-B5-FE#Q45, SP26-RE#Q20] Which of the following files is commonly used to configure database connections and other environment-specific settings in a Java web application during deployment?
-     => B. context.xml
-     Giải thích: File context.xml (META-INF/context.xml trong Tomcat) thường dùng để cấu hình DataSource/kết nối DB và các thiết lập đặc thù theo môi trường triển khai
-035. [2/6 | SU26-RE#Q01, SP26-RE#Q02] Which HTTP method is primarily used for creating a new resource?
-     => A. POST
-     Giải thích: HTTP POST được dùng chủ yếu để tạo mới tài nguyên (creating a new resource) trên server
-036. [2/6 | SU26-RE#Q03, SP26-RE#Q03] Which of the following statements is true about sendRedirect()?
-     => C. It changes the URL in the browser
-     Giải thích: sendRedirect() gửi mã 302 về trình duyệt để tạo request mới nên làm thay đổi URL trên thanh địa chỉ trình duyệt
-037. [2/6 | SU26-RE#Q09, SP26-B5FE#Q10] Examine this servlet code: If web.xml has the following entries: What will the servlet output? [CODE]
-     Code: @WebServlet("/showParams") / public class ShowParamsServlet extends HttpServlet { / @Override / protected void doGet(HttpServletRequest request, HttpServletResponse response) / throws ServletException, IOException { / ServletContext ctx = getServletContext(); / PrintWriter out = response.getWriter(); / Enumeration<String> paramNames = ctx.getInitParameterNames(); / while(paramNames.hasMoreElements()) { / String name = paramNames.nextElement(); / out.println(name + ": " + ctx.getInitParameter(name)); / } / } / } / <context-param> / <param-name>settingOne</param-name> / <param-value>foo</param-value> / </context-param> / <context-param> / <param-name>settingTwo</param-name> / <param-value>bar</param-value> / </context-param>
-     => B. settingOne: foo settingTwo: bar
-     Giải thích: Vòng lặp duyệt getInitParameterNames() in dạng name + ": " + value theo thứ tự khai báo → settingOne: foo / settingTwo: bar
-038. [2/6 | SU26-RE#Q12, SP26-B5FE#Q13] What is the purpose of request attributes in servlet collaboration?
-     => A. To store data that can be shared across multiple servlets within the same request.
-     Giải thích: Request attribute lưu dữ liệu chia sẻ giữa nhiều servlet/JSP trong cùng một HTTP request (khi forward/include)
-039. [2/6 | SU26-RE#Q13, SP26-RE#Q13] See the extract from web.xml of web application "mywebapp" on server named mywebserver, runs on port 8081: Given that a user enters the following into thier browser, which (if any) of the mapped servlets will execute? (Choose one.) http://mywebserver:8081/mywebapp [CODE]
-     Code: <servlet-mapping> / <servlet-name>ServletA</servlet-name> / <url-pattern>/</url-pattern> / </servlet-mapping> / <servlet-mapping> / <servlet-name>ServletB</servlet-name> / <url-pattern>/bservlet.html</url-pattern> / </servlet-mapping> / <servlet-mapping> / <servlet-name>ServletC</servlet-name> / <url-pattern>*.servletC</url-pattern> / </servlet-mapping> / <servlet-mapping> / <servlet-name>ServletD</servlet-name> / <url-pattern>/dservlet/*</url-pattern> / </servlet-mapping>
-     => A. ServletA
-     Giải thích: URL context root /mywebapp không khớp /bservlet.html, *.servletC hay /dservlet/* nên rơi về default servlet có pattern '/' là ServletA
-040. [2/6 | SU26-RE#Q18, SP26-B5FE#Q19] Through which implicit object can you access parameters passed to the JSP page?
-     => B. request
-     Giải thích: Implicit object request dùng để truy xuất các tham số truyền tới trang JSP qua request.getParameter()
-041. [2/6 | SU26-RE#Q21, SP26-RE#Q21] In a Java web application, what is the typical process for obtaining a database connection before executing SQL statements?
-     => A. Use the getConnection() method of the DriverManager class
-     Giải thích: Quy trình chuẩn JDBC là gọi DriverManager.getConnection(...) để lấy đối tượng Connection
-042. [2/6 | SU26-RE#Q24, SP26-B5FE#Q24] Which component of the MVC architecture is responsible for presenting data to the user in a web application?
-     => B. View
-     Giải thích: Trong MVC, tầng View chịu trách nhiệm hiển thị dữ liệu cho người dùng
-043. [2/6 | SU26-RE#Q27, SP26-RE#Q28] What are the implications of maintaining user roles and permissions within the session object?
-     => B. It is often considered unsafe because there is a risk that someone could change the session information, which could lead to unauthorized access to higher privileges..
-     Giải thích: Lưu trực tiếp role/permission trong session có rủi ro bảo mật (chiếm đoạt/sửa phiên hoặc quyền cũ chưa cập nhật dẫn tới leo thang đặc quyền trái phép)
-044. [2/6 | SU26-RE#Q29, SP26-B5FE#Q30] In the doGet method, how to create a Cookie and send it to the client? [CODE]
-     Code: public class CookieExampleServlet extends HttpServlet { / protected void doGet(HttpServletRequest request, HttpServletResponse response) / throws ServletException, IOException { / // TODO: Your code here / } / }
-     => A. Cookie newCookie = new Cookie("username", "john_doe"); response.addCookie(newCookie);
-     Giải thích: Tạo Cookie bằng new Cookie("username", "john_doe") và gửi về client bằng response.addCookie(newCookie)
-045. [2/6 | SU26-RE#Q33, SP26-B5FE#Q35] How would you use EL to access a property named title from a Map object within a List named bookList at index 2?
-     => E. ${bookList[2].title}
-     Giải thích: Truy cập thuộc tính title của Map tại chỉ số 2 trong List bookList bằng EL chuẩn: ${bookList[2].title}
-046. [2/6 | SU26-RE#Q34, SP26-RE#Q33] In JSP, how do you access elements of a collection using Expression Language (EL)?
-     => C. By accessing elements using square brackets with the index
-     Giải thích: Trong EL, truy xuất phần tử của mảng/List/collection bằng cặp dấu ngoặc vuông chứa chỉ số [index]
-047. [2/6 | SU26-RE#Q35, SP26-RE#Q36] What is a Server Listener in the context of web applications?
-     => B. A mechanism for intercepting and reacting to lifecycle events of a web application.
-     Giải thích: Listener là cơ chế lắng nghe và phản ứng với các sự kiện vòng đời (lifecycle events) của ứng dụng web
-048. [2/6 | SU26-RE#Q38, SP26-B5FE#Q39] What is the purpose of a Session Listener in a Java web application?
-     => D. To listen for changes in session lifecycle events
-     Giải thích: Session Listener (HttpSessionListener) lắng nghe các sự kiện vòng đời của session (sessionCreated / sessionDestroyed)
-049. [2/6 | SU26-RE#Q42, SP26-RE#Q41] Which JSTL tag is used to set the locale for formatting and parsing in a JSP page?
-     => A. <fmt:setLocale>
-     Giải thích: Thẻ <fmt:setLocale> thiết lập locale cho các thẻ định dạng và phân tích ngày/số trong JSP
-050. [2/6 | SU26-FE#Q17, SP26-RE#Q18] What is the purpose of the JSP <error-page> directive?
-     => A. To declare custom error pages for specific HTTP error codes
-     Giải thích: Cấu hình <error-page> dùng để khai báo trang báo lỗi tuỳ chỉnh cho các mã lỗi HTTP cụ thể (như 404, 500) hoặc ngoại lệ toàn ứng dụng
-051. [2/6 | SU26-FE#Q25, SP26-B5FE#Q27] In a multi-tier data model, which layer is responsible for handling application logic?
-     => B. Application Logic Layer
-     Giải thích: Trong mô hình dữ liệu đa tầng, Application Logic Layer chịu trách nhiệm xử lý logic ứng dụng
-052. [2/6 | SU26-FE#Q29, SP26-B5FE#Q31] How to store a value in ServletContext from a Servlet?
-     => A. context.setAttribute("key", value);
-     Giải thích: Lưu giá trị vào ServletContext bằng context.setAttribute("key", value);
-053. [2/6 | SU26-FE#Q37, SP26-RE#Q38] Which event is typically handled by HttpSessionListener's sessionDestroyed method?
-     => C. Session destruction
-     Giải thích: Phương thức sessionDestroyed của HttpSessionListener xử lý sự kiện huỷ phiên (Session destruction)
-054. [2/6 | SU26-FE#Q39, SP26-RE#Q39] What output does this JSTL code produce? [CODE]
-     Code: <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> / <c:set var="item" value="5"/> / <c:forEach var="item" begin="1" end="1"> / <c:out value="${item}"/> / </c:forEach>
-     => A. 1
-     Giải thích: Biến lặp var="item" của <c:forEach begin="1" end="1"> ghi đè biến item trong pageScope với giá trị 1 cho 1 vòng lặp duy nhất → in ra 1
-055. [2/6 | SU26-FE#Q40, SP26-B5FE#Q43] What's the point of using <fmt:setLocale> in a JSP?
-     => B. To tell other tags which language and country format to use.
-     Giải thích: <fmt:setLocale> thiết lập locale (ngôn ngữ & quốc gia) để các thẻ định dạng <fmt:*> khác sử dụng
-056. [2/6 | SU26-FE#Q41, SP26-RE#Q42] How are <fmt:parseDate> and <fmt:formatDate> different?
-     => B. <fmt:parseDate> turns text into a date, and <fmt:formatDate> turns a date into text.
-     Giải thích: <fmt:parseDate> phân tích chuỗi văn bản thành đối tượng Date, còn <fmt:formatDate> định dạng đối tượng Date thành chuỗi văn bản
-057. [2/6 | SU26-FE#Q42, SP26-B5FE#Q48] Filter can be defined in which file?
-     => C. Both A and B
-     Giải thích: Servlet Filter có thể khai báo trong file web.xml hoặc dùng annotation @WebFilter trực tiếp trên lớp Java (Cả A và B)
-
-=== ĐỀ SU26-B5-RE (36 câu riêng bổ sung) ===
-058. [1/6 | SU26-B5-RE#Q01] What is the purpose of the HTML <input> element with the type attribute set to "text"?
-     => C. Accepting single-line text input
-     Giải thích: Thẻ <input type="text"> dùng để nhập văn bản một dòng (single-line text input)
-059. [1/6 | SU26-B5-RE#Q03] What HTTP method should be used to update partial resources on the server?
-     => A. PATCH
-     Giải thích: HTTP PATCH dùng để cập nhật một phần tài nguyên (partial update) trên server
-060. [1/6 | SU26-B5-RE#Q04] What is the role of a servlet container in the context of a Java web application?
-     => B. Hosting and executing servlets
-     Giải thích: Servlet container (như Tomcat) có vai trò lưu trữ, quản lý vòng đời và thực thi các servlet
-061. [1/6 | SU26-B5-RE#Q06] What is the correct order to execute a query using JDBC?
-     => A. Connect → Create Statement → Execute Query → Process Result
-     Giải thích: Thứ tự chuẩn JDBC: Connect → Create Statement → Execute Query → Process Result
-062. [1/6 | SU26-B5-RE#Q07] Assess the role of "servlet-mapping" in the "web.xml" file. What does this element define?
-     => B. Specifying how URLs should be routed to specific servlets
-     Giải thích: <servlet-mapping> trong web.xml ánh xạ URL pattern tới servlet cụ thể để định tuyến request
-063. [1/6 | SU26-B5-RE#Q08] Which element in the "web.xml" file specifies global parameters accessible throughout the entire web application?
-     => A. context-param
-     Giải thích: <context-param> khai báo tham số toàn cục (ServletContext) dùng chung cho toàn bộ ứng dụng web
-064. [1/6 | SU26-B5-RE#Q09] Which XML element is used to specify initialization parameters for a servlet in the web.xml file?
-     => B. <init-param>
-     Giải thích: <init-param> bên trong <servlet> khai báo tham số khởi tạo riêng cho servlet đó (ServletConfig)
-065. [1/6 | SU26-B5-RE#Q11] Choose correct option to declare service method in servlet?
-     => B. public void service(ServletRequest request, ServletResponse response){//...}
-     Giải thích: Chữ ký chuẩn của service(): public void service(ServletRequest request, ServletResponse response)
-066. [1/6 | SU26-B5-RE#Q12] How can a servlet send a redirect to the client?
-     => A. response.sendRedirect("url");
-     Giải thích: Servlet chuyển hướng (redirect) client bằng response.sendRedirect("url")
-067. [1/6 | SU26-B5-RE#Q13] Which method is called every time a client request is made to the servlet?
-     => B. service()
-     Giải thích: Container gọi service() mỗi khi có request từ client gửi tới servlet
-068. [1/6 | SU26-B5-RE#Q14] What is the main purpose of HttpServlet in Java web applications?
-     => A. To handle HTTP requests and responses
-     Giải thích: HttpServlet chuyên xử lý các HTTP request (doGet, doPost...) và tạo HTTP response
-069. [1/6 | SU26-B5-RE#Q15] Which of the following elements in the web.xml deployment descriptor is used to map a servlet to a URL pattern in a Java web application?
-     => C. <url-pattern>
-     Giải thích: Thẻ <url-pattern> bên trong <servlet-mapping> xác định mẫu URL được ánh xạ tới servlet
-070. [1/6 | SU26-B5-RE#Q16] What is the purpose of the <%@ include file="..." %> directive in a JSP page?
-     => A. To include another JSP page during the translation phase.
-     Giải thích: Directive <%@ include file="..." %> chèn tĩnh nội dung file JSP khác ngay ở pha dịch (translation phase)
-071. [1/6 | SU26-B5-RE#Q17] In the context of web application security, what is a significant advantage of placing JSP fragments within the /WEB-INF directory?
-     => B. Files within /WEB-INF are not directly accessible through a URL, enhancing the security of sensitive code and resources.
-     Giải thích: Tài nguyên trong /WEB-INF không thể truy cập trực tiếp qua URL từ trình duyệt, giúp bảo mật JSP/code
-072. [1/6 | SU26-B5-RE#Q18] Given ${2 > 1 ? 'Yes' : 'No'}, what is the result?
-     => A. Yes
-     Giải thích: Toán tử 3 ngôi trong EL: 2 > 1 là true nên trả về 'Yes'
-073. [1/6 | SU26-B5-RE#Q21] Which object is used to store application-wide data?
-     => C. application
-     Giải thích: Implicit object application (ServletContext) lưu dữ liệu dùng chung cho toàn bộ ứng dụng
-074. [1/6 | SU26-B5-RE#Q22] To establish a connection to a database in JDBC, you use the _______ method of the DriverManager class.
-     => C. getConnection()
-     Giải thích: DriverManager.getConnection(...) tạo kết nối tới cơ sở dữ liệu trong JDBC
-075. [1/6 | SU26-B5-RE#Q24] What is a connection pool in the context of database connections in web applications?
-     => C. A pool of pre-initialized database connections for reuse
-     Giải thích: Connection pool duy trì sẵn tập kết nối DB để tái sử dụng, giảm chi phí mở/đóng kết nối
-076. [1/6 | SU26-B5-RE#Q25] What method is used to execute a SQL query and obtain the result set?
-     => C. ResultSet resultSet = statement.executeQuery("SELECT * FROM table_name");
-     Giải thích: statement.executeQuery("SELECT ...") thực thi câu lệnh SELECT và trả về đối tượng ResultSet
-077. [1/6 | SU26-B5-RE#Q27] What is the primary purpose of a multi-tier architecture in application design?
-     => B. To improve data security and scalability.
-     Giải thích: Kiến trúc đa tầng (multi-tier) tách biệt các tầng giúp tăng cường bảo mật dữ liệu và khả năng mở rộng (scalability)
-078. [1/6 | SU26-B5-RE#Q28] What is MVC architecture?
-     => C. Model-View-Controller
-     Giải thích: MVC là viết tắt của Model-View-Controller
-079. [1/6 | SU26-B5-RE#Q29] You are working on a JSP MVC application where multiple views need to display the same set of data. Discuss how you would avoid code duplication and ensure a consistent data presentation across different views.
-     => B. Implement a shared DataProvider class in the Model.
-     Giải thích: Tách logic lấy dữ liệu vào một lớp dùng chung (DataProvider/DAO) ở tầng Model giúp tránh lặp code và đồng bộ dữ liệu giữa các View
-080. [1/6 | SU26-B5-RE#Q31] Assuming that there is a link logout at the top of the profile.jsp, orderhistory.jsp. When the client clicks the logout link, the following code in the logoutServlet runs: What is the best code to write in the TODO section to complete the logout function? [CODE]
+006. [3/7 | SU26-B5-FE#Q48, SU26-FE#Q12, SP26-RE#Q12] What is the purpose of the RequestDispatcher interface in servlets?
+     => B. To forward the request to another resource
+     Giải thích: RequestDispatcher dùng để forward (chuyển tiếp) hoặc include request tới một tài nguyên khác trên server
+007. [2/7 | SU26-B5-RE#Q02, SP26-RE#Q01] Which of the following statements are correct about the status code = 401 of the Http response?
+     => B. Indicates that the request requires HTTP authentication.
+     Giải thích: HTTP 401 Unauthorized cho biết request yêu cầu xác thực HTTP (HTTP authentication)
+008. [2/7 | SU26-B5-RE#Q05, SP26-B5FE#Q04] How can you create a drop-down list in an HTML form?
+     => C. Using the <select> element
+     Giải thích: Thẻ HTML <select> (kết hợp <option>) dùng để tạo danh sách thả xuống (drop-down list)
+009. [2/7 | SU26-B5-RE#Q10, SP26-RE#Q08] Which technology helps to manage session in Java Web?
+     => D. Both A, B and C
+     Giải thích: Cả Cookies, HttpSession và URL Rewriting đều là kỹ thuật quản lý session trong Java Web
+010. [2/7 | SU26-B5-RE#Q19, SP26-B5FE#Q16] For generating an HTML page in JSP, which content type must be set using the page directive?
+     => C. text/html
+     Giải thích: Để sinh trang HTML trong JSP, đặt contentType="text/html" trong page directive
+011. [2/7 | SU26-B5-RE#Q20, SP26-RE#Q16] Which of the following method can be used to read a form parameter in JSP?
+     => A. request.getParameter()
+     Giải thích: request.getParameter() dùng để đọc tham số gửi từ HTML form trong JSP/Servlet
+012. [2/7 | SU26-B5-RE#Q23, SP26-RE#Q19] When using PreparedStatement, what is the main benefit over Statement?
+     => D. Both A and B are correct
+     Giải thích: PreparedStatement vừa biên dịch sẵn giúp tăng hiệu năng cho truy vấn lặp, vừa chống SQL Injection
+013. [2/7 | SU26-B5-RE#Q30, SP26-RE#Q25] Evaluate the impact of adopting an MVC2 architecture on the testability of a web application.
+     => B. It would improve testability by allowing the components to be tested in isolation
+     Giải thích: MVC2 tách bạch Model, View và Controller nên các thành phần có thể kiểm thử độc lập (in isolation), tăng testability
+014. [2/7 | SU26-B5-RE#Q31, SP26-FE#Q27] Assuming that there is a link logout at the top of the profile.jsp, orderhistory.jsp. When the client clicks the logout link, the following code in the logoutServlet runs: What is the best code to write in the TODO section to complete the logout function? [CODE]
      Code: <a href="logoutServlet">Logout</a> / HttpSession session = request.getSession(); / //TODO / response.sendRedirect("login.jsp");
      => D. session.invalidate();
      Giải thích: session.invalidate() huỷ toàn bộ phiên làm việc hiện tại và giải phóng mọi attribute khi đăng xuất (chuẩn bảo mật Servlet)
-081. [1/6 | SU26-B5-RE#Q32] What happens if the browser does not support cookies but the application uses HttpSession to manage sessions?
-     => B. The session will still work if the application uses URL rewriting to maintain the session ID
-     Giải thích: Khi trình duyệt tắt/không hỗ trợ cookie, HttpSession vẫn hoạt động nếu ứng dụng dùng URL rewriting (gắn jsessionid vào URL)
-082. [1/6 | SU26-B5-RE#Q33] What is the correct code to perform URL rewriting by appending a parameter named 'sessionID' with value '123' to the current URL in a Java Servlet?
-     => D. String url = response.encodeURL("currentURL?sessionID=123");
-     Giải thích: response.encodeURL(...) là phương thức chuẩn của HttpServletResponse để thực hiện URL rewriting trong Servlet
-083. [1/6 | SU26-B5-RE#Q34] When is a ServletContext attribute available to servlets in a web application?
-     => B. During the entire lifecycle of the servlet container
-     Giải thích: Attribute trong ServletContext tồn tại trong suốt vòng đời của ứng dụng web / servlet container
-084. [1/6 | SU26-B5-RE#Q36] Consider a Java class Food that includes a private field price, a public getter method getPrice(), and a public method calcSubTotal() that computes a subtotal based on a predefined algorithm. Let f be an instance of the Food class. In the context of JavaServer Pages (JSP) Expression Language (EL), which of the following correctly invokes the sub total calculation?
-     => D. ${f.calcSubTotal()}
-     Giải thích: EL 2.2+ cho phép gọi trực tiếp phương thức public trên đối tượng: ${f.calcSubTotal()}
-085. [1/6 | SU26-B5-RE#Q38] What is the purpose of the empty keyword in EL when used with a collection?
-     => C. Checks if the collection is empty
-     Giải thích: Toán tử empty trong EL kiểm tra xem collection có rỗng (hoặc null) hay không
-086. [1/6 | SU26-B5-RE#Q39] In the contextInitialized method, what kind of tasks would you typically perform during the initialization of the servlet context? [CODE]
-     Code: public class MyAppContextListener implements ServletContextListener { / public void contextInitialized(ServletContextEvent event) { / // TODO: Your code here / } / public void contextDestroyed(ServletContextEvent event) { / // TODO: Your code here / } / }------------------------------------------------------------
-     => D. Configuring global application settings
-     Giải thích: contextInitialized() dùng để thiết lập cấu hình/tài nguyên toàn cục cho ứng dụng khi ServletContext khởi tạo (lưu ý: B khởi tạo đối tượng kết nối DB cũng thường đặt trong contextInitialized, nhưng D bao quát hơn mục đích thiết lập toàn ứng dụng)
-087. [1/6 | SU26-B5-RE#Q40] When is the contextInitialized() method of a ServletContextListener invoked?
-     => C. When the web application is deployed or started.
-     Giải thích: contextInitialized() của ServletContextListener được container gọi khi ứng dụng web được deploy hoặc khởi động
-088. [1/6 | SU26-B5-RE#Q41] Which method of the ServletContextListener interface is called when the ServletContext is initialized?
+015. [2/7 | SU26-B5-RE#Q35, SP26-B5FE#Q33] Given a Java class Employee with a field named tel, consider the following Expression Language (EL) code, where emp is an instance of the Employee class: Which of the following statements accurately describes the requirements for accessing and displaying the tel field using this EL expression? [CODE]
+     Code: ${emp.tel}
+     => B. The tel field may be private, but a getTel() method must be provided.
+     Giải thích: EL ${emp.tel} truy cập property theo chuẩn JavaBean thông qua getter getTel() (field tel có thể private)
+016. [2/7 | SU26-B5-RE#Q37, SP26-B5FE#Q34] When accessing ${sessionScope.cart.items[0]}, what happens?
+     => D. Both A and B are correct
+     Giải thích: EL vừa truy xuất phần tử đầu tiên items[0] của cart trong sessionScope, vừa an toàn null (trả null nếu cart không tồn tại)
+017. [2/7 | SU26-B5-RE#Q41, SP26-FE#Q37] Which method of the ServletContextListener interface is called when the ServletContext is initialized?
      => A. contextInitialized()
      Giải thích: ServletContextListener có phương thức contextInitialized() chạy khi ServletContext được khởi tạo
-089. [1/6 | SU26-B5-RE#Q42] Which URI is correct for accessing the JSTL core library?
-     => A. http://java.sun.com/jsp/jstl/core
-     Giải thích: URI chuẩn của thư viện JSTL Core (JSTL 1.1/1.2) là http://java.sun.com/jsp/jstl/core
-090. [1/6 | SU26-B5-RE#Q43] How can you iterate over the results of a SQL query using JSTL tags?
-     => B. Use <c:forEach> with items set to ${result.rows}.
-     Giải thích: Dùng <c:forEach> với items="${result.rows}" để duyệt qua từng bản ghi kết quả từ <sql:query>
-091. [1/6 | SU26-B5-RE#Q45] What is the purpose of a filter initialization parameter in the web.xml file?
-     => C. To provide configuration options specific to the filter
-     Giải thích: Filter <init-param> trong web.xml truyền các tuỳ chọn cấu hình riêng cho filter đó qua FilterConfig
-092. [1/6 | SU26-B5-RE#Q47] What is filter mapping used for in a Java web application?
-     => C. To specify which URL patterns or servlets the filter should intercept.
-     Giải thích: <filter-mapping> chỉ định URL pattern hoặc servlet nào mà filter sẽ chặn (intercept)
-093. [1/6 | SU26-B5-RE#Q48] What is the effect of setting the attribute varStatus in <c:forEach>?
-     => A. It stores the current iteration index and other state information.
-     Giải thích: Thuộc tính varStatus trong <c:forEach> lưu đối tượng LoopTagStatus chứa index, count, first, last... của vòng lặp
-
-=== ĐỀ SU26-B5-FE (29 câu riêng bổ sung) ===
-094. [1/6 | SU26-B5-FE#Q01] Which HTTP method is more secure when transferring sensitive data like passwords or user information?
-     => B. POST
-     Giải thích: POST gửi dữ liệu trong request body thay vì lộ trên URL/history như GET nên an toàn hơn cho mật khẩu/dữ liệu nhạy cảm
-095. [1/6 | SU26-B5-FE#Q03] Which method is used in a servlet to retrieve a context init parameter?
-     => C. getServletContext().getInitParameter()
-     Giải thích: getServletContext().getInitParameter(...) đọc tham số <context-param> của toàn ứng dụng
-096. [1/6 | SU26-B5-FE#Q05] If a user logs into a web application from a public computer, what method of session tracking might less secure?
-     => C. URL rewriting for session tracking.
-     Giải thích: URL rewriting gắn session ID lên thanh địa chỉ nên dễ lộ qua lịch sử trình duyệt/Referer trên máy tính công cộng (lưu ý: D long cookies cũng rủi ro giữ đăng nhập trên máy công cộng, nhưng C là đáp án chuẩn về phương pháp session tracking kém an toàn)
-097. [1/6 | SU26-B5-FE#Q06] Which Java technology is commonly used for automatically populating Java Beans with request parameters in web applications?
-     => B. JSP (JavaServer Pages)
-     Giải thích: JSP hỗ trợ tự động gán tham số request vào JavaBean qua standard action <jsp:useBean> và <jsp:setProperty property="*"/>
-098. [1/6 | SU26-B5-FE#Q07] What is the primary purpose of a filter in a web application?
-     => B. To intercept and manipulate requests and responses
-     Giải thích: Mục đích chính của Filter là chặn (intercept) và tiền/hậu xử lý request và response
-099. [1/6 | SU26-B5-FE#Q11] Which of the following is the correct order of servlet life cycle phase methods?
-     => A. init(), service(), destroy()
-     Giải thích: Thứ tự chuẩn vòng đời Servlet: init() → service() → destroy()
-100. [1/6 | SU26-B5-FE#Q12] In a Java web application, you need to iterate over a List<Map<String, Object>> stored in the request scope under the key dataList. Each Map represents a row of data with keys "id", "name", and "status". Using JSTL, which of the following correctly iterates over this list and displays only the name of entries where status equals "active"?
-     => A. <c:forEach var="row" items="${dataList}"> <c:if test="${row.status eq 'active'}"> ${row.name} </c:if> </c:forEach>
-     Giải thích: A đúng cú pháp JSTL/EL (row.status eq 'active'); B lỗi dấu ngoặc kép lồng nhau trong test="..."; C thiếu <c:choose> bao <c:when>; D đảo ngược var và items
-101. [1/6 | SU26-B5-FE#Q17] What happens to a database transaction if an error occurs during its execution in a web application?
-     => A. It is automatically rolled back
-     Giải thích: Theo tính nguyên tử (Atomicity) của transaction, khi xảy ra lỗi trong quá trình thực thi, giao dịch sẽ được rollback
-102. [1/6 | SU26-B5-FE#Q19] What is a common pitfall when updating mutable objects stored as session attributes?
-     => A. The container may not detect the change if you don't re-set the attribute.
-     Giải thích: Khi sửa trực tiếp object mutable trong session mà không gọi lại setAttribute(), container (đặc biệt ở môi trường cluster/replication) có thể không nhận ra sự thay đổi
-103. [1/6 | SU26-B5-FE#Q20] You are tasked with improving the performance of a JSP MVC application, which currently experiences slow page loading times. Propose a strategy for optimizing the application, considering MVC principles.
-     => C. Optimize database queries within the Model to reduce data retrieval times.
-     Giải thích: Theo đúng nguyên tắc MVC, tối ưu truy vấn CSDL thuộc trách nhiệm của tầng Model để giảm thời gian lấy dữ liệu
-104. [1/6 | SU26-B5-FE#Q23] Which attribute makes an input field unalterable but still submit its value when the form is submitted?
-     => A. readonly
-     Giải thích: Thuộc tính readonly khoá không cho người dùng sửa nhưng VẪN gửi giá trị khi submit form (khác với disabled không gửi)
-105. [1/6 | SU26-B5-FE#Q24] What is the purpose of the pattern attribute in the <fmt:formatNumber> tag?
+018. [2/7 | SU26-B5-RE#Q44, SP26-RE#Q47] What is NOT the use of filter in JSP?
+     => D. Link to my bootstrap.min.css in a JSP file
+     Giải thích: Nhúng file bootstrap.min.css vào JSP là việc của thẻ HTML <link>, không phải công dụng của Servlet Filter (A/B/C/E đều là ứng dụng chuẩn của Filter)
+019. [2/7 | SU26-B5-RE#Q46, SP26-RE#Q49] What is the primary purpose of the doFilter() method in a filter's life cycle?
+     => C. To perform the actual filtering of requests and responses.
+     Giải thích: doFilter() là nơi thực hiện logic lọc thực tế đối với request và response trong vòng đời Filter
+020. [2/7 | SU26-B5-FE#Q02, SP26-B5FE#Q26] Which is NOT considered a standard component of a typical MVC architecture in web applications?
+     => A. Database
+     Giải thích: 3 thành phần chuẩn của MVC là Model, View, Controller; Database không phải một thành phần chuẩn trong tên kiến trúc MVC
+021. [2/7 | SU26-B5-FE#Q04, SP26-RE#Q40] What will be the output of the following JSTL code if userList is an empty list? [CODE]
+     Code: <c:forEach var="user" items="${userList}"> / <p>${user.name}</p> / </c:forEach> / <p>End of list</p>
+     => C. It will only print "End of list".
+     Giải thích: Khi userList rỗng, <c:forEach> không lặp lần nào và không ném lỗi, trang chỉ in "End of list"
+022. [2/7 | SU26-B5-FE#Q08, SP26-B5FE#Q38] What does a session listener do in a web application?
+     => B. It watches for changes in user sessions, like when someone logs in or out
+     Giải thích: Session listener (HttpSessionListener) theo dõi các sự kiện thay đổi phiên người dùng như tạo mới/huỷ phiên khi đăng nhập/đăng xuất
+023. [2/7 | SU26-B5-FE#Q09, SP26-B5FE#Q08] Which of the following is NOT typically configured in the web.xml file of a Java web application?
+     => C. Database table schema
+     Giải thích: Lược đồ bảng cơ sở dữ liệu (Database table schema) được định nghĩa trong DBMS/SQL, không cấu hình trong web.xml
+024. [2/7 | SU26-B5-FE#Q10, SP26-B5FE#Q49] When is the destroy() method of a servlet filter called?
+     => A. At the end of the filter's lifecycle
+     Giải thích: Container gọi destroy() ở cuối vòng đời của filter (khi đưa filter ra khỏi trạng thái phục vụ, trước khi hoàn tất undeploy)
+025. [2/7 | SU26-B5-FE#Q13, SP26-RE#Q07] In which directory is the web.xml file typically located in a Java web application?
+     => D. /WEB-INF
+     Giải thích: File triển khai web.xml luôn nằm trực tiếp trong thư mục /WEB-INF
+026. [2/7 | SU26-B5-FE#Q14, SP26-RE#Q34] What is the correct syntax for accessing the first element of a List named "myList" in EL?
+     => A. ${myList[0]}
+     Giải thích: Truy xuất phần tử đầu tiên của List myList trong EL bằng chỉ số mảng ${myList[0]}
+027. [2/7 | SU26-B5-FE#Q16, SP26-RE#Q26] How would you synthesize the multi-tier architecture principles to enhance data security in an application that is heavily reliant on user-generated content?
+     => B. Distribute user-generated content across multiple tiers, applying appropriate security measures at each level.
+     Giải thích: Kiến trúc đa tầng tăng bảo mật bằng cách phân tách dữ liệu/xử lý qua nhiều tầng và áp dụng cơ chế bảo vệ phù hợp ở từng tầng
+028. [2/7 | SU26-B5-FE#Q18, SU26-FE#Q48] Which file in Java Web Application is used to declare application configuration, servlet, filter?
+     => A. web.xml
+     Giải thích: web.xml là deployment descriptor khai báo cấu hình ứng dụng, servlet, filter, listener...
+029. [2/7 | SU26-B5-FE#Q21, SP26-RE#Q05] Which package provides the JDBC API in Java?
+     => A. java.sql
+     Giải thích: Gói chuẩn chứa JDBC API trong Java là java.sql
+030. [2/7 | SU26-B5-FE#Q22, SP26-RE#Q30] What method is used to store an attribute in the ServletContext object?
+     => C. setAttribute()
+     Giải thích: Lưu attribute vào ServletContext bằng phương thức setAttribute(String name, Object object)
+031. [2/7 | SU26-B5-FE#Q24, SP26-FE#Q41] What is the purpose of the pattern attribute in the <fmt:formatNumber> tag?
      => B. To define the number format pattern
      Giải thích: Thuộc tính pattern của <fmt:formatNumber> định nghĩa mẫu định dạng số (ví dụ #,##0.00)
-106. [1/6 | SU26-B5-FE#Q28] Consider the code: Choose the correct statement. [CODE]
-     Code: public class HelloServlet extends HttpServlet { / @Override / protected void doGet(HttpServletRequest request, HttpServletResponse response) / throws ServletException, IOException { / response.getWriter().println("Hello, World!");    (*) / } / }
-     => C. The web container created this resource at line (*), so it is responsible for closing it.
-     Giải thích: Web container tạo ra luồng PrintWriter từ response.getWriter() và tự chịu trách nhiệm đóng sau khi kết thúc request
-107. [1/6 | SU26-B5-FE#Q29] Which HTTP method is typically used to submit data to be processed to a web server?
-     => B. POST
-     Giải thích: HTTP POST thường dùng để gửi dữ liệu form/payload lên web server để xử lý
-108. [1/6 | SU26-B5-FE#Q30] Which of the following events is typically handled by a ServletContextListener?
+032. [2/7 | SU26-B5-FE#Q25, SU26-RE#Q19] Which of the following is NOT a step involved in using JDBC to interact with a database in a web application?
+     => D. Parsing HTML forms
+     Giải thích: Phân tích cú pháp HTML form (Parsing HTML forms) không phải là một bước khi làm việc với JDBC
+033. [2/7 | SU26-B5-FE#Q26, SP26-B5FE#Q42] Which JSTL tag is used to format dates and times according to the user's locale?
+     => C. <fmt:formatDate>
+     Giải thích: Thẻ JSTL <fmt:formatDate> định dạng ngày giờ theo locale của người dùng
+034. [2/7 | SU26-B5-FE#Q27, SP26-RE#Q35] What is a Web Application Listener in the context of Java EE applications?
+     => C. An interface for intercepting events that occur in a web application
+     Giải thích: Web Application Listener là interface cho phép lắng nghe/bắt các sự kiện vòng đời (context, session, request) trong ứng dụng web
+035. [2/7 | SU26-B5-FE#Q30, SP26-FE#Q35] Which of the following events is typically handled by a ServletContextListener?
      => C. Context initialization
      Giải thích: ServletContextListener xử lý sự kiện khởi tạo (contextInitialized) và huỷ (contextDestroyed) của ServletContext
-109. [1/6 | SU26-B5-FE#Q31] What is the primary function of a web server in the client-server architecture?
-     => B. Processing and responding to client requests
-     Giải thích: Chức năng chính của web server trong mô hình client-server là xử lý và phản hồi các request từ client
-110. [1/6 | SU26-B5-FE#Q32] Which XML elements are used to define a servlet filter in the web.xml file?
+036. [2/7 | SU26-B5-FE#Q32, SP26-FE#Q50] Which XML elements are used to define a servlet filter in the web.xml file?
      => A. <filter> and <filter-mapping>
      Giải thích: Khai báo filter trong web.xml sử dụng cặp thẻ <filter> và <filter-mapping>
-111. [1/6 | SU26-B5-FE#Q34] Which is true about JDBC?
-     => D. The JDBC API is included in J2SE
-     Giải thích: JDBC API (java.sql) được tích hợp sẵn trong J2SE (Java SE); A sai (không kế thừa ODBC), B sai (Type 1/2 dùng native code), C sai (MOM là JMS)
-112. [1/6 | SU26-B5-FE#Q35] What is the role of the <%@ page %> directive in JSP?
-     => B. To import Java packages and set page attributes.
-     Giải thích: Directive <%@ page %> dùng để import các gói Java và thiết lập thuộc tính cho trang JSP (contentType, errorPage, session...)
-113. [1/6 | SU26-B5-FE#Q36] What is the role of the <servlet-mapping> element in web.xml?
-     => B. It maps a servlet to a URL pattern
-     Giải thích: <servlet-mapping> trong web.xml ánh xạ một servlet với một URL pattern
-114. [1/6 | SU26-B5-FE#Q37] Which of the following is responsible for storing session data on the client side?
+037. [2/7 | SU26-B5-FE#Q33, SP26-RE#Q24] How does the MVC architecture help in scaling an application?
+     => A. By allowing separate scaling of user interface and data processing components.
+     Giải thích: MVC tách biệt giao diện (View) và xử lý dữ liệu (Model) nên cho phép mở rộng (scale) độc lập từng thành phần
+038. [2/7 | SU26-B5-FE#Q37, SP26-FE#Q03] Which of the following is responsible for storing session data on the client side?
      => A. Cookies
      Giải thích: Cookies lưu trữ dữ liệu/định danh session ở phía trình duyệt client
-115. [1/6 | SU26-B5-FE#Q40] Which JSTL core tag is used to output a value onto the JSP page?
-     => A. <c:out>
-     Giải thích: Thẻ JSTL core <c:out> dùng để xuất giá trị ra trang JSP (có tự động escape XML/HTML)
-116. [1/6 | SU26-B5-FE#Q41] What is the method signature for an event where an attribute was removed from an HttpSession?
-     => C. public void attributeRemoved(HttpSessionBindingEvent event)
-     Giải thích: Trong HttpSessionAttributeListener, sự kiện xoá attribute dùng chữ ký: public void attributeRemoved(HttpSessionBindingEvent event)
-117. [1/6 | SU26-B5-FE#Q42] Which JSP element is NOT executed at the service() method of the servlet?
-     => C. Declaration
-     Giải thích: Declaration (<%! ... %>) được đặt ở mức lớp (class body), nằm ngoài phương thức _jspService() (lưu ý: Directive <%@ ... %> xử lý ở pha dịch cũng không chạy trong _jspService(), nhưng C là đáp án chuẩn phân biệt với Scriptlet & Expression trong nhóm JSP scripting elements)
-118. [1/6 | SU26-B5-FE#Q43] In a Java web application, which of the following statements is used to execute an SQL query against a database?
-     => B. executeQuery()
-     Giải thích: executeQuery() dùng để thực thi câu lệnh SQL SELECT trả về ResultSet
-119. [1/6 | SU26-B5-FE#Q46] Which implicit object in JavaServer Pages (JSP) represents the request made by the client to the server?
+039. [2/7 | SU26-B5-FE#Q44, SP26-B5FE#Q15] Consider the code written on a JSP page that has the following content. What is the incorrect output produced by the JSP page above? [CODE] [LỖI ĐỀ]
+     Code: <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> / ... / <c:set var="x" value="10" /> / <c:set var="y" value="5" /> / ${x + y}
+     => A. 15
+     Giải thích: Lưu ý lỗi đề FPTU: đề gõ nhầm 'incorrect output' thay vì 'correct output' — trong EL, toán tử + luôn ép kiểu số học nên "10" + "5" = 15 (A đúng, cả B/C/D đều sai)
+040. [2/7 | SU26-B5-FE#Q45, SP26-RE#Q20] Which of the following files is commonly used to configure database connections and other environment-specific settings in a Java web application during deployment?
+     => B. context.xml
+     Giải thích: File context.xml (META-INF/context.xml trong Tomcat) thường dùng để cấu hình DataSource/kết nối DB và các thiết lập đặc thù theo môi trường triển khai
+041. [2/7 | SU26-B5-FE#Q46, SP26-FE#Q17] Which implicit object in JavaServer Pages (JSP) represents the request made by the client to the server?
      => A. request
      Giải thích: Implicit object request trong JSP đại diện cho yêu cầu từ client gửi lên server
-120. [1/6 | SU26-B5-FE#Q47] How do you access the property name of a JavaBean user using EL?
-     => A. ${user.name}
-     Giải thích: Truy xuất thuộc tính name của JavaBean user trong EL bằng toán tử chấm ${user.name}
-121. [1/6 | SU26-B5-FE#Q49] Which of the followings is a correct syntax of the method that is used to get the initialized parameter in ServletContext or ServletConfig?
+042. [2/7 | SU26-B5-FE#Q49, SP26-FE#Q12] Which of the followings is a correct syntax of the method that is used to get the initialized parameter in ServletContext or ServletConfig?
      => B. String getInitParameter(String name)
      Giải thích: Cả ServletContext và ServletConfig đều dùng phương thức chuẩn String getInitParameter(String name)
-122. [1/6 | SU26-B5-FE#Q50] Which is NOT a scope of implicit objects of JSP file?
-     => C. response
-     Giải thích: 4 scope của JSP là page, request, session, application — response là implicit object nhưng KHÔNG phải scope
-
-=== ĐỀ SU26-RE (32 câu riêng bổ sung) ===
-123. [1/6 | SU26-RE#Q02] What is the correct way to forward a request using RequestDispatcher? RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
-     => C. rd.forward(request, response);
-     Giải thích: Chuyển tiếp request chuẩn bằng rd.forward(request, response) (đúng thứ tự tham số request trước, response sau)
-124. [1/6 | SU26-RE#Q04] What is the purpose of an HTML form in web development?
-     => C. To collect user input
-     Giải thích: Thẻ HTML <form> dùng để thu thập dữ liệu nhập từ người dùng (collect user input)
-125. [1/6 | SU26-RE#Q05] What is the output of executing a JDBC query with ResultSet and calling rs.next() once?
-     => A. Moves to first row
-     Giải thích: Con trỏ ResultSet ban đầu đứng trước dòng đầu tiên; gọi rs.next() lần đầu sẽ di chuyển tới dòng thứ nhất
-126. [1/6 | SU26-RE#Q06] Which method is called when a servlet is being removed from service?
-     => A. destroy()
-     Giải thích: Container gọi destroy() một lần khi servlet sắp bị gỡ khỏi dịch vụ (removed from service)
-127. [1/6 | SU26-RE#Q07] How is the deployment descriptor of a web application typically named?
-     => B. web.xml
-     Giải thích: Deployment descriptor chuẩn của ứng dụng web Java có tên là web.xml
-128. [1/6 | SU26-RE#Q08] Which file in a Java web application provides configuration and deployment information to the servlet container?
-     => C. web.xml
-     Giải thích: web.xml cung cấp thông tin cấu hình và triển khai ứng dụng cho servlet container
-129. [1/6 | SU26-RE#Q10] During the servlet life cycle in a Java web application, when is the service() method called by the servlet container?
-     => C. Whenever a client sends a request to the servlet.
-     Giải thích: service() được servlet container gọi mỗi khi có client gửi request tới servlet
-130. [1/6 | SU26-RE#Q11] What is the purpose of the @WebServlet annotation in the example? [CODE]
-     Code: @WebServlet(name="HelloServlet", urlPatterns={"/hello"}) / public class HelloServlet extends HttpServlet { / protected void doGet(HttpServletRequest request, HttpServletResponse response) / throws ServletException, IOException { / response.setContentType("text/html"); / response.getWriter().println("<h1>Hello from @WebServlet!</h1>"); / } / }
-     => B. It replaces the XML servlet declaration in web.xml
-     Giải thích: Annotation @WebServlet (từ Servlet 3.0) thay thế cho việc khai báo <servlet> và <servlet-mapping> trong web.xml
-131. [1/6 | SU26-RE#Q14] Which statement about the response implicit variable in JSP is correct?
-     => B. You should avoid setting content type, flushing, or resetting the buffer directly in JSP.
-     Giải thích: Trong JSP không nên tự ý đổi contentType, flush hay reset buffer trực tiếp trên response vì JSP tự quản lý qua page directive và JspWriter out
-132. [1/6 | SU26-RE#Q15] Which of the following is a valid example of a JSP declaration?
-     => B. <%! private int count = 0; %>
-     Giải thích: Cú pháp JSP Declaration là <%! ... %>, ví dụ <%! private int count = 0; %>
-133. [1/6 | SU26-RE#Q16] In JSP, what do scriptlets allow developers to embed within a page?
-     => C. Arbitrary Java code
-     Giải thích: Scriptlet (<% ... %>) cho phép nhúng mã Java tuỳ ý (arbitrary Java code) vào bên trong trang JSP
-134. [1/6 | SU26-RE#Q17] Which implicit object provides access to HTTP headers and cookies in a Java Servlet?
-     => A. request
-     Giải thích: Đối tượng request (HttpServletRequest) cung cấp getHeader(), getCookies() để đọc HTTP header và cookie
-135. [1/6 | SU26-RE#Q20] When using JDBC, which method helps to get the number of records affected after performing UPDATE or DELETE?
+043. [2/7 | SU26-RE#Q01, SP26-RE#Q02] Which HTTP method is primarily used for creating a new resource?
+     => A. POST
+     Giải thích: HTTP POST được dùng chủ yếu để tạo mới tài nguyên (creating a new resource) trên server
+044. [2/7 | SU26-RE#Q03, SP26-RE#Q03] Which of the following statements is true about sendRedirect()?
+     => C. It changes the URL in the browser
+     Giải thích: sendRedirect() gửi mã 302 về trình duyệt để tạo request mới nên làm thay đổi URL trên thanh địa chỉ trình duyệt
+045. [2/7 | SU26-RE#Q09, SP26-B5FE#Q10] Examine this servlet code: If web.xml has the following entries: What will the servlet output? [CODE]
+     Code: @WebServlet("/showParams") / public class ShowParamsServlet extends HttpServlet { / @Override / protected void doGet(HttpServletRequest request, HttpServletResponse response) / throws ServletException, IOException { / ServletContext ctx = getServletContext(); / PrintWriter out = response.getWriter(); / Enumeration<String> paramNames = ctx.getInitParameterNames(); / while(paramNames.hasMoreElements()) { / String name = paramNames.nextElement(); / out.println(name + ": " + ctx.getInitParameter(name)); / } / } / } / <context-param> / <param-name>settingOne</param-name> / <param-value>foo</param-value> / </context-param> / <context-param> / <param-name>settingTwo</param-name> / <param-value>bar</param-value> / </context-param>
+     => B. settingOne: foo settingTwo: bar
+     Giải thích: Vòng lặp duyệt getInitParameterNames() in dạng name + ": " + value theo thứ tự khai báo → settingOne: foo / settingTwo: bar
+046. [2/7 | SU26-RE#Q12, SP26-B5FE#Q13] What is the purpose of request attributes in servlet collaboration?
+     => A. To store data that can be shared across multiple servlets within the same request.
+     Giải thích: Request attribute lưu dữ liệu chia sẻ giữa nhiều servlet/JSP trong cùng một HTTP request (khi forward/include)
+047. [2/7 | SU26-RE#Q13, SP26-RE#Q13] See the extract from web.xml of web application "mywebapp" on server named mywebserver, runs on port 8081: Given that a user enters the following into thier browser, which (if any) of the mapped servlets will execute? (Choose one.) http://mywebserver:8081/mywebapp [CODE]
+     Code: <servlet-mapping> / <servlet-name>ServletA</servlet-name> / <url-pattern>/</url-pattern> / </servlet-mapping> / <servlet-mapping> / <servlet-name>ServletB</servlet-name> / <url-pattern>/bservlet.html</url-pattern> / </servlet-mapping> / <servlet-mapping> / <servlet-name>ServletC</servlet-name> / <url-pattern>*.servletC</url-pattern> / </servlet-mapping> / <servlet-mapping> / <servlet-name>ServletD</servlet-name> / <url-pattern>/dservlet/*</url-pattern> / </servlet-mapping>
+     => A. ServletA
+     Giải thích: URL context root /mywebapp không khớp /bservlet.html, *.servletC hay /dservlet/* nên rơi về default servlet có pattern '/' là ServletA
+048. [2/7 | SU26-RE#Q18, SP26-B5FE#Q19] Through which implicit object can you access parameters passed to the JSP page?
+     => B. request
+     Giải thích: Implicit object request dùng để truy xuất các tham số truyền tới trang JSP qua request.getParameter()
+049. [2/7 | SU26-RE#Q20, SP26-FE#Q20] When using JDBC, which method helps to get the number of records affected after performing UPDATE or DELETE?
      => D. stmt.executeUpdate()
      Giải thích: stmt.executeUpdate() thực thi INSERT/UPDATE/DELETE và trả về số nguyên là số bản ghi bị ảnh hưởng
-136. [1/6 | SU26-RE#Q23] In a servlet, what does the following line do? [CODE]
-     Code: session.setAttribute("user", null);
-     => D. It deletes the "user" attribute from the session
-     Giải thích: Theo Javadoc HttpSession.setAttribute: truyền giá trị null có tác dụng tương đương gọi removeAttribute(), tức xoá attribute "user" khỏi session
-137. [1/6 | SU26-RE#Q25] Which is NOT a component of the MVC architecture in Java web frameworks?
+050. [2/7 | SU26-RE#Q21, SP26-RE#Q21] In a Java web application, what is the typical process for obtaining a database connection before executing SQL statements?
+     => A. Use the getConnection() method of the DriverManager class
+     Giải thích: Quy trình chuẩn JDBC là gọi DriverManager.getConnection(...) để lấy đối tượng Connection
+051. [2/7 | SU26-RE#Q24, SP26-B5FE#Q24] Which component of the MVC architecture is responsible for presenting data to the user in a web application?
+     => B. View
+     Giải thích: Trong MVC, tầng View chịu trách nhiệm hiển thị dữ liệu cho người dùng
+052. [2/7 | SU26-RE#Q25, SP26-FE#Q25] Which is NOT a component of the MVC architecture in Java web frameworks?
      => A. Service Layer
      Giải thích: MVC gồm 3 thành phần Model, View, Controller; Service Layer không phải thành phần cốt lõi của định nghĩa MVC
-138. [1/6 | SU26-RE#Q26] Which layer in a multi-tier architecture is responsible for implementing business rules and logic?
+053. [2/7 | SU26-RE#Q26, SP26-FE#Q26] Which layer in a multi-tier architecture is responsible for implementing business rules and logic?
      => C. Business logic layer
      Giải thích: Business logic layer (tầng nghiệp vụ) thực thi các quy tắc và xử lý nghiệp vụ trong kiến trúc đa tầng
-139. [1/6 | SU26-RE#Q28] What is the main purpose of session management?
-     => B. Track user activities
-     Giải thích: Mục đích chính của session management là theo dõi trạng thái và hoạt động của người dùng qua nhiều HTTP request (vì HTTP là stateless)
-140. [1/6 | SU26-RE#Q30] What is the ServletContext in a Java web application?
+054. [2/7 | SU26-RE#Q27, SP26-RE#Q28] What are the implications of maintaining user roles and permissions within the session object?
+     => B. It is often considered unsafe because there is a risk that someone could change the session information, which could lead to unauthorized access to higher privileges..
+     Giải thích: Lưu trực tiếp role/permission trong session có rủi ro bảo mật (chiếm đoạt/sửa phiên hoặc quyền cũ chưa cập nhật dẫn tới leo thang đặc quyền trái phép)
+055. [2/7 | SU26-RE#Q29, SP26-B5FE#Q30] In the doGet method, how to create a Cookie and send it to the client? [CODE]
+     Code: public class CookieExampleServlet extends HttpServlet { / protected void doGet(HttpServletRequest request, HttpServletResponse response) / throws ServletException, IOException { / // TODO: Your code here / } / }
+     => A. Cookie newCookie = new Cookie("username", "john_doe"); response.addCookie(newCookie);
+     Giải thích: Tạo Cookie bằng new Cookie("username", "john_doe") và gửi về client bằng response.addCookie(newCookie)
+056. [2/7 | SU26-RE#Q30, SP26-FE#Q30] What is the ServletContext in a Java web application?
      => C. An object representing the entire web application
      Giải thích: ServletContext là đối tượng đại diện cho toàn bộ ứng dụng web (1 instance duy nhất cho mỗi web app)
-141. [1/6 | SU26-RE#Q31] Which EL operator is used to access properties or attributes of objects?
-     => A. . (dot)
-     Giải thích: Toán tử dấu chấm . (dot) trong EL dùng để truy cập thuộc tính/property của JavaBean hoặc Map
-142. [1/6 | SU26-RE#Q32] What is the order of precedence for EL's implicit variable scope resolution?
-     => A. pageScope → requestScope → sessionScope → applicationScope
-     Giải thích: Thứ tự tìm kiếm biến ngầm định của EL từ hẹp đến rộng: pageScope → requestScope → sessionScope → applicationScope
-143. [1/6 | SU26-RE#Q36] Which listener is triggered when an attribute is added to a ServletContext?
-     => A. ServletContextAttributeListener
-     Giải thích: ServletContextAttributeListener được kích hoạt khi có attribute được thêm/xoá/thay thế trong ServletContext
-144. [1/6 | SU26-RE#Q37] Which of the following correct code to get information in the following <context-param> tag in the web.xml file? [CODE]
+057. [2/7 | SU26-RE#Q33, SP26-B5FE#Q35] How would you use EL to access a property named title from a Map object within a List named bookList at index 2?
+     => E. ${bookList[2].title}
+     Giải thích: Truy cập thuộc tính title của Map tại chỉ số 2 trong List bookList bằng EL chuẩn: ${bookList[2].title}
+058. [2/7 | SU26-RE#Q34, SP26-RE#Q33] In JSP, how do you access elements of a collection using Expression Language (EL)?
+     => C. By accessing elements using square brackets with the index
+     Giải thích: Trong EL, truy xuất phần tử của mảng/List/collection bằng cặp dấu ngoặc vuông chứa chỉ số [index]
+059. [2/7 | SU26-RE#Q35, SP26-RE#Q36] What is a Server Listener in the context of web applications?
+     => B. A mechanism for intercepting and reacting to lifecycle events of a web application.
+     Giải thích: Listener là cơ chế lắng nghe và phản ứng với các sự kiện vòng đời (lifecycle events) của ứng dụng web
+060. [2/7 | SU26-RE#Q37, SP26-FE#Q38] Which of the following correct code to get information in the following <context-param> tag in the web.xml file? [CODE]
      Code: <web-app> / <context-param> / <param-name>studentName</param-name> / <param-value>abcJhn</param-value> / </context-param> / </web-app>
      => B. ServletContext sc = getServletContext(); String serverName = sc.getInitParameter("studentName");
      Giải thích: Đọc <context-param> bằng getServletContext().getInitParameter("studentName") (C sai vì dùng ServletConfig và dấu chấm cuối dòng)
-145. [1/6 | SU26-RE#Q39] Which of the following is NOT a valid attribute of the <c:forEach> JSTL tag?
-     => D. case
-     Giải thích: <c:forEach> có các thuộc tính var, items, begin, end, step, varStatus — KHÔNG có thuộc tính case
-146. [1/6 | SU26-RE#Q40] Which JSTL core tag is used to conditionally render content based on a boolean expression?
+061. [2/7 | SU26-RE#Q38, SP26-B5FE#Q39] What is the purpose of a Session Listener in a Java web application?
+     => D. To listen for changes in session lifecycle events
+     Giải thích: Session Listener (HttpSessionListener) lắng nghe các sự kiện vòng đời của session (sessionCreated / sessionDestroyed)
+062. [2/7 | SU26-RE#Q40, SP26-FE#Q40] Which JSTL core tag is used to conditionally render content based on a boolean expression?
      => A. <c:if>
      Giải thích: Thẻ <c:if test="..."> hiển thị nội dung có điều kiện dựa trên một biểu thức boolean
-147. [1/6 | SU26-RE#Q41] What does the var attribute in the <fmt:message> tag define?
+063. [2/7 | SU26-RE#Q41, SP26-FE#Q42] What does the var attribute in the <fmt:message> tag define?
      => B. The variable to store the formatted message
      Giải thích: Thuộc tính var trong <fmt:message> chỉ định tên biến dùng để lưu chuỗi thông điệp đã tra cứu/định dạng
-148. [1/6 | SU26-RE#Q43] What is the primary purpose of the <body> tag in HTML?
-     => C. To contain the visible content of the webpage
-     Giải thích: Thẻ <body> trong HTML chứa toàn bộ nội dung hiển thị (visible content) của trang web
-149. [1/6 | SU26-RE#Q44] What is the purpose of the FilterChain in a filter?
-     => A. To chain multiple filters together
-     Giải thích: FilterChain dùng để liên kết (chain) nhiều filter lại với nhau và chuyển tiếp request sang filter tiếp theo hoặc tài nguyên đích
-150. [1/6 | SU26-RE#Q45] Which directory in Java Web Application contains the .jar libraries used by the application?
-     => B. /WEB-INF/lib/
-     Giải thích: Các thư viện .jar của ứng dụng web Java đặt trong thư mục /WEB-INF/lib/
-151. [1/6 | SU26-RE#Q46] What is the first method called when a filter is initialized in a web application?
+064. [2/7 | SU26-RE#Q42, SP26-RE#Q41] Which JSTL tag is used to set the locale for formatting and parsing in a JSP page?
+     => A. <fmt:setLocale>
+     Giải thích: Thẻ <fmt:setLocale> thiết lập locale cho các thẻ định dạng và phân tích ngày/số trong JSP
+065. [2/7 | SU26-RE#Q46, SP26-FE#Q49] What is the first method called when a filter is initialized in a web application?
      => C. init()
      Giải thích: init() là phương thức đầu tiên được container gọi khi khởi tạo một Servlet Filter
-152. [1/6 | SU26-RE#Q47] In filter mapping, what does the URL pattern "/*" indicate?
-     => C. It matches any URL under the web application root
-     Giải thích: URL pattern "/*" trong filter mapping khớp mọi URL nằm dưới thư mục gốc (context root) của ứng dụng web
-153. [1/6 | SU26-RE#Q48] How can the Body Tag interface be implemented in a custom tag handler class?
+066. [2/7 | SU26-RE#Q48, SP26-FE#Q46] How can the Body Tag interface be implemented in a custom tag handler class?
      => A. By extending the BodyTagSupport class.
      Giải thích: Cách chuẩn để cài đặt BodyTag trong custom tag handler là kế thừa lớp hỗ trợ BodyTagSupport
-154. [1/6 | SU26-RE#Q50] When to use URL Rewriting instead of Cookies?
+067. [2/7 | SU26-FE#Q08, SP26-FE#Q08] Which of the following is the standard file format used to package Java web applications for deployment?
+     => C. .war
+     Giải thích: Ứng dụng web Java chuẩn được đóng gói dưới định dạng .war (Web Application Archive)
+068. [2/7 | SU26-FE#Q17, SP26-RE#Q18] What is the purpose of the JSP <error-page> directive?
+     => A. To declare custom error pages for specific HTTP error codes
+     Giải thích: Cấu hình <error-page> dùng để khai báo trang báo lỗi tuỳ chỉnh cho các mã lỗi HTTP cụ thể (như 404, 500) hoặc ngoại lệ toàn ứng dụng
+069. [2/7 | SU26-FE#Q25, SP26-B5FE#Q27] In a multi-tier data model, which layer is responsible for handling application logic?
+     => B. Application Logic Layer
+     Giải thích: Trong mô hình dữ liệu đa tầng, Application Logic Layer chịu trách nhiệm xử lý logic ứng dụng
+070. [2/7 | SU26-FE#Q27, SP26-FE#Q28] What does <%@ page errorPage="error.jsp" %> do?
+     => A. Redirects all errors to error.jsp
+     Giải thích: Directive <%@ page errorPage="error.jsp" %> chuyển hướng/chuyển tiếp lỗi ngoại lệ chưa được bắt trên trang JSP đó sang trang error.jsp
+071. [2/7 | SU26-FE#Q29, SP26-B5FE#Q31] How to store a value in ServletContext from a Servlet?
+     => A. context.setAttribute("key", value);
+     Giải thích: Lưu giá trị vào ServletContext bằng context.setAttribute("key", value);
+072. [2/7 | SU26-FE#Q32, SP26-FE#Q33] Given a bean product with a Map<String, Integer> stockPerStore, how to access the stock of key "store101"?
+     => A. ${product.stockPerStore["store101"]}
+     Giải thích: Cú pháp chuẩn phổ quát trong EL để truy cập giá trị theo key chuỗi của Map là dấu ngoặc vuông: ${product.stockPerStore["store101"]} (lưu ý: B cũng chạy được vì store101 là định danh hợp lệ)
+073. [2/7 | SU26-FE#Q33, SP26-FE#Q34] What would you use the <c:catch> tag for?
+     => C. To deal with errors that happen when the JSP page is running.
+     Giải thích: Thẻ <c:catch> trong JSTL dùng để bắt và xử lý ngoại lệ/lỗi phát sinh khi trang JSP đang chạy
+074. [2/7 | SU26-FE#Q35, SP26-FE#Q36] Which listener helps to monitor the changes in the values of session variables?
+     => B. HttpSessionAttributeListener
+     Giải thích: HttpSessionAttributeListener theo dõi các thay đổi (thêm/xoá/thay thế) giá trị của các attribute trong session
+075. [2/7 | SU26-FE#Q37, SP26-RE#Q38] Which event is typically handled by HttpSessionListener's sessionDestroyed method?
+     => C. Session destruction
+     Giải thích: Phương thức sessionDestroyed của HttpSessionListener xử lý sự kiện huỷ phiên (Session destruction)
+076. [2/7 | SU26-FE#Q39, SP26-RE#Q39] What output does this JSTL code produce? [CODE]
+     Code: <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> / <c:set var="item" value="5"/> / <c:forEach var="item" begin="1" end="1"> / <c:out value="${item}"/> / </c:forEach>
+     => A. 1
+     Giải thích: Biến lặp var="item" của <c:forEach begin="1" end="1"> ghi đè biến item trong pageScope với giá trị 1 cho 1 vòng lặp duy nhất → in ra 1
+077. [2/7 | SU26-FE#Q40, SP26-B5FE#Q43] What's the point of using <fmt:setLocale> in a JSP?
+     => B. To tell other tags which language and country format to use.
+     Giải thích: <fmt:setLocale> thiết lập locale (ngôn ngữ & quốc gia) để các thẻ định dạng <fmt:*> khác sử dụng
+078. [2/7 | SU26-FE#Q41, SP26-RE#Q42] How are <fmt:parseDate> and <fmt:formatDate> different?
+     => B. <fmt:parseDate> turns text into a date, and <fmt:formatDate> turns a date into text.
+     Giải thích: <fmt:parseDate> phân tích chuỗi văn bản thành đối tượng Date, còn <fmt:formatDate> định dạng đối tượng Date thành chuỗi văn bản
+079. [2/7 | SU26-FE#Q42, SP26-B5FE#Q48] Filter can be defined in which file?
+     => C. Both A and B
+     Giải thích: Servlet Filter có thể khai báo trong file web.xml hoặc dùng annotation @WebFilter trực tiếp trên lớp Java (Cả A và B)
+
+=== ĐỀ SU26-B5-RE (34 câu riêng bổ sung) ===
+080. [1/7 | SU26-B5-RE#Q01] What is the purpose of the HTML <input> element with the type attribute set to "text"?
+     => C. Accepting single-line text input
+     Giải thích: Thẻ <input type="text"> dùng để nhập văn bản một dòng (single-line text input)
+081. [1/7 | SU26-B5-RE#Q03] What HTTP method should be used to update partial resources on the server?
+     => A. PATCH
+     Giải thích: HTTP PATCH dùng để cập nhật một phần tài nguyên (partial update) trên server
+082. [1/7 | SU26-B5-RE#Q04] What is the role of a servlet container in the context of a Java web application?
+     => B. Hosting and executing servlets
+     Giải thích: Servlet container (như Tomcat) có vai trò lưu trữ, quản lý vòng đời và thực thi các servlet
+083. [1/7 | SU26-B5-RE#Q06] What is the correct order to execute a query using JDBC?
+     => A. Connect → Create Statement → Execute Query → Process Result
+     Giải thích: Thứ tự chuẩn JDBC: Connect → Create Statement → Execute Query → Process Result
+084. [1/7 | SU26-B5-RE#Q07] Assess the role of "servlet-mapping" in the "web.xml" file. What does this element define?
+     => B. Specifying how URLs should be routed to specific servlets
+     Giải thích: <servlet-mapping> trong web.xml ánh xạ URL pattern tới servlet cụ thể để định tuyến request
+085. [1/7 | SU26-B5-RE#Q08] Which element in the "web.xml" file specifies global parameters accessible throughout the entire web application?
+     => A. context-param
+     Giải thích: <context-param> khai báo tham số toàn cục (ServletContext) dùng chung cho toàn bộ ứng dụng web
+086. [1/7 | SU26-B5-RE#Q09] Which XML element is used to specify initialization parameters for a servlet in the web.xml file?
+     => B. <init-param>
+     Giải thích: <init-param> bên trong <servlet> khai báo tham số khởi tạo riêng cho servlet đó (ServletConfig)
+087. [1/7 | SU26-B5-RE#Q11] Choose correct option to declare service method in servlet?
+     => B. public void service(ServletRequest request, ServletResponse response){//...}
+     Giải thích: Chữ ký chuẩn của service(): public void service(ServletRequest request, ServletResponse response)
+088. [1/7 | SU26-B5-RE#Q12] How can a servlet send a redirect to the client?
+     => A. response.sendRedirect("url");
+     Giải thích: Servlet chuyển hướng (redirect) client bằng response.sendRedirect("url")
+089. [1/7 | SU26-B5-RE#Q13] Which method is called every time a client request is made to the servlet?
+     => B. service()
+     Giải thích: Container gọi service() mỗi khi có request từ client gửi tới servlet
+090. [1/7 | SU26-B5-RE#Q14] What is the main purpose of HttpServlet in Java web applications?
+     => A. To handle HTTP requests and responses
+     Giải thích: HttpServlet chuyên xử lý các HTTP request (doGet, doPost...) và tạo HTTP response
+091. [1/7 | SU26-B5-RE#Q15] Which of the following elements in the web.xml deployment descriptor is used to map a servlet to a URL pattern in a Java web application?
+     => C. <url-pattern>
+     Giải thích: Thẻ <url-pattern> bên trong <servlet-mapping> xác định mẫu URL được ánh xạ tới servlet
+092. [1/7 | SU26-B5-RE#Q16] What is the purpose of the <%@ include file="..." %> directive in a JSP page?
+     => A. To include another JSP page during the translation phase.
+     Giải thích: Directive <%@ include file="..." %> chèn tĩnh nội dung file JSP khác ngay ở pha dịch (translation phase)
+093. [1/7 | SU26-B5-RE#Q17] In the context of web application security, what is a significant advantage of placing JSP fragments within the /WEB-INF directory?
+     => B. Files within /WEB-INF are not directly accessible through a URL, enhancing the security of sensitive code and resources.
+     Giải thích: Tài nguyên trong /WEB-INF không thể truy cập trực tiếp qua URL từ trình duyệt, giúp bảo mật JSP/code
+094. [1/7 | SU26-B5-RE#Q18] Given ${2 > 1 ? 'Yes' : 'No'}, what is the result?
+     => A. Yes
+     Giải thích: Toán tử 3 ngôi trong EL: 2 > 1 là true nên trả về 'Yes'
+095. [1/7 | SU26-B5-RE#Q21] Which object is used to store application-wide data?
+     => C. application
+     Giải thích: Implicit object application (ServletContext) lưu dữ liệu dùng chung cho toàn bộ ứng dụng
+096. [1/7 | SU26-B5-RE#Q22] To establish a connection to a database in JDBC, you use the _______ method of the DriverManager class.
+     => C. getConnection()
+     Giải thích: DriverManager.getConnection(...) tạo kết nối tới cơ sở dữ liệu trong JDBC
+097. [1/7 | SU26-B5-RE#Q24] What is a connection pool in the context of database connections in web applications?
+     => C. A pool of pre-initialized database connections for reuse
+     Giải thích: Connection pool duy trì sẵn tập kết nối DB để tái sử dụng, giảm chi phí mở/đóng kết nối
+098. [1/7 | SU26-B5-RE#Q25] What method is used to execute a SQL query and obtain the result set?
+     => C. ResultSet resultSet = statement.executeQuery("SELECT * FROM table_name");
+     Giải thích: statement.executeQuery("SELECT ...") thực thi câu lệnh SELECT và trả về đối tượng ResultSet
+099. [1/7 | SU26-B5-RE#Q27] What is the primary purpose of a multi-tier architecture in application design?
+     => B. To improve data security and scalability.
+     Giải thích: Kiến trúc đa tầng (multi-tier) tách biệt các tầng giúp tăng cường bảo mật dữ liệu và khả năng mở rộng (scalability)
+100. [1/7 | SU26-B5-RE#Q28] What is MVC architecture?
+     => C. Model-View-Controller
+     Giải thích: MVC là viết tắt của Model-View-Controller
+101. [1/7 | SU26-B5-RE#Q29] You are working on a JSP MVC application where multiple views need to display the same set of data. Discuss how you would avoid code duplication and ensure a consistent data presentation across different views.
+     => B. Implement a shared DataProvider class in the Model.
+     Giải thích: Tách logic lấy dữ liệu vào một lớp dùng chung (DataProvider/DAO) ở tầng Model giúp tránh lặp code và đồng bộ dữ liệu giữa các View
+102. [1/7 | SU26-B5-RE#Q32] What happens if the browser does not support cookies but the application uses HttpSession to manage sessions?
+     => B. The session will still work if the application uses URL rewriting to maintain the session ID
+     Giải thích: Khi trình duyệt tắt/không hỗ trợ cookie, HttpSession vẫn hoạt động nếu ứng dụng dùng URL rewriting (gắn jsessionid vào URL)
+103. [1/7 | SU26-B5-RE#Q33] What is the correct code to perform URL rewriting by appending a parameter named 'sessionID' with value '123' to the current URL in a Java Servlet?
+     => D. String url = response.encodeURL("currentURL?sessionID=123");
+     Giải thích: response.encodeURL(...) là phương thức chuẩn của HttpServletResponse để thực hiện URL rewriting trong Servlet
+104. [1/7 | SU26-B5-RE#Q34] When is a ServletContext attribute available to servlets in a web application?
+     => B. During the entire lifecycle of the servlet container
+     Giải thích: Attribute trong ServletContext tồn tại trong suốt vòng đời của ứng dụng web / servlet container
+105. [1/7 | SU26-B5-RE#Q36] Consider a Java class Food that includes a private field price, a public getter method getPrice(), and a public method calcSubTotal() that computes a subtotal based on a predefined algorithm. Let f be an instance of the Food class. In the context of JavaServer Pages (JSP) Expression Language (EL), which of the following correctly invokes the sub total calculation?
+     => D. ${f.calcSubTotal()}
+     Giải thích: EL 2.2+ cho phép gọi trực tiếp phương thức public trên đối tượng: ${f.calcSubTotal()}
+106. [1/7 | SU26-B5-RE#Q38] What is the purpose of the empty keyword in EL when used with a collection?
+     => C. Checks if the collection is empty
+     Giải thích: Toán tử empty trong EL kiểm tra xem collection có rỗng (hoặc null) hay không
+107. [1/7 | SU26-B5-RE#Q39] In the contextInitialized method, what kind of tasks would you typically perform during the initialization of the servlet context? [CODE]
+     Code: public class MyAppContextListener implements ServletContextListener { / public void contextInitialized(ServletContextEvent event) { / // TODO: Your code here / } / public void contextDestroyed(ServletContextEvent event) { / // TODO: Your code here / } / }------------------------------------------------------------
+     => D. Configuring global application settings
+     Giải thích: contextInitialized() dùng để thiết lập cấu hình/tài nguyên toàn cục cho ứng dụng khi ServletContext khởi tạo (lưu ý: B khởi tạo đối tượng kết nối DB cũng thường đặt trong contextInitialized, nhưng D bao quát hơn mục đích thiết lập toàn ứng dụng)
+108. [1/7 | SU26-B5-RE#Q40] When is the contextInitialized() method of a ServletContextListener invoked?
+     => C. When the web application is deployed or started.
+     Giải thích: contextInitialized() của ServletContextListener được container gọi khi ứng dụng web được deploy hoặc khởi động
+109. [1/7 | SU26-B5-RE#Q42] Which URI is correct for accessing the JSTL core library?
+     => A. http://java.sun.com/jsp/jstl/core
+     Giải thích: URI chuẩn của thư viện JSTL Core (JSTL 1.1/1.2) là http://java.sun.com/jsp/jstl/core
+110. [1/7 | SU26-B5-RE#Q43] How can you iterate over the results of a SQL query using JSTL tags?
+     => B. Use <c:forEach> with items set to ${result.rows}.
+     Giải thích: Dùng <c:forEach> với items="${result.rows}" để duyệt qua từng bản ghi kết quả từ <sql:query>
+111. [1/7 | SU26-B5-RE#Q45] What is the purpose of a filter initialization parameter in the web.xml file?
+     => C. To provide configuration options specific to the filter
+     Giải thích: Filter <init-param> trong web.xml truyền các tuỳ chọn cấu hình riêng cho filter đó qua FilterConfig
+112. [1/7 | SU26-B5-RE#Q47] What is filter mapping used for in a Java web application?
+     => C. To specify which URL patterns or servlets the filter should intercept.
+     Giải thích: <filter-mapping> chỉ định URL pattern hoặc servlet nào mà filter sẽ chặn (intercept)
+113. [1/7 | SU26-B5-RE#Q48] What is the effect of setting the attribute varStatus in <c:forEach>?
+     => A. It stores the current iteration index and other state information.
+     Giải thích: Thuộc tính varStatus trong <c:forEach> lưu đối tượng LoopTagStatus chứa index, count, first, last... của vòng lặp
+
+=== ĐỀ SU26-B5-FE (23 câu riêng bổ sung) ===
+114. [1/7 | SU26-B5-FE#Q01] Which HTTP method is more secure when transferring sensitive data like passwords or user information?
+     => B. POST
+     Giải thích: POST gửi dữ liệu trong request body thay vì lộ trên URL/history như GET nên an toàn hơn cho mật khẩu/dữ liệu nhạy cảm
+115. [1/7 | SU26-B5-FE#Q03] Which method is used in a servlet to retrieve a context init parameter?
+     => C. getServletContext().getInitParameter()
+     Giải thích: getServletContext().getInitParameter(...) đọc tham số <context-param> của toàn ứng dụng
+116. [1/7 | SU26-B5-FE#Q05] If a user logs into a web application from a public computer, what method of session tracking might less secure?
+     => C. URL rewriting for session tracking.
+     Giải thích: URL rewriting gắn session ID lên thanh địa chỉ nên dễ lộ qua lịch sử trình duyệt/Referer trên máy tính công cộng (lưu ý: D long cookies cũng rủi ro giữ đăng nhập trên máy công cộng, nhưng C là đáp án chuẩn về phương pháp session tracking kém an toàn)
+117. [1/7 | SU26-B5-FE#Q06] Which Java technology is commonly used for automatically populating Java Beans with request parameters in web applications?
+     => B. JSP (JavaServer Pages)
+     Giải thích: JSP hỗ trợ tự động gán tham số request vào JavaBean qua standard action <jsp:useBean> và <jsp:setProperty property="*"/>
+118. [1/7 | SU26-B5-FE#Q07] What is the primary purpose of a filter in a web application?
+     => B. To intercept and manipulate requests and responses
+     Giải thích: Mục đích chính của Filter là chặn (intercept) và tiền/hậu xử lý request và response
+119. [1/7 | SU26-B5-FE#Q11] Which of the following is the correct order of servlet life cycle phase methods?
+     => A. init(), service(), destroy()
+     Giải thích: Thứ tự chuẩn vòng đời Servlet: init() → service() → destroy()
+120. [1/7 | SU26-B5-FE#Q12] In a Java web application, you need to iterate over a List<Map<String, Object>> stored in the request scope under the key dataList. Each Map represents a row of data with keys "id", "name", and "status". Using JSTL, which of the following correctly iterates over this list and displays only the name of entries where status equals "active"?
+     => A. <c:forEach var="row" items="${dataList}"> <c:if test="${row.status eq 'active'}"> ${row.name} </c:if> </c:forEach>
+     Giải thích: A đúng cú pháp JSTL/EL (row.status eq 'active'); B lỗi dấu ngoặc kép lồng nhau trong test="..."; C thiếu <c:choose> bao <c:when>; D đảo ngược var và items
+121. [1/7 | SU26-B5-FE#Q17] What happens to a database transaction if an error occurs during its execution in a web application?
+     => A. It is automatically rolled back
+     Giải thích: Theo tính nguyên tử (Atomicity) của transaction, khi xảy ra lỗi trong quá trình thực thi, giao dịch sẽ được rollback
+122. [1/7 | SU26-B5-FE#Q19] What is a common pitfall when updating mutable objects stored as session attributes?
+     => A. The container may not detect the change if you don't re-set the attribute.
+     Giải thích: Khi sửa trực tiếp object mutable trong session mà không gọi lại setAttribute(), container (đặc biệt ở môi trường cluster/replication) có thể không nhận ra sự thay đổi
+123. [1/7 | SU26-B5-FE#Q20] You are tasked with improving the performance of a JSP MVC application, which currently experiences slow page loading times. Propose a strategy for optimizing the application, considering MVC principles.
+     => C. Optimize database queries within the Model to reduce data retrieval times.
+     Giải thích: Theo đúng nguyên tắc MVC, tối ưu truy vấn CSDL thuộc trách nhiệm của tầng Model để giảm thời gian lấy dữ liệu
+124. [1/7 | SU26-B5-FE#Q23] Which attribute makes an input field unalterable but still submit its value when the form is submitted?
+     => A. readonly
+     Giải thích: Thuộc tính readonly khoá không cho người dùng sửa nhưng VẪN gửi giá trị khi submit form (khác với disabled không gửi)
+125. [1/7 | SU26-B5-FE#Q28] Consider the code: Choose the correct statement. [CODE]
+     Code: public class HelloServlet extends HttpServlet { / @Override / protected void doGet(HttpServletRequest request, HttpServletResponse response) / throws ServletException, IOException { / response.getWriter().println("Hello, World!");    (*) / } / }
+     => C. The web container created this resource at line (*), so it is responsible for closing it.
+     Giải thích: Web container tạo ra luồng PrintWriter từ response.getWriter() và tự chịu trách nhiệm đóng sau khi kết thúc request
+126. [1/7 | SU26-B5-FE#Q29] Which HTTP method is typically used to submit data to be processed to a web server?
+     => B. POST
+     Giải thích: HTTP POST thường dùng để gửi dữ liệu form/payload lên web server để xử lý
+127. [1/7 | SU26-B5-FE#Q31] What is the primary function of a web server in the client-server architecture?
+     => B. Processing and responding to client requests
+     Giải thích: Chức năng chính của web server trong mô hình client-server là xử lý và phản hồi các request từ client
+128. [1/7 | SU26-B5-FE#Q34] Which is true about JDBC?
+     => D. The JDBC API is included in J2SE
+     Giải thích: JDBC API (java.sql) được tích hợp sẵn trong J2SE (Java SE); A sai (không kế thừa ODBC), B sai (Type 1/2 dùng native code), C sai (MOM là JMS)
+129. [1/7 | SU26-B5-FE#Q35] What is the role of the <%@ page %> directive in JSP?
+     => B. To import Java packages and set page attributes.
+     Giải thích: Directive <%@ page %> dùng để import các gói Java và thiết lập thuộc tính cho trang JSP (contentType, errorPage, session...)
+130. [1/7 | SU26-B5-FE#Q36] What is the role of the <servlet-mapping> element in web.xml?
+     => B. It maps a servlet to a URL pattern
+     Giải thích: <servlet-mapping> trong web.xml ánh xạ một servlet với một URL pattern
+131. [1/7 | SU26-B5-FE#Q40] Which JSTL core tag is used to output a value onto the JSP page?
+     => A. <c:out>
+     Giải thích: Thẻ JSTL core <c:out> dùng để xuất giá trị ra trang JSP (có tự động escape XML/HTML)
+132. [1/7 | SU26-B5-FE#Q41] What is the method signature for an event where an attribute was removed from an HttpSession?
+     => C. public void attributeRemoved(HttpSessionBindingEvent event)
+     Giải thích: Trong HttpSessionAttributeListener, sự kiện xoá attribute dùng chữ ký: public void attributeRemoved(HttpSessionBindingEvent event)
+133. [1/7 | SU26-B5-FE#Q42] Which JSP element is NOT executed at the service() method of the servlet?
+     => C. Declaration
+     Giải thích: Declaration (<%! ... %>) được đặt ở mức lớp (class body), nằm ngoài phương thức _jspService() (lưu ý: Directive <%@ ... %> xử lý ở pha dịch cũng không chạy trong _jspService(), nhưng C là đáp án chuẩn phân biệt với Scriptlet & Expression trong nhóm JSP scripting elements)
+134. [1/7 | SU26-B5-FE#Q43] In a Java web application, which of the following statements is used to execute an SQL query against a database?
+     => B. executeQuery()
+     Giải thích: executeQuery() dùng để thực thi câu lệnh SQL SELECT trả về ResultSet
+135. [1/7 | SU26-B5-FE#Q47] How do you access the property name of a JavaBean user using EL?
+     => A. ${user.name}
+     Giải thích: Truy xuất thuộc tính name của JavaBean user trong EL bằng toán tử chấm ${user.name}
+136. [1/7 | SU26-B5-FE#Q50] Which is NOT a scope of implicit objects of JSP file?
+     => C. response
+     Giải thích: 4 scope của JSP là page, request, session, application — response là implicit object nhưng KHÔNG phải scope
+
+=== ĐỀ SU26-RE (23 câu riêng bổ sung) ===
+137. [1/7 | SU26-RE#Q02] What is the correct way to forward a request using RequestDispatcher? RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
+     => C. rd.forward(request, response);
+     Giải thích: Chuyển tiếp request chuẩn bằng rd.forward(request, response) (đúng thứ tự tham số request trước, response sau)
+138. [1/7 | SU26-RE#Q04] What is the purpose of an HTML form in web development?
+     => C. To collect user input
+     Giải thích: Thẻ HTML <form> dùng để thu thập dữ liệu nhập từ người dùng (collect user input)
+139. [1/7 | SU26-RE#Q05] What is the output of executing a JDBC query with ResultSet and calling rs.next() once?
+     => A. Moves to first row
+     Giải thích: Con trỏ ResultSet ban đầu đứng trước dòng đầu tiên; gọi rs.next() lần đầu sẽ di chuyển tới dòng thứ nhất
+140. [1/7 | SU26-RE#Q06] Which method is called when a servlet is being removed from service?
+     => A. destroy()
+     Giải thích: Container gọi destroy() một lần khi servlet sắp bị gỡ khỏi dịch vụ (removed from service)
+141. [1/7 | SU26-RE#Q07] How is the deployment descriptor of a web application typically named?
+     => B. web.xml
+     Giải thích: Deployment descriptor chuẩn của ứng dụng web Java có tên là web.xml
+142. [1/7 | SU26-RE#Q08] Which file in a Java web application provides configuration and deployment information to the servlet container?
+     => C. web.xml
+     Giải thích: web.xml cung cấp thông tin cấu hình và triển khai ứng dụng cho servlet container
+143. [1/7 | SU26-RE#Q10] During the servlet life cycle in a Java web application, when is the service() method called by the servlet container?
+     => C. Whenever a client sends a request to the servlet.
+     Giải thích: service() được servlet container gọi mỗi khi có client gửi request tới servlet
+144. [1/7 | SU26-RE#Q11] What is the purpose of the @WebServlet annotation in the example? [CODE]
+     Code: @WebServlet(name="HelloServlet", urlPatterns={"/hello"}) / public class HelloServlet extends HttpServlet { / protected void doGet(HttpServletRequest request, HttpServletResponse response) / throws ServletException, IOException { / response.setContentType("text/html"); / response.getWriter().println("<h1>Hello from @WebServlet!</h1>"); / } / }
+     => B. It replaces the XML servlet declaration in web.xml
+     Giải thích: Annotation @WebServlet (từ Servlet 3.0) thay thế cho việc khai báo <servlet> và <servlet-mapping> trong web.xml
+145. [1/7 | SU26-RE#Q14] Which statement about the response implicit variable in JSP is correct?
+     => B. You should avoid setting content type, flushing, or resetting the buffer directly in JSP.
+     Giải thích: Trong JSP không nên tự ý đổi contentType, flush hay reset buffer trực tiếp trên response vì JSP tự quản lý qua page directive và JspWriter out
+146. [1/7 | SU26-RE#Q15] Which of the following is a valid example of a JSP declaration?
+     => B. <%! private int count = 0; %>
+     Giải thích: Cú pháp JSP Declaration là <%! ... %>, ví dụ <%! private int count = 0; %>
+147. [1/7 | SU26-RE#Q16] In JSP, what do scriptlets allow developers to embed within a page?
+     => C. Arbitrary Java code
+     Giải thích: Scriptlet (<% ... %>) cho phép nhúng mã Java tuỳ ý (arbitrary Java code) vào bên trong trang JSP
+148. [1/7 | SU26-RE#Q17] Which implicit object provides access to HTTP headers and cookies in a Java Servlet?
+     => A. request
+     Giải thích: Đối tượng request (HttpServletRequest) cung cấp getHeader(), getCookies() để đọc HTTP header và cookie
+149. [1/7 | SU26-RE#Q23] In a servlet, what does the following line do? [CODE]
+     Code: session.setAttribute("user", null);
+     => D. It deletes the "user" attribute from the session
+     Giải thích: Theo Javadoc HttpSession.setAttribute: truyền giá trị null có tác dụng tương đương gọi removeAttribute(), tức xoá attribute "user" khỏi session
+150. [1/7 | SU26-RE#Q28] What is the main purpose of session management?
+     => B. Track user activities
+     Giải thích: Mục đích chính của session management là theo dõi trạng thái và hoạt động của người dùng qua nhiều HTTP request (vì HTTP là stateless)
+151. [1/7 | SU26-RE#Q31] Which EL operator is used to access properties or attributes of objects?
+     => A. . (dot)
+     Giải thích: Toán tử dấu chấm . (dot) trong EL dùng để truy cập thuộc tính/property của JavaBean hoặc Map
+152. [1/7 | SU26-RE#Q32] What is the order of precedence for EL's implicit variable scope resolution?
+     => A. pageScope → requestScope → sessionScope → applicationScope
+     Giải thích: Thứ tự tìm kiếm biến ngầm định của EL từ hẹp đến rộng: pageScope → requestScope → sessionScope → applicationScope
+153. [1/7 | SU26-RE#Q36] Which listener is triggered when an attribute is added to a ServletContext?
+     => A. ServletContextAttributeListener
+     Giải thích: ServletContextAttributeListener được kích hoạt khi có attribute được thêm/xoá/thay thế trong ServletContext
+154. [1/7 | SU26-RE#Q39] Which of the following is NOT a valid attribute of the <c:forEach> JSTL tag?
+     => D. case
+     Giải thích: <c:forEach> có các thuộc tính var, items, begin, end, step, varStatus — KHÔNG có thuộc tính case
+155. [1/7 | SU26-RE#Q43] What is the primary purpose of the <body> tag in HTML?
+     => C. To contain the visible content of the webpage
+     Giải thích: Thẻ <body> trong HTML chứa toàn bộ nội dung hiển thị (visible content) của trang web
+156. [1/7 | SU26-RE#Q44] What is the purpose of the FilterChain in a filter?
+     => A. To chain multiple filters together
+     Giải thích: FilterChain dùng để liên kết (chain) nhiều filter lại với nhau và chuyển tiếp request sang filter tiếp theo hoặc tài nguyên đích
+157. [1/7 | SU26-RE#Q45] Which directory in Java Web Application contains the .jar libraries used by the application?
+     => B. /WEB-INF/lib/
+     Giải thích: Các thư viện .jar của ứng dụng web Java đặt trong thư mục /WEB-INF/lib/
+158. [1/7 | SU26-RE#Q47] In filter mapping, what does the URL pattern "/*" indicate?
+     => C. It matches any URL under the web application root
+     Giải thích: URL pattern "/*" trong filter mapping khớp mọi URL nằm dưới thư mục gốc (context root) của ứng dụng web
+159. [1/7 | SU26-RE#Q50] When to use URL Rewriting instead of Cookies?
      => B. When the user's browser blocks cookies
      Giải thích: URL Rewriting được dùng thay thế Cookies khi trình duyệt của người dùng chặn/tắt cookies
 
-=== ĐỀ SU26-FE (37 câu riêng bổ sung) ===
-155. [1/6 | SU26-FE#Q01] Examine the following web.xml snippet. What servlet will be called for /login path? [LỖI ĐỀ]
+=== ĐỀ SU26-FE (32 câu riêng bổ sung) ===
+160. [1/7 | SU26-FE#Q01] Examine the following web.xml snippet. What servlet will be called for /login path? [LỖI ĐỀ]
      => A. LoginServlet
      Giải thích: Lưu ý lỗi đề EOS/FUO: đề hỏi 'Examine the following web.xml snippet' nhưng ảnh gốc không hiển thị đoạn XML (lỗi không escape thẻ XML); theo quy ước đặt tên chuẩn đường dẫn /login ánh xạ tới LoginServlet
-156. [1/6 | SU26-FE#Q02] Which of the following statements are correct about the status code = 404 of the Http response?
+161. [1/7 | SU26-FE#Q02] Which of the following statements are correct about the status code = 404 of the Http response?
      => A. Indicates that the requested resource is not available.
      Giải thích: HTTP 404 Not Found cho biết tài nguyên được yêu cầu không tồn tại / không khả dụng trên server
-157. [1/6 | SU26-FE#Q03] What is the role of a web server in a client-server architecture?
+162. [1/7 | SU26-FE#Q03] What is the role of a web server in a client-server architecture?
      => B. Processes client requests and returns dynamic content
      Giải thích: Trong kiến trúc client-server của ứng dụng web, web server nhận/xử lý yêu cầu từ client và trả về nội dung động/phản hồi tương ứng
-158. [1/6 | SU26-FE#Q04] Which method must be overridden to initialize a servlet before handling requests ? [CODE]
+163. [1/7 | SU26-FE#Q04] Which method must be overridden to initialize a servlet before handling requests ? [CODE]
      Code: public class MyServlet  extends HttpServlet { / //... code / }
      => C. init()
      Giải thích: Ghi đè phương thức init() để khởi tạo tài nguyên cho servlet trước khi xử lý các request
-159. [1/6 | SU26-FE#Q05] Which directory in a Java web application typically contains the web.xml deployment descriptor file?
+164. [1/7 | SU26-FE#Q05] Which directory in a Java web application typically contains the web.xml deployment descriptor file?
      => B. /WEB-INF
      Giải thích: File triển khai web.xml nằm trong thư mục /WEB-INF của ứng dụng web Java
-160. [1/6 | SU26-FE#Q06] Analyze the purpose of the servlet container in a Java web server. What is the function of the "context initialization parameter" in this context?
+165. [1/7 | SU26-FE#Q06] Analyze the purpose of the servlet container in a Java web server. What is the function of the "context initialization parameter" in this context?
      => C. Initializing global configuration parameters for the web application
      Giải thích: Context initialization parameter (<context-param>) khởi tạo các tham số cấu hình toàn cục dùng chung cho toàn bộ ứng dụng web
-161. [1/6 | SU26-FE#Q07] In what unit is the <session-timeout> value specified in the web.xml file?
+166. [1/7 | SU26-FE#Q07] In what unit is the <session-timeout> value specified in the web.xml file?
      => C. Minutes
      Giải thích: Giá trị <session-timeout> trong web.xml được tính theo đơn vị phút (Minutes)
-162. [1/6 | SU26-FE#Q08] Which of the following is the standard file format used to package Java web applications for deployment?
-     => C. .war
-     Giải thích: Ứng dụng web Java chuẩn được đóng gói dưới định dạng .war (Web Application Archive)
-163. [1/6 | SU26-FE#Q09] Which object is not an implicit object in JSP?
+167. [1/7 | SU26-FE#Q09] Which object is not an implicit object in JSP?
      => D. thread
      Giải thích: 9 implicit object của JSP gồm request, response, out, session, application, config, pageContext, page, exception — KHÔNG có thread
-164. [1/6 | SU26-FE#Q10] How does the jsp:include tag differ from the include directive?
+168. [1/7 | SU26-FE#Q10] How does the jsp:include tag differ from the include directive?
      => B. jsp:include includes the output dynamically at runtime
      Giải thích: <jsp:include> chèn động kết quả đầu ra tại thời điểm chạy (runtime/request time), khác với <%@ include %> chèn tĩnh lúc dịch (translation time)
-165. [1/6 | SU26-FE#Q11] Which structure of Status Line in Response Message is
+169. [1/7 | SU26-FE#Q11] Which structure of Status Line in Response Message is
      => A. [HTTP Version] [Response Code] [Status]
      Giải thích: Cấu trúc chuẩn của Status Line trong HTTP Response là: [HTTP Version] [Response Code] [Status] (ví dụ HTTP/1.1 200 OK)
-166. [1/6 | SU26-FE#Q13] In Java web applications, which of the following URL patterns is commonly used in <servlet-mapping> to indicate that a servlet should handle requests for all URLs in a specific directory and its subdirectories?
+170. [1/7 | SU26-FE#Q13] In Java web applications, which of the following URL patterns is commonly used in <servlet-mapping> to indicate that a servlet should handle requests for all URLs in a specific directory and its subdirectories?
      => B. /servlet/*
      Giải thích: Mẫu đường dẫn dạng tiền tố thư mục kết thúc bằng /* (như /servlet/*) ánh xạ toàn bộ URL trong thư mục đó và các thư mục con (lưu ý: về kỹ thuật D /pages/* cũng có cùng cấu trúc path-prefix, còn A /* khớp toàn bộ gốc ứng dụng)
-167. [1/6 | SU26-FE#Q14] How are servlets and JSP related in Java web development?
+171. [1/7 | SU26-FE#Q14] How are servlets and JSP related in Java web development?
      => A. JSPs can use servlets to handle complex logic.
      Giải thích: Trong phát triển web Java (MVC), JSP hiển thị giao diện và phối hợp với Servlet xử lý logic phức tạp phía server
-168. [1/6 | SU26-FE#Q15] Which of the following represents the XML equivalent of this statement <%@ include file="connect.jsp"%> Select the one correct statement
+172. [1/7 | SU26-FE#Q15] Which of the following represents the XML equivalent of this statement <%@ include file="connect.jsp"%> Select the one correct statement
      => C. <jsp:directive.include file=" connect.jsp"/>
      Giải thích: Cú pháp XML (JSP Document) tương đương với directive <%@ include file="connect.jsp"%> là <jsp:directive.include file=" connect.jsp"/>
-169. [1/6 | SU26-FE#Q16] What is the main purpose of JSP in a web application?
+173. [1/7 | SU26-FE#Q16] What is the main purpose of JSP in a web application?
      => B. To handle server-side logic and generate dynamic content.
      Giải thích: Mục đích chính của JSP là xử lý phía server và sinh nội dung web động (dynamic content)
-170. [1/6 | SU26-FE#Q18] Which JSTL tag is used to iterate over a collection?
+174. [1/7 | SU26-FE#Q18] Which JSTL tag is used to iterate over a collection?
      => A. <c:forEach>
      Giải thích: Thẻ JSTL core <c:forEach> dùng để duyệt lặp qua một collection/mảng
-171. [1/6 | SU26-FE#Q19] What is the purpose of a DataSource object in JDBC?
+175. [1/7 | SU26-FE#Q19] What is the purpose of a DataSource object in JDBC?
      => C. To manage a pool of database connections
      Giải thích: Đối tượng DataSource trong JDBC dùng để quản lý connection pool và cung cấp kết nối CSDL hiệu quả
-172. [1/6 | SU26-FE#Q20] What is NOT a valid JDBC Statement type?
+176. [1/7 | SU26-FE#Q20] What is NOT a valid JDBC Statement type?
      => A. BatchStatement
      Giải thích: JDBC có 3 loại Statement: Statement, PreparedStatement, CallableStatement — KHÔNG có BatchStatement
-173. [1/6 | SU26-FE#Q21] What is the purpose of using database transactions in a web application with multiple database operations?
+177. [1/7 | SU26-FE#Q21] What is the purpose of using database transactions in a web application with multiple database operations?
      => B. To group operations together as a single unit of work
      Giải thích: Database transaction gom nhiều thao tác CSDL thành một đơn vị công việc nguyên tử duy nhất (single unit of work — thành công hết hoặc rollback hết)
-174. [1/6 | SU26-FE#Q22] When a user sends a request in an MVC application, which step happens first?
+178. [1/7 | SU26-FE#Q22] When a user sends a request in an MVC application, which step happens first?
      => B. The controller receives the request and processes it
      Giải thích: Trong mô hình MVC, khi người dùng gửi request thì Controller là thành phần đầu tiên tiếp nhận và điều phối xử lý
-175. [1/6 | SU26-FE#Q23] Which statement about session cookies is false?
+179. [1/7 | SU26-FE#Q23] Which statement about session cookies is false?
      => A. Session cookies can store any Java object as a value
      Giải thích: SAI: Cookie chỉ lưu chuỗi văn bản (String) ở phía trình duyệt, KHÔNG thể lưu trực tiếp đối tượng Java bất kỳ (chỉ HttpSession phía server mới lưu Object)
-176. [1/6 | SU26-FE#Q24] In MVC2 architecture, what role does the servlet typically play?
+180. [1/7 | SU26-FE#Q24] In MVC2 architecture, what role does the servlet typically play?
      => B. Controller
      Giải thích: Trong kiến trúc MVC2 (JSP + Servlet), Servlet đóng vai trò Controller
-177. [1/6 | SU26-FE#Q26] Which interface must be implemented to listen for session creation?
+181. [1/7 | SU26-FE#Q26] Which interface must be implemented to listen for session creation?
      => A. HttpSessionListener
      Giải thích: Interface HttpSessionListener lắng nghe sự kiện tạo mới (sessionCreated) và huỷ (sessionDestroyed) của phiên làm việc
-178. [1/6 | SU26-FE#Q27] What does <%@ page errorPage="error.jsp" %> do?
-     => A. Redirects all errors to error.jsp
-     Giải thích: Directive <%@ page errorPage="error.jsp" %> chuyển hướng/chuyển tiếp lỗi ngoại lệ chưa được bắt trên trang JSP đó sang trang error.jsp
-179. [1/6 | SU26-FE#Q28] Which HTTP header is used to send cookies from the server to the client in a web application?
+182. [1/7 | SU26-FE#Q28] Which HTTP header is used to send cookies from the server to the client in a web application?
      => A. Set-Cookie
      Giải thích: Server gửi cookie về trình duyệt client thông qua HTTP response header Set-Cookie
-180. [1/6 | SU26-FE#Q30] Which of the following is the primary way the EL evaluator resolves a variable in an EL expression?
+183. [1/7 | SU26-FE#Q30] Which of the following is the primary way the EL evaluator resolves a variable in an EL expression?
      => B. It first checks if the variable is one of the eleven implicit variables.
      Giải thích: Khi phân giải biến trong EL, bộ đánh giá kiểm tra trước xem tên biến có thuộc 11 đối tượng ngầm định (implicit objects) của EL hay không, rồi mới tìm lần lượt qua page → request → session → application
-181. [1/6 | SU26-FE#Q31] Which JSTL tag is used to check if a variable or attribute is null or empty?
+184. [1/7 | SU26-FE#Q31] Which JSTL tag is used to check if a variable or attribute is null or empty?
      => A. <c:if test="${empty myVar}">
      Giải thích: Kết hợp <c:if> với toán tử empty của EL: <c:if test="${empty myVar}"> để kiểm tra biến null hoặc rỗng
-182. [1/6 | SU26-FE#Q32] Given a bean product with a Map<String, Integer> stockPerStore, how to access the stock of key "store101"?
-     => A. ${product.stockPerStore["store101"]}
-     Giải thích: Cú pháp chuẩn phổ quát trong EL để truy cập giá trị theo key chuỗi của Map là dấu ngoặc vuông: ${product.stockPerStore["store101"]} (lưu ý: B cũng chạy được vì store101 là định danh hợp lệ)
-183. [1/6 | SU26-FE#Q33] What would you use the <c:catch> tag for?
-     => C. To deal with errors that happen when the JSP page is running.
-     Giải thích: Thẻ <c:catch> trong JSTL dùng để bắt và xử lý ngoại lệ/lỗi phát sinh khi trang JSP đang chạy
-184. [1/6 | SU26-FE#Q34] When is the contextInitialized(ServletContextEvent sce) method called in a ServletContextListener?
+185. [1/7 | SU26-FE#Q34] When is the contextInitialized(ServletContextEvent sce) method called in a ServletContextListener?
      => B. When the web application is deployed.
      Giải thích: Phương thức contextInitialized(ServletContextEvent sce) được gọi khi ứng dụng web được triển khai (deployed) hoặc khởi động
-185. [1/6 | SU26-FE#Q35] Which listener helps to monitor the changes in the values of session variables?
-     => B. HttpSessionAttributeListener
-     Giải thích: HttpSessionAttributeListener theo dõi các thay đổi (thêm/xoá/thay thế) giá trị của các attribute trong session
-186. [1/6 | SU26-FE#Q36] When does HttpSessionListener's sessionCreated method get invoked?
+186. [1/7 | SU26-FE#Q36] When does HttpSessionListener's sessionCreated method get invoked?
      => B. When a new session is created
      Giải thích: Phương thức sessionCreated của HttpSessionListener được container gọi khi một session mới được tạo
-187. [1/6 | SU26-FE#Q38] In a JSP page, you need to display a user's email address stored in the request scope as userEmail. If userEmail is null or empty, a default message "No email provided" should be displayed. Which of the following JSTL constructs correctly achieves this while ensuring proper HTML escaping?
+187. [1/7 | SU26-FE#Q38] In a JSP page, you need to display a user's email address stored in the request scope as userEmail. If userEmail is null or empty, a default message "No email provided" should be displayed. Which of the following JSTL constructs correctly achieves this while ensuring proper HTML escaping?
      => A. <c:out value="${userEmail}" default="No email provided" />
      Giải thích: Thẻ <c:out value="${userEmail}" default="No email provided" /> vừa tự động escape HTML mặc định vừa hiển thị chuỗi default khi null
-188. [1/6 | SU26-FE#Q43] What happens if a filter does not call chain.doFilter() inside doFilter()?
+188. [1/7 | SU26-FE#Q43] What happens if a filter does not call chain.doFilter() inside doFilter()?
      => B. The filter chain stops and the request never reaches the target resource.
      Giải thích: Nếu filter không gọi chain.doFilter(), chuỗi filter dừng lại và request sẽ không bao giờ tới được filter tiếp theo hay servlet/tài nguyên đích
-189. [1/6 | SU26-FE#Q44] During the filter lifecycle in a web application, when is the init() method typically called?
+189. [1/7 | SU26-FE#Q44] During the filter lifecycle in a web application, when is the init() method typically called?
      => B. Only once when the filter is first instantiated
      Giải thích: Trong vòng đời filter, init() chỉ được container gọi duy nhất một lần khi filter mới được khởi tạo
-190. [1/6 | SU26-FE#Q45] Consider the following filter mappings defined in the deployment descriptor of a Java web application: Which of the following statements most accurately describes the order in which these filters are processed for a request matching both URL patterns in a Java web application? [CODE]
+190. [1/7 | SU26-FE#Q45] Consider the following filter mappings defined in the deployment descriptor of a Java web application: Which of the following statements most accurately describes the order in which these filters are processed for a request matching both URL patterns in a Java web application? [CODE]
      Code: <filter-mapping> / <filter-name>filterOne</filter-name> / <url-pattern>/student*</url-pattern> / </filter-mapping> / <filter-mapping> / <filter-name>filterTwo</filter-name> / <url-pattern>/student/add</url-pattern> / </filter-mapping>
      => B. filterOne is processed first because it is declared before filterTwo in the deployment descriptor.
      Giải thích: Theo Servlet Spec mục 6.2.4, nhiều filter cùng khớp qua <url-pattern> luôn chạy theo đúng thứ tự khai báo trong web.xml (không xếp theo độ cụ thể như servlet-mapping) → filterOne chạy trước filterTwo
-191. [1/6 | SU26-FE#Q47] How does a Simple Tag Handler interact with the JSP page it's used in?
+191. [1/7 | SU26-FE#Q47] How does a Simple Tag Handler interact with the JSP page it's used in?
      => B. It processes and generates content during the rendering phase
      Giải thích: Simple Tag Handler (doTag) xử lý và sinh nội dung đầu ra trong pha kết xuất (rendering phase) của trang JSP
 
 === ĐỀ SP26-B5FE (27 câu riêng bổ sung) ===
-192. [1/6 | SP26-B5FE#Q01] What is inside a HTTP response?
+192. [1/7 | SP26-B5FE#Q01] What is inside a HTTP response?
      => E. Both A and D is true
      Giải thích: Một HTTP response gồm Status/result code, Header fields (A) và Body + Header fields (D) → Both A and D is true (ACK là cờ của TCP, không có request code)
-193. [1/6 | SP26-B5FE#Q02] How does the GET method handle sensitive data compared to the POST method?
+193. [1/7 | SP26-B5FE#Q02] How does the GET method handle sensitive data compared to the POST method?
      => C. GET exposes sensitive data in the URL.
      Giải thích: GET đính kèm tham số trực tiếp lên thanh địa chỉ URL nên làm lộ dữ liệu nhạy cảm (trái với POST gửi trong request body)
-194. [1/6 | SP26-B5FE#Q03] What happens to request attributes when sendRedirect() is used? [CODE]
+194. [1/7 | SP26-B5FE#Q03] What happens to request attributes when sendRedirect() is used? [CODE]
      Code: request.setAttribute("data", "value"); / response.sendRedirect("result.jsp");
      => B. Attributes are lost
      Giải thích: sendRedirect() yêu cầu trình duyệt gửi một HTTP request hoàn toàn mới nên toàn bộ request attribute trước đó bị mất (Attributes are lost)
-195. [1/6 | SP26-B5FE#Q05] In a standard Java web application, where is the deployment descriptor (web.xml) typically located?
+195. [1/7 | SP26-B5FE#Q05] In a standard Java web application, where is the deployment descriptor (web.xml) typically located?
      => A. /WEB-INF
      Giải thích: Deployment descriptor web.xml nằm trực tiếp trong thư mục /WEB-INF của ứng dụng web Java
-196. [1/6 | SP26-B5FE#Q06] What is the primary function of a Servlet container in a Java web application?
+196. [1/7 | SP26-B5FE#Q06] What is the primary function of a Servlet container in a Java web application?
      => B. Executing server-side Java code (Servlets)
      Giải thích: Chức năng chính của Servlet container (như Tomcat) là quản lý vòng đời và thực thi mã Java phía server (Servlets)
-197. [1/6 | SP26-B5FE#Q07] Where is the deployment descriptor located?
+197. [1/7 | SP26-B5FE#Q07] Where is the deployment descriptor located?
      => A. The deployment descriptor is located in the WEB-INF directory of the web application.
      Giải thích: File deployment descriptor (web.xml) nằm trong thư mục WEB-INF của ứng dụng web
-198. [1/6 | SP26-B5FE#Q09] What method is called in HttpServlet when using a href link to pass parameters to servlet?
+198. [1/7 | SP26-B5FE#Q09] What method is called in HttpServlet when using a href link to pass parameters to servlet?
      => C. doGet(HttpServletRequest request, HttpServletResponse response)
      Giải thích: Nhấp vào liên kết <a href="..."> luôn gửi HTTP GET nên container gọi doGet(HttpServletRequest, HttpServletResponse)
-199. [1/6 | SP26-B5FE#Q11] What is the function of the <jsp:forward> tag in JSP?
+199. [1/7 | SP26-B5FE#Q11] What is the function of the <jsp:forward> tag in JSP?
      => C. Transfers request control to another resource on the server
      Giải thích: Standard action <jsp:forward> chuyển quyền điều khiển xử lý request sang một tài nguyên khác ngay trên phía server
-200. [1/6 | SP26-B5FE#Q12] Which servlet method retrieves a servlet's initialization parameter defined in the web.xml?
+200. [1/7 | SP26-B5FE#Q12] Which servlet method retrieves a servlet's initialization parameter defined in the web.xml?
      => A. getServletConfig().getInitParameter("paramName")
      Giải thích: Lấy tham số khởi tạo riêng của servlet trong web.xml bằng getServletConfig().getInitParameter("paramName") (lưu ý: C getInitParameter() là hàm kế thừa từ GenericServlet gọi uỷ quyền sang A)
-201. [1/6 | SP26-B5FE#Q14] What is the purpose of the <url-pattern> element in the servlet mapping configuration?
+201. [1/7 | SP26-B5FE#Q14] What is the purpose of the <url-pattern> element in the servlet mapping configuration?
      => C. To set the URL address that maps to a servlet
      Giải thích: Thẻ <url-pattern> bên trong <servlet-mapping> thiết lập mẫu địa chỉ URL được ánh xạ tới servlet
-202. [1/6 | SP26-B5FE#Q17] Which tag is used to declare a variable or method in JSP?
+202. [1/7 | SP26-B5FE#Q17] Which tag is used to declare a variable or method in JSP?
      => D. <%! %>
      Giải thích: Khai báo biến hoặc phương thức mức lớp trong JSP bằng thẻ Declaration <%! %>
-203. [1/6 | SP26-B5FE#Q18] Which implicit object in JSP provides access to the servlet context and can be used to store and retrieve application-wide information?
+203. [1/7 | SP26-B5FE#Q18] Which implicit object in JSP provides access to the servlet context and can be used to store and retrieve application-wide information?
      => C. application
      Giải thích: Implicit object application trong JSP đại diện cho ServletContext, dùng để lưu và đọc dữ liệu toàn ứng dụng
-204. [1/6 | SP26-B5FE#Q20] Which of the following statements about JSTL is not valid?
+204. [1/7 | SP26-B5FE#Q20] Which of the following statements about JSTL is not valid?
      => B. JSTL completely replaces servlets for business logic
      Giải thích: SAI: JSTL chỉ hỗ trợ hiển thị ở tầng View, KHÔNG thay thế hoàn toàn Servlet cho logic nghiệp vụ (business logic)
-205. [1/6 | SP26-B5FE#Q21] If you forget to close the JDBC connection (Connection), what can happen?
+205. [1/7 | SP26-B5FE#Q21] If you forget to close the JDBC connection (Connection), what can happen?
      => C. The number of connections to the database can be exhausted (Connection Leak)
      Giải thích: Quên đóng JDBC Connection gây rò rỉ kết nối (Connection Leak), làm cạn kiệt số kết nối tới CSDL
-206. [1/6 | SP26-B5FE#Q22] When to use PreparedStatement instead of Statement?
+206. [1/7 | SP26-B5FE#Q22] When to use PreparedStatement instead of Statement?
      => B. When executing the same query multiple times with different parameters
      Giải thích: Dùng PreparedStatement thay Statement khi thực thi lặp lại cùng câu truy vấn với nhiều bộ tham số khác nhau (vừa biên dịch sẵn tối ưu hiệu năng vừa chống SQL Injection)
-207. [1/6 | SP26-B5FE#Q25] Given the code below: Which of the following is incorrect? [CODE]
+207. [1/7 | SP26-B5FE#Q25] Given the code below: Which of the following is incorrect? [CODE]
      Code: HttpSession session = request.getSession(); / session.setAttribute("username", "HuyNM");
      => D. The attribute is stored in the client browser’s local storage
      Giải thích: SAI: Attribute của HttpSession được lưu trên bộ nhớ phía SERVER, không lưu trong local storage của trình duyệt client
-208. [1/6 | SP26-B5FE#Q28] To get the value of an attribute saved in the session, which method do we use?
+208. [1/7 | SP26-B5FE#Q28] To get the value of an attribute saved in the session, which method do we use?
      => C. session.getAttribute(String name)
      Giải thích: Đọc giá trị attribute trong session bằng phương thức chuẩn session.getAttribute(String name)
-209. [1/6 | SP26-B5FE#Q29] What happens if you call request.getSession(false); when no session exists?
+209. [1/7 | SP26-B5FE#Q29] What happens if you call request.getSession(false); when no session exists?
      => B. Returns null
      Giải thích: Gọi request.getSession(false) khi chưa có session sẽ trả về null (không tự tạo session mới)
-210. [1/6 | SP26-B5FE#Q32] Consider the code in the LoggingFilter filter: And in the web.xml: Assuming that the client sends a request to open the index.jsp page, arrange the following steps correctly to describe the processing inside server. 1: the LoggingFilter intercepts the request to display current date 2: the server compiles and processes the JSP file to generates an HTML response. 3: The final HTML content from index.jsp is sent back to the client's browser. 4: the request continues to index.jsp 5: the HTML response from index.jsp is sent back to the LoggingFilter. [CODE]
+210. [1/7 | SP26-B5FE#Q32] Consider the code in the LoggingFilter filter: And in the web.xml: Assuming that the client sends a request to open the index.jsp page, arrange the following steps correctly to describe the processing inside server. 1: the LoggingFilter intercepts the request to display current date 2: the server compiles and processes the JSP file to generates an HTML response. 3: The final HTML content from index.jsp is sent back to the client's browser. 4: the request continues to index.jsp 5: the HTML response from index.jsp is sent back to the LoggingFilter. [CODE]
      Code: @Override / public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)     throws / IOException, ServletException { / HttpServletRequest req = (HttpServletRequest) request; / System.out.println( new Date()); / chain.doFilter(request, response); / } / <filter> / <filter-name>LoggingFilter</filter-name> / <filter-class>LoggingFilter</filter-class> / </filter> / <filter-mapping> / <filter-name>LoggingFilter</filter-name> / <url-pattern>/*</url-pattern> / </filter-mapping>
      => A. 1-4-2-5-3
      Giải thích: Thứ tự xử lý chuẩn qua Filter: 1 (LoggingFilter chặn request, in ngày) → 4 (chuyển tiếp tới index.jsp) → 2 (server biên dịch/xử lý JSP tạo HTML) → 5 (response quay lại LoggingFilter) → 3 (trả HTML cuối về trình duyệt)
-211. [1/6 | SP26-B5FE#Q36] Which interface must be implemented to create a custom listener for session-related events in Java web development?
+211. [1/7 | SP26-B5FE#Q36] Which interface must be implemented to create a custom listener for session-related events in Java web development?
      => A. HttpSessionListener
      Giải thích: Interface HttpSessionListener lắng nghe các sự kiện liên quan đến phiên (tạo/huỷ session)
-212. [1/6 | SP26-B5FE#Q37] In Java web development, what is the primary role of a ServletContextListener?
+212. [1/7 | SP26-B5FE#Q37] In Java web development, what is the primary role of a ServletContextListener?
      => C. Observing changes in the lifecycle of the ServletContext.
      Giải thích: Vai trò chính của ServletContextListener là theo dõi các sự kiện thay đổi trong vòng đời của ServletContext (khởi tạo/huỷ ứng dụng)
-213. [1/6 | SP26-B5FE#Q40] Given this JSTL code, what is the correct output of ${myUrl}? [CODE]
+213. [1/7 | SP26-B5FE#Q40] Given this JSTL code, what is the correct output of ${myUrl}? [CODE]
      Code: <c:url value="/app/item" var="myUrl" scope="page"> / <c:param name="type" value="book" /> / <c:param name="id" value="123" /> / </c:url> / ${myUrl}
      => A. /app/item?type=book&id=123
      Giải thích: <c:url> kết hợp 2 thẻ <c:param> nối tham số theo thứ tự thành chuỗi URL: /app/item?type=book&id=123
-214. [1/6 | SP26-B5FE#Q41] What is the purpose of the <c:catch> tag in JSTL?
+214. [1/7 | SP26-B5FE#Q41] What is the purpose of the <c:catch> tag in JSTL?
      => A. It catches exceptions thrown during the execution of its body content.
      Giải thích: Thẻ JSTL <c:catch> bắt các ngoại lệ (exceptions) phát sinh trong quá trình thực thi phần thân (body content) bên trong nó
-215. [1/6 | SP26-B5FE#Q44] Which interface needs to be implemented to create a custom tag handler class?
+215. [1/7 | SP26-B5FE#Q44] Which interface needs to be implemented to create a custom tag handler class?
      => C. `javax.servlet.jsp.tagext.Tag`
      Giải thích: Tạo custom tag handler trong JSP cần cài đặt interface javax.servlet.jsp.tagext.Tag (hoặc SimpleTag/BodyTag)
-216. [1/6 | SP26-B5FE#Q45] Which attribute of the <jsp:directive.tag> element is used to specify the Java class that implements a Simple Tag Handler?
+216. [1/7 | SP26-B5FE#Q45] Which attribute of the <jsp:directive.tag> element is used to specify the Java class that implements a Simple Tag Handler?
      => A. tagclass
      Giải thích: Thuộc tính/thẻ chỉ định lớp Java của tag handler là tagclass (theo chuẩn TLD <tagclass>/<tag-class>; đề gốc ghi lẫn <jsp:directive.tag>)
-217. [1/6 | SP26-B5FE#Q46] What is the role of the setBodyContent() method in the Body Tag interface?
+217. [1/7 | SP26-B5FE#Q46] What is the role of the setBodyContent() method in the Body Tag interface?
      => A. It sets the body content of the custom tag.
      Giải thích: Theo Javadoc BodyTag.setBodyContent(BodyContent b), phương thức này gán đối tượng body content cho custom tag (doInitBody() mới là bước khởi tạo trước khi đánh giá body)
-218. [1/6 | SP26-B5FE#Q47] In the context of web filters, what does "pre-processing" of a request mean?
+218. [1/7 | SP26-B5FE#Q47] In the context of web filters, what does "pre-processing" of a request mean?
      => B. Handling the request before it reaches the servlet or resource.
      Giải thích: Trong Servlet Filter, pre-processing là xử lý request trước khi chuyển tiếp tới servlet hoặc tài nguyên đích
 
 === ĐỀ SP26-RE (20 câu riêng bổ sung) ===
-219. [1/6 | SP26-RE#Q04] Which interface must be implemented by all servlets ?
+219. [1/7 | SP26-RE#Q04] Which interface must be implemented by all servlets ?
      => D. Servlet
      Giải thích: Mọi servlet trong Java đều phải cài đặt interface gốc javax.servlet.Servlet (HttpServlet là lớp trừu tượng, không phải interface)
-220. [1/6 | SP26-RE#Q06] Which Java class is used to create a servlet in a Java Webserver?
+220. [1/7 | SP26-RE#Q06] Which Java class is used to create a servlet in a Java Webserver?
      => A. HttpServlet
      Giải thích: Lớp chuẩn để tạo HTTP servlet trong Java Web là HttpServlet
-221. [1/6 | SP26-RE#Q09] Which of the following is true about query parameters and post variables in HttpServletRequest?
+221. [1/7 | SP26-RE#Q09] Which of the following is true about query parameters and post variables in HttpServletRequest?
      => C. Both are accessed using the same parameter methods.
      Giải thích: Cả query parameter (GET) và form/post variable (POST x-www-form-urlencoded) đều được truy xuất bằng cùng phương thức getParameter() của HttpServletRequest
-222. [1/6 | SP26-RE#Q10] What is the correct sequence of the servlet life cycle methods?
+222. [1/7 | SP26-RE#Q10] What is the correct sequence of the servlet life cycle methods?
      => C. init(), service(), destroy()
      Giải thích: Thứ tự chuẩn vòng đời Servlet: init() → service() → destroy()
-223. [1/6 | SP26-RE#Q11] Suppose the following HTML code is used to enter user information and call the servlet url-pattern "Record": Which of the Servlet code takes input from an html form and displays it on the browser? [CODE]
+223. [1/7 | SP26-RE#Q11] Suppose the following HTML code is used to enter user information and call the servlet url-pattern "Record": Which of the Servlet code takes input from an html form and displays it on the browser? [CODE]
      Code: <html> / <body> / <form action="Record" > / User:<input type="text" id="txtname1" name="txtname2"><br> / Address:<input type="text" id="txtadd1" name="txtadd2"><br> / <input type="submit" value="GotoZone"> / </form> / </body> / </html>
      => D. public class RecordServlet extends HttpServlet { protected void doGet(HttpServletRequest req,HttpServletResponse res)throws ServletException,IOException { PrintWriter pw=res.getWriter(); res.setContentType("text/html"); String account=req.getParameter("txtname2"); String Addr=req.getParameter("txtadd2"); pw.println("Hello " + account + " from" + Addr); pw.close(); } }
      Giải thích: Thẻ <form action="Record"> không ghi method nên mặc định là GET (gọi doGet), và trình duyệt gửi tham số theo thuộc tính name (txtname2, txtadd2), KHÔNG theo id
-224. [1/6 | SP26-RE#Q14] All JSP pages is translated into_____
+224. [1/7 | SP26-RE#Q14] All JSP pages is translated into_____
      => B. Servlet class
      Giải thích: Tất cả các trang JSP đều được JSP container biên dịch thành một lớp Servlet (Servlet class)
-225. [1/6 | SP26-RE#Q15] How can you include another JSP file within a JSP page?
+225. [1/7 | SP26-RE#Q15] How can you include another JSP file within a JSP page?
      => B. Using the <%@ include > directive.
      Giải thích: Có thể nhúng một file JSP khác vào trang JSP hiện tại bằng directive <%@ include ... %>
-226. [1/6 | SP26-RE#Q17] Which implicit object provides information about the client's request in a JSP page?
+226. [1/7 | SP26-RE#Q17] Which implicit object provides information about the client's request in a JSP page?
      => B. request
      Giải thích: Implicit object request cung cấp thông tin về yêu cầu (HTTP request) của client gửi tới trang JSP
-227. [1/6 | SP26-RE#Q22] In JDBC, what is the effect of calling setAutoCommit(false) on a Connection object?
+227. [1/7 | SP26-RE#Q22] In JDBC, what is the effect of calling setAutoCommit(false) on a Connection object?
      => C. It requires each transaction to be committed or rolled back manually.
      Giải thích: Gọi setAutoCommit(false) tắt chế độ tự động commit, buộc lập trình viên phải gọi commit() hoặc rollback() thủ công cho từng transaction
-228. [1/6 | SP26-RE#Q23] Which of the following statements about HttpSession is incorrect?
+228. [1/7 | SP26-RE#Q23] Which of the following statements about HttpSession is incorrect?
      => A. HttpSession is valid even after the browser is closed and reopened
      Giải thích: SAI: Mặc định cookie JSESSIONID là session cookie sẽ bị trình duyệt xoá khi đóng cửa sổ trình duyệt, nên mở lại trình duyệt sẽ không giữ phiên cũ
-229. [1/6 | SP26-RE#Q27] How are sessions typically identified on the server side in web development?
+229. [1/7 | SP26-RE#Q27] How are sessions typically identified on the server side in web development?
      => C. Session ID
      Giải thích: Phía server định danh từng phiên người dùng thông qua mã Session ID (như JSESSIONID)
-230. [1/6 | SP26-RE#Q29] How is ServletContext different from HttpSession?
+230. [1/7 | SP26-RE#Q29] How is ServletContext different from HttpSession?
      => A. ServletContext stores data for the entire application, while HttpSession only stores data for each user
      Giải thích: ServletContext lưu dữ liệu dùng chung cho toàn bộ ứng dụng web, trong khi HttpSession chỉ lưu dữ liệu riêng cho từng người dùng/phiên
-231. [1/6 | SP26-RE#Q31] Assuming that all members in the class Book are ready. What is the result of the following code? [CODE]
+231. [1/7 | SP26-RE#Q31] Assuming that all members in the class Book are ready. What is the result of the following code? [CODE]
      Code: <jsp:useBean id="e1" class="model.Book" scope="page"> / <jsp:setProperty name="e1" property="id" value="1"/> / <jsp:setProperty name="e1" property="name" value="han va yeu"/> / <jsp:setProperty name="e1" property="price" value="100"/> / </jsp:useBean> / <jsp:useBean id="e2" class="model.Book" scope="page"> / <jsp:setProperty name="e2" property="id" value="2"/> / <jsp:setProperty name="e2" property="name" value="ngon ngu cua tinh yeu"/> / <jsp:setProperty name="e2" property="price" value="120"/> / </jsp:useBean> / <c:set var="total" value="${e1.price+e2.price}" /> / Result= ${total}
      => C. Result=220
      Giải thích: Hai bean e1 (price=100) và e2 (price=120) cộng trong EL ${e1.price+e2.price} = 220 → Result=220 (đoạn trích đề mặc định đã khai báo JSTL core; lưu ý nếu chạy thật mà thiếu <%@ taglib %> thì không báo syntax error mà in rỗng F)
-232. [1/6 | SP26-RE#Q32] What does this EL expression mean? ${not empty param.username}
+232. [1/7 | SP26-RE#Q32] What does this EL expression mean? ${not empty param.username}
      => A. Checks if the username parameter has a value
      Giải thích: ${not empty param.username} kiểm tra xem tham số username có tồn tại và không rỗng hay không (trả về boolean true/false)
-233. [1/6 | SP26-RE#Q43] Which descriptor file is used to map the custom tag to its tag handler class?
+233. [1/7 | SP26-RE#Q43] Which descriptor file is used to map the custom tag to its tag handler class?
      => C. `taglib.tld`
      Giải thích: File Tag Library Descriptor (.tld, ví dụ taglib.tld) ánh xạ tên custom tag tới lớp tag handler tương ứng
-234. [1/6 | SP26-RE#Q44] What is the role of the SimpleTag interface in custom tag development?
+234. [1/7 | SP26-RE#Q44] What is the role of the SimpleTag interface in custom tag development?
      => B. It simplifies custom tag creation by providing a simple handle to tag processing.
      Giải thích: Interface SimpleTag đơn giản hoá việc tạo custom tag (chỉ cần cài đặt 1 phương thức doTag() thay vì vòng đời phức tạp của Classic Tag)
-235. [1/6 | SP26-RE#Q45] What is the purpose of the Tag Description in the TLD file in Java Servlet?
+235. [1/7 | SP26-RE#Q45] What is the purpose of the Tag Description in the TLD file in Java Servlet?
      => A. To provide metadata about custom tags.
      Giải thích: Phần mô tả tag (Tag Description) trong file TLD cung cấp siêu dữ liệu (metadata) về các custom tag
-236. [1/6 | SP26-RE#Q46] Which class in JSP API supports creating Custom Tag by the simplest inheritance?
+236. [1/7 | SP26-RE#Q46] Which class in JSP API supports creating Custom Tag by the simplest inheritance?
      => B. SimpleTagSupport
      Giải thích: Lớp SimpleTagSupport (cài đặt SimpleTag) hỗ trợ tạo custom tag bằng kế thừa đơn giản nhất (chỉ cần override doTag())
-237. [1/6 | SP26-RE#Q48] You need to modify the deployment descriptor for a web application installed in MyWebPro directory. Which file would you look for?
+237. [1/7 | SP26-RE#Q48] You need to modify the deployment descriptor for a web application installed in MyWebPro directory. Which file would you look for?
      => D. web.xml in MyWebPro /WEB-INF
      Giải thích: Deployment descriptor của ứng dụng web đặt tại MyWebPro nằm ở đường dẫn web.xml trong thư mục MyWebPro/WEB-INF
-238. [1/6 | SP26-RE#Q50] What is the purpose of the <filter> element in the web.xml deployment descriptor of a Java web application?
+238. [1/7 | SP26-RE#Q50] What is the purpose of the <filter> element in the web.xml deployment descriptor of a Java web application?
      => D. To configure and define filters that can intercept requests and responses in the web application.
      Giải thích: Thẻ <filter> trong web.xml dùng để khai báo và cấu hình các filter chặn xử lý request và response trong ứng dụng web
+
+=== ĐỀ SP26-FE (26 câu riêng bổ sung) ===
+239. [1/7 | SP26-FE#Q01] What are NOT the methods of HTTP 1.1 request?
+     => E. UPDATE
+     Giải thích: Các phương thức chuẩn HTTP/1.1 gồm GET, HEAD, POST, PUT, DELETE, OPTIONS, TRACE, CONNECT (và PATCH); UPDATE không phải phương thức HTTP
+240. [1/7 | SP26-FE#Q02] In a Java web application, which HTTP status code indicates a successful response for a GET request?
+     => A. 200
+     Giải thích: Mã trạng thái HTTP 200 OK biểu thị phản hồi thành công cho yêu cầu GET (201 là Created, 404 là Not Found, 500 là Internal Server Error)
+241. [1/7 | SP26-FE#Q04] Consider the following code: Which of the following statements is the most incorrect? [CODE]
+     Code: protected void doPost(HttpServletRequest req, / HttpServletResponse res) / throws ServletException, IOException { / String user = req.getParameter("username"); / res.getWriter().println("User: " + user); / }
+     => C. getParameter("username") retrieves the value from the URL query string.
+     Giải thích: Phát biểu sai nhất là C: trong doPost(), req.getParameter("username") chủ yếu đọc tham số gửi trong phần thân request (POST body), không chỉ lấy từ URL query string (A, B, D đều hoàn toàn đúng)
+242. [1/7 | SP26-FE#Q05] Which directory is used to store external libraries (JAR files) in a Java web application?
+     => A. /WEB-INF/lib
+     Giải thích: Thư mục /WEB-INF/lib dùng để lưu các thư viện ngoài dạng file .jar trong ứng dụng web Java (/WEB-INF/classes chứa file .class đã biên dịch)
+243. [1/7 | SP26-FE#Q06] How can the Servlet Container handle concurrent requests in a Servlet?
+     => B. By creating a new thread for each request
+     Giải thích: Servlet Container dùng 1 instance Servlet duy nhất và tạo/cấp phát một luồng (thread) riêng cho mỗi request để xử lý đồng thời (đồng bộ hoá service() ở A sẽ làm mất tính đồng thời)
+244. [1/7 | SP26-FE#Q07] What does the <error-page> tag in the deployment descriptor signify?
+     => A. Set custom error pages for specific exceptions
+     Giải thích: Thẻ <error-page> trong web.xml dùng để cấu hình trang báo lỗi tuỳ chỉnh cho các ngoại lệ (<exception-type>) hoặc mã lỗi HTTP (<error-code>) cụ thể
+245. [1/7 | SP26-FE#Q09] Which of the following is true about HTTP Get method??
+     => C. Both of the above.
+     Giải thích: Cả A (server gọi doGet() qua service() để xử lý yêu cầu GET) và B (GET là phương thức mặc định truyền thông tin từ trình duyệt lên web server) đều đúng → Both of the above
+246. [1/7 | SP26-FE#Q10] Which method is invoked most during servlet operation?
+     => B. service()
+     Giải thích: service() được container gọi trên MỌI request gửi tới servlet (trước khi phân phối sang doGet()/doPost()), còn init() và destroy() chỉ gọi 1 lần trong vòng đời
+247. [1/7 | SP26-FE#Q11] Which annotation is used to declare Servlet Mapping without web.xml?
+     => A. @WebServlet
+     Giải thích: Annotation @WebServlet (từ Servlet 3.0+) dùng để khai báo và ánh xạ URL cho Servlet trực tiếp trên lớp Java mà không cần web.xml
+248. [1/7 | SP26-FE#Q13] How can you define a servlet mapping without using web.xml?
+     => A. By using annotations like @WebServlet(urlPatterns = {"/example"}) in the servlet.
+     Giải thích: Có thể ánh xạ Servlet không cần web.xml bằng annotation @WebServlet(urlPatterns = {"/example"}) trực tiếp trên lớp servlet
+249. [1/7 | SP26-FE#Q14] Why is it recommended to set the character encoding to UTF-8 in a JSP page, and where is it commonly set?
+     => C. To correctly display special characters and support localization; commonly set in the JSP page directive with contentType
+     Giải thích: Đặt bảng mã UTF-8 giúp hiển thị đúng ký tự đặc biệt/đa ngôn ngữ (localization), thường cấu hình trong page directive của JSP qua contentType (ví dụ <%@ page contentType="text/html; charset=UTF-8" %>)
+250. [1/7 | SP26-FE#Q15] Which directive must be used in a JSP page to include another resource at request time?
+     => A. <jsp:include>
+     Giải thích: <jsp:include> chèn tài nguyên khác tại thời điểm xử lý yêu cầu (request time); đề ghi nhầm 'directive' thay vì 'standard action', nhưng chỉ A có chức năng include
+251. [1/7 | SP26-FE#Q16] What is the purpose of a JSP scriptlet in a web application?
+     => B. To declare variables and execute Java code
+     Giải thích: JSP scriptlet (<% ... %>) dùng để khai báo biến cục bộ và thực thi mã Java bên trong phương thức _jspService()
+252. [1/7 | SP26-FE#Q19] Which of the following statements best describes the role of JDBC in web applications?
+     => C. JDBC is a standard Java API for interacting with databases.
+     Giải thích: JDBC (Java Database Connectivity) là API chuẩn của Java dùng để kết nối và tương tác với cơ sở dữ liệu
+253. [1/7 | SP26-FE#Q21] Which JDBC statement is used to execute stored procedures in a Java web application?
+     => C. CallableStatement
+     Giải thích: CallableStatement là interface JDBC dùng để gọi và thực thi các thủ tục lưu trữ (stored procedures) trong CSDL
+254. [1/7 | SP26-FE#Q22] By default, which transaction mode does JDBC use?
+     => A. auto-commit on
+     Giải thích: Mặc định kết nối JDBC ở chế độ auto-commit on (autoCommit = true), tức mỗi câu lệnh SQL tự động commit ngay sau khi thực thi
+255. [1/7 | SP26-FE#Q23] Which method retrieves the current session or creates a new one if none exists?
+     => B. request.getSession(true)
+     Giải thích: request.getSession(true) (hoặc request.getSession()) lấy session hiện tại hoặc tự tạo session mới nếu chưa tồn tại
+256. [1/7 | SP26-FE#Q24] What is the most secure way to handle session invalidation during logout?
+     => B. Call session.invalidate() and then redirect to login
+     Giải thích: Cách an toàn nhất khi đăng xuất là gọi session.invalidate() để huỷ toàn bộ phiên trên server rồi chuyển hướng (redirect) về trang đăng nhập
+257. [1/7 | SP26-FE#Q29] How can Session Tracking be done?
+     => D. All of the above
+     Giải thích: Cả Cookie, URL Rewriting và Hidden Form Field đều là kỹ thuật theo dõi phiên (Session Tracking) trong Java Web → All of the above
+258. [1/7 | SP26-FE#Q31] How do you access a request parameter named "user" via EL?
+     => A. ${param.user}
+     Giải thích: Trong EL, implicit object param chứa các tham số request nên truy xuất tham số "user" bằng ${param.user} (requestScope dùng cho attribute)
+259. [1/7 | SP26-FE#Q32] Which method is mandatory in a Filter class?
+     => A. doFilter
+     Giải thích: doFilter là phương thức bắt buộc phải cài đặt trong mọi lớp Filter (service là của Servlet, execute/initFilter không tồn tại trong Filter API)
+260. [1/7 | SP26-FE#Q39] What is the correct way to use an external JSP page using JSTL?
+     => A. <c:import url="header.jsp"/>
+     Giải thích: Trong JSTL core, thẻ <c:import url="header.jsp"/> dùng để nhúng nội dung trang JSP/tài nguyên ngoài (JSTL không có <c:include> hay <c:forward>, còn <c:redirect> chuyển hướng HTTP)
+261. [1/7 | SP26-FE#Q43] How would you use this custom tag in a JSP page? [CODE]
+     Code: public class MyCustomTagHandler extends SimpleTagSupport { / private String message; / public void setMessage(String message) { / this.message = message; / } / public void doTag() throws JspException, IOException { / JspWriter out = getJspContext().getOut(); / out.println(message); / } / }
+     => A. <my:customTag message="Hello World" />
+     Giải thích: Sử dụng custom tag với prefix riêng my: và tên tag camelCase chuẩn cùng thuộc tính message: <my:customTag message="Hello World" /> (tránh c: của JSTL và lặp my:My...; lưu ý thực tế tên tag phụ thuộc khai báo <name> trong file .tld, nên C cũng hợp lệ cú pháp nếu TLD đặt <name>MyCustomTag</name>)
+262. [1/7 | SP26-FE#Q44] How can a Simple Tag Handler access the body content of the custom tag?
+     => C. By using the `getJspContext().getOut()` method of the `JspContext` class.
+     Giải thích: Trong đề PRJ301, C là phương án duy nhất dùng đúng API của SimpleTag (getJspContext().getOut() lấy JspWriter ghi output; lưu ý theo chuẩn JSP 2.0 thực tế đọc body content qua getJspBody(), còn A không có JspWriter.getWriter(), B là Classic BodyTag, D chỉ lấy tag cha)
+263. [1/7 | SP26-FE#Q45] Which attribute of the <tag> element is used to specify the name of the custom tag?
+     => A. name
+     Giải thích: Trong file TLD, phần tử/thuộc tính name bên trong <tag> chỉ định tên gọi của custom tag khi dùng trên trang JSP
+264. [1/7 | SP26-FE#Q48] In a Java Web Application, which directory contains JSP files, HTML and static resources like CSS, JavaScript?
+     => C. /Web-Pages/
+     Giải thích: Trong cấu trúc dự án Java Web (chuẩn NetBeans môn PRJ301), thư mục /Web-Pages/ (Web Pages / web root) chứa file JSP, HTML và tài nguyên tĩnh CSS, JavaScript (còn /WEB-INF/classes/, /WEB-INF/lib/, /META-INF/ là thư mục bytecode/thư viện/cấu hình nội bộ)
